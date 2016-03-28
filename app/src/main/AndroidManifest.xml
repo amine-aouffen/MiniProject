@@ -15,8 +15,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ChartActivity" />
-        <activity android:name=".activities.ProductDetailActivity" />
+
+        <activity
+            android:name=".activities.CartActivity"
+            android:label="Chariot"
+            android:parentActivityName=".activities.MainActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".activities.MainActivity"/>
+        </activity>
+
+        <activity android:name=".activities.ProductDetailActivity"
+            android:parentActivityName=".activities.MainActivity"/>
         <activity android:name=".activities.LoginActivity"></activity>
     </application>
 

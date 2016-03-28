@@ -1,5 +1,6 @@
 package tdm.miniproject.activities;
 
+import tdm.miniproject.R;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 

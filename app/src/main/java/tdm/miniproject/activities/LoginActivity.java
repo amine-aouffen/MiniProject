@@ -2,7 +2,7 @@ package tdm.miniproject.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
+import tdm.miniproject.R;
 public class LoginActivity extends AppCompatActivity {
 
     @Override

@@ -3,10 +3,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".activites.MainActivity">
+    tools:context=".activites.MainActivity"
+    android:id="@+id/z">
+    <include
+        android:id="@+id/mainToolBar"
+        layout="@layout/tool_bar"/>
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/productsBar"
+        android:layout_below="@id/mainToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="@color/colorPrimaryDark">
+        </android.support.design.widget.AppBarLayout>
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/consumerTypeBar"
+        android:layout_below="@id/productsBar"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="@color/colorPrimaryDark">
 
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            />
+    </android.support.design.widget.AppBarLayout>
+    <android.support.v4.view.ViewPager
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@id/consumerTypeBar"
+        android:id="@+id/mainViewPager"/>
 </RelativeLayout>
