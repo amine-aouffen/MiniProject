@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="tdm.miniproject.activities.MainActivity">
+    <item
+        android:id="@+id/categorySpinner"
+        android:title="Category Choice"
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.Spinner"
+        />
+
+    <item
+        android:id="@+id/showCart"
+        android:icon="@drawable/ic_shopping_cart_black_24dp"
+        app:showAsAction="always"
+        android:title="addt to chart"
+        android:onClick="showChartActivity"/>
+</menu>

@@ -1,9 +1,9 @@
 package tdm.miniproject.job;
 
 
-import tdm.miniproject.support.ListeProduits;
+import java.util.ArrayList;
 
-public class Category extends ListeProduits {
+public class Category extends ArrayList<Product> {
     private String code;
     private String name;
     private String description;
