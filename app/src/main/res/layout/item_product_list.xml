@@ -39,8 +39,8 @@
             android:textSize="16sp"
             android:textColor="@color/colorAccent"
             android:layout_toRightOf="@id/productItemImage"
-            android:layout_below="@+id/productItemDescription"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@id/productItemDescription"
+
              />
         <Button
             android:layout_width="30dp"

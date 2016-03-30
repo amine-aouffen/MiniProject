@@ -23,9 +23,13 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".activities.MainActivity"/>
         </activity>
 
-        <activity android:name=".activities.ProductDetailActivity"
-            android:parentActivityName=".activities.MainActivity"/>
-        <activity android:name=".activities.LoginActivity"></activity>
+        <activity
+            android:name=".activities.ProductDetailActivity"
+            android:label="Détaille du produit"
+            android:parentActivityName=".activities.MainActivity"
+            />
+
+        <activity android:name=".activities.LoginActivity"/>
     </application>
 
 </manifest>

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tdm.miniproject.R;
+import tdm.miniproject.activities.MainActivity;
 import tdm.miniproject.job.Product;
 
 /**
@@ -24,8 +25,8 @@ import tdm.miniproject.job.Product;
  */
 public class ProductAdapter extends BaseAdapter implements Filterable,Serializable{
     private Context context;
-    private List<Product> productsList;
-    public ProductAdapter(Context context,List<Product> productsList) {
+    private ArrayList<Product> productsList;
+    public ProductAdapter(Context context,ArrayList<Product> productsList) {
         this.context=context;
         this.productsList=productsList;
     }
@@ -53,18 +54,24 @@ public class ProductAdapter extends BaseAdapter implements Filterable,Serializab
             LayoutInflater inflater;
             inflater = LayoutInflater.from(context);
             view=inflater.inflate(R.layout.item_product_list, null);
-            //Filling the item view fields with product information
-            Product product = productsList.get(position);
-            ImageView productPhotoImageView = (ImageView) view.findViewById(R.id.productItemImage);
-            productPhotoImageView.setImageResource(product.getProductPhoto());
-            TextView productNameTextView=(TextView)view.findViewById(R.id.productItemName);
-            productNameTextView.setText(product.getName());
-            TextView productDescriptionTextView=(TextView)view.findViewById(R.id.productItemDescription);
-            productDescriptionTextView.setText(product.getDescription());
-            TextView productPriceTextView=(TextView)view.findViewById(R.id.productItemPrice);
-            productPriceTextView.setText(product.getPrice()+" DA");
-
         }
+        //Filling the item view fields with product information
+        final Product product = productsList.get(position);
+        ImageView productPhotoImageView = (ImageView) view.findViewById(R.id.productItemImage);
+        productPhotoImageView.setImageResource(product.getProductPhoto());
+        TextView productNameTextView=(TextView)view.findViewById(R.id.productItemName);
+        productNameTextView.setText(product.getName());
+        TextView productDescriptionTextView=(TextView)view.findViewById(R.id.productItemDescription);
+        productDescriptionTextView.setText(product.getDescription());
+        TextView productPriceTextView=(TextView)view.findViewById(R.id.productItemPrice);
+        productPriceTextView.setText(product.getPrice()+" DA");
+        Button addCartButton = (Button) view.findViewById(R.id.productItemAddCart);
+        addCartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)context).addProductToCart(product);
+            }
+        });
         return view;
     }
 

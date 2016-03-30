@@ -3,10 +3,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="tdm.miniproject.activities.ProductDetailActivity">
-
+    <include
+        android:id="@+id/productDetailToolBar"
+        layout="@layout/tool_bar"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/productDetailToolBar">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/productDetailName"
+                android:layout_alignParentTop="true"
+                />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/productDetailImage"
+                android:layout_below="@id/productDetailName"
+                android:layout_centerHorizontal="true"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Description:"
+                android:id="@+id/productDetailDescLbl"
+                android:layout_below="@id/productDetailImage"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/productDetailDesc"
+                android:layout_below="@id/productDetailDescLbl"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Caractéristiques du produit:"
+                android:id="@+id/productDetailCaraLbl"
+                android:layout_below="@id/productDetailDesc"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/productDetailCara"
+                android:layout_below="@id/productDetailCaraLbl"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Le prix:"
+                android:id="@+id/productDetailPriceLbl"
+                android:layout_below="@id/productDetailCara"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/productDetailPrice"
+                android:layout_below="@id/productDetailCara"
+                android:layout_toRightOf="@id/productDetailPriceLbl"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ajouter au chariot"
+                android:id="@+id/productDetailAddCart"
+                android:layout_below="@id/productDetailPrice"
+                android:layout_centerHorizontal="true"/>
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

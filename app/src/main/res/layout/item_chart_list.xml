@@ -1,6 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_height="100dp"
+        android:layout_width="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/cartItemImage"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chemise Blanche"
+        android:id="@+id/cartItemName"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/colorPrimary"
+        android:layout_toRightOf="@id/cartItemImage"
+        android:layout_alignParentTop="true"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chemise Blanche bli bla bla bla blom blim hala la fa ajaja"
+        android:id="@+id/cartItemDescription"
+        android:textStyle="italic"
+        android:textSize="14sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_below="@+id/cartItemName"
+        android:layout_toRightOf="@id/cartItemImage"
+        android:layout_toLeftOf="@+id/cartItemDelete" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1900 DA"
+        android:id="@+id/cartItemPrice"
+        android:textStyle="normal"
+        android:textSize="16sp"
+        android:textColor="@color/colorAccent"
+        android:layout_toRightOf="@id/cartItemImage"
+        android:layout_below="@id/cartItemDescription"
+        />
+    <Button
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:id="@+id/cartItemDecQuantity"
+        android:background="@drawable/ic_add_shopping_cart_black_24dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:layout_toRightOf="@id/cartItemImage"
+        android:layout_below="@id/cartItemPrice"
+        />
+    <TextView
+        android:layout_width="30dp"
+        android:layout_height="25dp"
+        android:textAlignment="center"
+        android:id="@+id/cartItemQuantity"
+        android:layout_toRightOf="@id/cartItemDecQuantity"
+        android:layout_below="@id/cartItemPrice"/>
+    <Button
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/cartItemDelete"
+        android:background="@drawable/ic_add_shopping_cart_black_24dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        />
+    <Button
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:id="@+id/cartItemIncQuantity"
+        android:background="@drawable/ic_add_shopping_cart_black_24dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:layout_toRightOf="@id/cartItemQuantity"
+        android:layout_below="@id/cartItemPrice"
+        />
 
-</LinearLayout>
+
+
+</RelativeLayout>

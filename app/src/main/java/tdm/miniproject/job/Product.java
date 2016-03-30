@@ -1,6 +1,8 @@
 package tdm.miniproject.job;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable{
     private String name;
     private float price;
     private String description;
