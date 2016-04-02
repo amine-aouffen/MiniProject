@@ -1,9 +1,8 @@
 package tdm.miniproject.activities;
 
 import tdm.miniproject.R;
-import tdm.miniproject.job.Cart;
 import tdm.miniproject.job.Product;
-import tdm.miniproject.support.CartElement;
+
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +15,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ProductDetailActivity extends AppCompatActivity {
     private TextView productName;
@@ -34,8 +32,6 @@ public class ProductDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_detail);
         initialiseToolBar();
         findViews();
-        Intent intent = getIntent();
-        product = (Product) intent.getSerializableExtra("product");
         showProductDetails();
 
     }
@@ -70,6 +66,8 @@ public class ProductDetailActivity extends AppCompatActivity {
     }
 
     public void showProductDetails(){
+        Intent intent = getIntent();
+        product = (Product) intent.getSerializableExtra("product");
         productName.setText(product.getName());
         productDesc.setText(product.getDescription());
         productPrice.setText(product.getPrice()+" DA");

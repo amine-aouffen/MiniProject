@@ -12,14 +12,11 @@ import java.util.List;
 import tdm.miniproject.R;
 import tdm.miniproject.job.Category;
 
-/**
- * Created by Home on 23/03/2016.
- */
 public class CategoryAdapter extends BaseAdapter {
     private List<Category> categoriesList;
     private Context context;
     public CategoryAdapter(Context context,List<Category> categoriesList) {
-       this.categoriesList=categoriesList;
+        this.categoriesList=categoriesList;
         this.context=context;
     }
 
@@ -40,15 +37,24 @@ public class CategoryAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        View view = inflateView(convertView);
+        showCategoryAsItem(view,position);
+        return view;
+    }
+
+    private void showCategoryAsItem( View view,int position) {
+        Category category = categoriesList.get(position);
+        TextView categoryTextView=(TextView)view.findViewById(R.id.categoryListItem) ;
+        categoryTextView.setText(category.getName());
+    }
+
+    private View inflateView(View convertView) {
         View view = convertView;
         if(view==null){
             LayoutInflater inflater;
             inflater = LayoutInflater.from(context);
             view=inflater.inflate(R.layout.item_categorie_list,null);
         }
-        TextView categoryTextView=(TextView)view.findViewById(R.id.categoryListItem) ;
-        Category category = categoriesList.get(position);
-        categoryTextView.setText(category.getName());
         return view;
     }
 }

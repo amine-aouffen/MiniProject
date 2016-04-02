@@ -16,4 +16,10 @@
         app:showAsAction="always"
         android:title="addt to chart"
         android:onClick="showChartActivity"/>
+    <item
+        android:id="@+id/showOrders"
+        android:icon="@drawable/ic_assignment_turned_in_white_24dp"
+        app:showAsAction="always"
+        android:title="addt to chart"
+        android:onClick="showOrdersActivity"/>
 </menu>

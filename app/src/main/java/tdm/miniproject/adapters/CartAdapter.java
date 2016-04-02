@@ -46,34 +46,55 @@ public class CartAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
+
+        View view = inflateView(convertView);
+
+        final CartElement cartElement =(CartElement) getItem(position);
+        final TextView cartItemQuantity= (TextView)view.findViewById(R.id.cartItemQuantity);
+
+        showCartElementAsItem(view, cartElement, cartItemQuantity);
+
+        setButtonsListeners(position, view, cartElement, cartItemQuantity);
+
+        return view;
+    }
+
+    private View inflateView(View convertView) {
         View view = convertView;
         if (view==null){
             LayoutInflater inflater = LayoutInflater.from(context);
             view=inflater.inflate(R.layout.item_chart_list,null);
         }
-        final CartElement cartElement =(CartElement) getItem(position);
-        Product product = cartElement.getProduct();
-        TextView cartItemName=(TextView)view.findViewById(R.id.cartItemName);
-        cartItemName.setText(product.getName());
-        TextView cartItemDesc=(TextView)view.findViewById(R.id.cartItemDescription);
-        cartItemDesc.setText(product.getDescription());
-        TextView cartItemPrice=(TextView)view.findViewById(R.id.cartItemPrice);
-        cartItemPrice.setText(product.getPrice()+" DA");
+        return view;
+    }
 
-        final TextView cartItemQuantity= (TextView)view.findViewById(R.id.cartItemQuantity);
+    private void showCartElementAsItem(View view, CartElement cartElement, TextView cartItemQuantity) {
+        TextView cartItemName=(TextView)view.findViewById(R.id.cartItemName);
+        cartItemName.setText(cartElement.getProduct().getName());
+
+        TextView cartItemDesc=(TextView)view.findViewById(R.id.cartItemDescription);
+        cartItemDesc.setText(cartElement.getProduct().getDescription());
+
+        TextView cartItemPrice=(TextView)view.findViewById(R.id.cartItemPrice);
+        cartItemPrice.setText(cartElement.getProduct().getPrice()+" DA");
+
         cartItemQuantity.setText(cartElement.getQuantity()+"");
 
         ImageView cartItemPhoto =(ImageView) view.findViewById(R.id.cartItemImage);
-        cartItemPhoto.setImageResource(product.getProductPhoto());
+        cartItemPhoto.setImageResource(cartElement.getProduct().getProductPhoto());
+    }
+
+    private void setButtonsListeners(final int position, View view, final CartElement cartElement, final TextView cartItemQuantity) {
+        //Delete button
         Button cartItemDelete= (Button)view.findViewById(R.id.cartItemDelete);
         cartItemDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cart.removeCartElement(position);
                 notifyDataSetChanged();
-
             }
         });
+        //Incement quantity
         Button cartItemIncQuantity= (Button)view.findViewById(R.id.cartItemIncQuantity);
         cartItemIncQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,14 +103,14 @@ public class CartAdapter extends BaseAdapter {
                 cartItemQuantity.setText(cartElement.getQuantity() + "");
             }
         });
+        //Decrement quantity
         Button cartItemDecQuantity= (Button)view.findViewById(R.id.cartItemDecQuantity);
         cartItemDecQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cartElement.decQuantity();
-                cartItemQuantity.setText(cartElement.getQuantity()+ "");
+                cartItemQuantity.setText(cartElement.getQuantity() + "");
             }
         });
-        return view;
     }
 }

@@ -2,23 +2,24 @@ package tdm.miniproject.activities;
 
 import tdm.miniproject.R;
 import tdm.miniproject.adapters.CartAdapter;
-import tdm.miniproject.adapters.CategoryAdapter;
-import tdm.miniproject.job.Product;
 
+import tdm.miniproject.job.Cart;
+import tdm.miniproject.job.Order;
+
+
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.Toast;
 
 public class CartActivity extends AppCompatActivity {
+    final private int LOGIN_REQUEST = 1;
     private ListView listView;
 
     @Override
@@ -26,18 +27,21 @@ public class CartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chart);
         initialiseToolBar();
+        prepareListView();
+
+
+    }
+
+    private void prepareListView() {
         listView =(ListView) findViewById(R.id.cartList);
-        CartAdapter cartAdapter = new CartAdapter(this,MainActivity.getCart());
-        listView.setAdapter(cartAdapter);
-
-
+        listView.setAdapter(new CartAdapter(this, MainActivity.getCart()));
     }
 
     public void initialiseToolBar(){
         Toolbar cartToolbar = (Toolbar) findViewById(R.id.chartToolBar);
         setSupportActionBar(cartToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //Icon getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_favorite_black);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_assignment_turned_in_white_24dp);
 
     }
 
@@ -49,4 +53,46 @@ public class CartActivity extends AppCompatActivity {
     }
 
 
+    public void validateOrder(MenuItem item) {
+        if(MainActivity.isConnected()){
+            validateOrder();
+        }
+        else{
+            showLoginActivity();
+        }
+
+    }
+    public void showLoginActivity(){
+        Intent intent = new Intent(this,LoginActivity.class);
+        startActivityForResult(intent,LOGIN_REQUEST);
+    }
+    public void cleanCart(){
+        MainActivity.setCart(new Cart());
+        listView.setAdapter(new CartAdapter(this,MainActivity.getCart()));
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode==LOGIN_REQUEST){
+            if(resultCode== Activity.RESULT_OK){
+                if (MainActivity.connect(data.getStringExtra("user"),data.getStringExtra("pass"))){
+                    //connected
+                    validateOrder();
+                }
+                else{
+                    //False password
+                    Toast.makeText(CartActivity.this, "Nom d'utilisateur/Mot de passe incorrect", Toast.LENGTH_SHORT).show();
+                    showLoginActivity();
+                }
+            }
+            if(resultCode == Activity.RESULT_CANCELED){
+                //Authentification canceled
+            }
+        }
+    }
+
+    private void validateOrder() {
+        Toast.makeText(CartActivity.this, "la commande à été validé", Toast.LENGTH_SHORT).show();
+        MainActivity.getOrders().add(new Order(MainActivity.getCart()));
+        cleanCart();
+    }
 }

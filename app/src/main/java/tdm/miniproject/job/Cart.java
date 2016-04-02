@@ -53,5 +53,13 @@ public class Cart{
     public void setElementsList(ArrayList<CartElement> elementsList) {
         this.elementsList = elementsList;
     }
+
+    public float getTotalCost(){
+        float total=0;
+        for(int i=0;i<elementsList.size();i++){
+            total+=elementsList.get(i).getProduct().getPrice();
+        }
+        return total;
+    }
 }
 

@@ -3,10 +3,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="tdm.miniproject.activities.LoginActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nom d'utilisateur"
+        android:id="@+id/loginUserTxtView"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginUserEdit"
+        android:layout_below="@id/loginUserTxtView"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mot de passe"
+        android:id="@+id/loginPassTxtView"
+        android:layout_below="@id/loginUserEdit"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginPassEdit"
+        android:inputType="textPassword"
+        android:layout_below="@id/loginPassTxtView"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginOkBtn"
+        android:text="Connexion"
+        android:layout_below="@id/loginPassEdit"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginCancelBtn"
+        android:text="Annuler"
+        android:layout_below="@id/loginPassEdit"
+        android:layout_toRightOf="@id/loginOkBtn"
+        />
 
 </RelativeLayout>

@@ -1,6 +1,8 @@
 package tdm.miniproject.job;
 
 
-public enum Consumer {
+import java.io.Serializable;
+
+public enum Consumer implements Serializable {
     MAN,WOMAN,KID;
 }

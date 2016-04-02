@@ -15,21 +15,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".activities.CartActivity"
+        <activity android:name=".activities.CartActivity"
             android:label="Chariot"
             android:parentActivityName=".activities.MainActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".activities.MainActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
         </activity>
-
-        <activity
-            android:name=".activities.ProductDetailActivity"
+        <activity android:name=".activities.ProductDetailActivity"
             android:label="Détaille du produit"
-            android:parentActivityName=".activities.MainActivity"
-            />
-
-        <activity android:name=".activities.LoginActivity"/>
+            android:parentActivityName=".activities.MainActivity"/>
+        <activity android:name=".activities.LoginActivity"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity android:name=".activities.OrdersActivity"
+            android:label="Commandes"
+            android:parentActivityName=".activities.MainActivity"/>
     </application>
 
 </manifest>
