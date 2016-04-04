@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,11 @@ import tdm.miniproject.support.ProductListFragmentListener;
 public class ProductListFragment extends Fragment {
     private String title="tab";
     private ArrayList<Product> productsList;
+
+    public ProductAdapter getProductAdapter() {
+        return productAdapter;
+    }
+
     private ProductAdapter productAdapter;
     private ProductListFragmentListener listener;
     private ListView productListView;
@@ -78,11 +84,7 @@ public class ProductListFragment extends Fragment {
         listener.addProductToCart(product);
     }
 
-    public void modifyProductList(ArrayList<Product> products){
-        this.productsList=products;
-        this.productAdapter.setProductsList(products);
-        productAdapter.notifyDataSetChanged();
-    }
+
 
     public void updateProductList(ArrayList<Product> products){
         if(productAdapter!=null) {
@@ -90,5 +92,10 @@ public class ProductListFragment extends Fragment {
             productAdapter.setProductsList(products);
             productAdapter.notifyDataSetChanged();
         }
+
+    }
+
+    public void filterResults(CharSequence sequence) {
+        ((ProductAdapter)productListView.getAdapter()).filterResults(sequence);
     }
 }

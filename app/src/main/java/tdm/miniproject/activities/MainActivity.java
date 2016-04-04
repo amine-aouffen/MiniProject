@@ -5,24 +5,25 @@ import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.TabLayout;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.TreeMap;
 
 import tdm.miniproject.R;
 import tdm.miniproject.adapters.CategoryAdapter;
 import tdm.miniproject.adapters.PagerAdapter;
-import tdm.miniproject.fragments.ProductListFragment;
 import tdm.miniproject.job.Cart;
 import tdm.miniproject.job.Category;
 import tdm.miniproject.job.Consumer;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
     public void initialiseToolBar(){
         Toolbar mainToolbar = (Toolbar) findViewById(R.id.mainToolBar);
         setSupportActionBar(mainToolbar);
+        setFilterEditTextListener();
     }
 
     public void initialiseTabNavigation(){
@@ -59,9 +61,29 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
         viewPager.setAdapter(pagerAdapter);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
     }
 
+    public void setFilterEditTextListener(){
+        EditText filterEditText = (EditText) findViewById(R.id.filterBar);
+        filterEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
+                pagerAdapter.filterListsResults(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

@@ -11,9 +11,11 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import tdm.miniproject.R;
@@ -26,26 +28,34 @@ import tdm.miniproject.job.Product;
  */
 public class ProductAdapter extends BaseAdapter implements Filterable,Serializable{
     private Context context;
+    private ArrayList<Product> productsListFiltred;
+    private ArrayList<Product> productsList;
+    private ItemFilter filter;
+
+
 
     public void setProductsList(ArrayList<Product> productsList) {
+        this.productsListFiltred = productsList;
         this.productsList = productsList;
     }
 
-    private ArrayList<Product> productsList;
+
     public ProductAdapter(Context context,ArrayList<Product> productsList) {
         this.context=context;
+        this.productsListFiltred=productsList;
         this.productsList=productsList;
+        this.filter = new ItemFilter();
     }
 
 
     @Override
     public int getCount() {
-        return productsList.size();
+        return productsListFiltred.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return productsList.get(position);
+        return productsListFiltred.get(position);
     }
 
     @Override
@@ -56,7 +66,7 @@ public class ProductAdapter extends BaseAdapter implements Filterable,Serializab
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = inflateView(convertView);
-        final Product product = productsList.get(position);
+        final Product product = productsListFiltred.get(position);
         showProductAsItem(view, product);
         setAddCartBtnListener(view, product);
         return view;
@@ -98,6 +108,39 @@ public class ProductAdapter extends BaseAdapter implements Filterable,Serializab
 
     @Override
     public Filter getFilter() {
-        return null;
+        return filter;
+    }
+
+
+    private class ItemFilter extends  Filter{
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            String filterString = constraint.toString().toLowerCase();
+            Toast.makeText(context, "this is " + filterString, Toast.LENGTH_SHORT).show();
+            FilterResults filterResults = new FilterResults();
+            Iterator<Product> iterator = productsList.iterator();
+            Product product;
+            ArrayList<Product> resultProductsList = new ArrayList<>(productsList.size());
+            product=iterator.next();
+            while(iterator.hasNext()){
+                if(product.getName().toLowerCase().contains(filterString)){
+                    resultProductsList.add(product);
+                }
+            }
+            filterResults.count=resultProductsList.size();
+            filterResults.values=resultProductsList;
+            return filterResults ;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            productsListFiltred=(ArrayList<Product>)results.values;
+            notifyDataSetChanged();
+        }
+    }
+
+    public void filterResults(CharSequence sequence){
+       // Toast.makeText(context, "dd", Toast.LENGTH_SHORT).show();
+        filter.filter(sequence.toString());
     }
 }

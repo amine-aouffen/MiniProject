@@ -10,11 +10,19 @@
         layout="@layout/tool_bar"/>
     <android.support.design.widget.AppBarLayout
         android:id="@+id/productsBar"
-        android:layout_below="@id/mainToolBar"
+        android:layout_height="30dp"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:background="@color/colorPrimaryDark">
-        </android.support.design.widget.AppBarLayout>
+        android:layout_below="@id/mainToolBar">
+        <EditText
+            android:id="@+id/filterBar"
+            android:layout_width="100dp"
+            android:layout_height="match_parent">
+        </EditText>
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/spinner"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"></android.support.v7.widget.AppCompatSpinner>
+    </android.support.design.widget.AppBarLayout>
     <android.support.design.widget.AppBarLayout
         android:id="@+id/consumerTypeBar"
         android:layout_below="@id/productsBar"

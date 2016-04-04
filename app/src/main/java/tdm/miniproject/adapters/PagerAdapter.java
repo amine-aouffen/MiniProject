@@ -133,7 +133,7 @@ public class PagerAdapter extends FragmentPagerAdapter{
     @Override
     public void notifyDataSetChanged() {
 
-            if(manFragment!=null)manFragment.updateProductList(manProductsList);
+        if(manFragment!=null)manFragment.updateProductList(manProductsList);
         if(womanFragment!=null)womanFragment.updateProductList(womanProductsList);
         if(kidFragment!=null)kidFragment.updateProductList(kidProductsList);
     }
@@ -141,5 +141,11 @@ public class PagerAdapter extends FragmentPagerAdapter{
     @Override
     public int getItemPosition(Object object) {
         return POSITION_NONE;
+    }
+
+    public void filterListsResults(CharSequence sequence) {
+        if(manFragment!=null)manFragment.filterResults(sequence);
+        if(womanFragment!=null)womanFragment.filterResults(sequence);
+        if(kidFragment!=null)kidFragment.filterResults(sequence);
     }
 }
