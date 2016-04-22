@@ -1,47 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
      android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
         <ImageView
         android:layout_height="100dp"
-        android:layout_width="60dp"
+        android:layout_width="80dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:id="@+id/productItemImage"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Chemise Blanche"
             android:id="@+id/productItemName"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:textColor="@color/colorPrimary"
             android:layout_toRightOf="@id/productItemImage"
             android:layout_alignParentTop="true"
+            style="@style/textItemTitle"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Chemise Blanche bli bla bla bla blom blim hala la fa ajaja"
             android:id="@+id/productItemDescription"
-            android:textStyle="italic"
-            android:textSize="14sp"
-            android:textColor="@color/colorPrimaryDark"
             android:layout_below="@+id/productItemName"
             android:layout_toRightOf="@id/productItemImage"
-            android:layout_toLeftOf="@+id/productItemAddCart" />
+            android:layout_toLeftOf="@+id/productItemAddCart"
+            style="@style/textItemDesc"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1900 DA"
             android:id="@+id/productItemPrice"
-            android:textStyle="normal"
-            android:textSize="16sp"
-            android:textColor="@color/colorAccent"
             android:layout_toRightOf="@id/productItemImage"
             android:layout_below="@id/productItemDescription"
-
-             />
+            android:layout_alignParentBottom="true"
+            style="@style/textItemSpecial"
+            />
         <Button
             android:layout_width="30dp"
             android:layout_height="30dp"

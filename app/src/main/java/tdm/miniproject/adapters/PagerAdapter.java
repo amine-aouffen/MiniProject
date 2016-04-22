@@ -4,12 +4,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.widget.Switch;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.widget.Toast;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.TreeMap;
+
 
 import tdm.miniproject.activities.MainActivity;
 import tdm.miniproject.fragments.ProductListFragment;
@@ -19,46 +18,21 @@ import tdm.miniproject.job.Product;
 import tdm.miniproject.support.ProductListFragmentListener;
 
 
-public class PagerAdapter extends FragmentPagerAdapter{
+public class PagerAdapter extends FragmentStatePagerAdapter{
     private FragmentManager fragmentManager;
     private ArrayList<Product> manProductsList;
     private ArrayList<Product> womanProductsList;
     private ArrayList<Product> kidProductsList;
-    private ProductListFragmentListener listner;
-
-    public ProductListFragment getWomanFragment() {
-        return womanFragment;
-    }
-
-    public void setWomanFragment(ProductListFragment womanFragment) {
-        this.womanFragment = womanFragment;
-    }
-
-    public ProductListFragment getManFragment() {
-        return manFragment;
-    }
-
-    public void setManFragment(ProductListFragment manFragment) {
-        this.manFragment = manFragment;
-    }
-
-    public ProductListFragment getKidFragment() {
-        return kidFragment;
-    }
-
-    public void setKidFragment(ProductListFragment kidFragment) {
-        this.kidFragment = kidFragment;
-    }
-
+    private ProductListFragmentListener listener;
     private ProductListFragment manFragment;
     private ProductListFragment womanFragment;
     private ProductListFragment kidFragment;
 
 
-    public PagerAdapter(FragmentManager fragmentManager,Category category,ProductListFragmentListener listner) {
+    public PagerAdapter(FragmentManager fragmentManager,Category category,ProductListFragmentListener listener) {
         super(fragmentManager);
         this.fragmentManager=fragmentManager;
-        this.listner=listner;
+        this.listener = listener;
         dispatchCategoryToLists(category);
     }
 
@@ -66,19 +40,19 @@ public class PagerAdapter extends FragmentPagerAdapter{
     public Fragment getItem(int position) {
         switch(position){
             case 0:
-                Toast.makeText((MainActivity)listner, "man", Toast.LENGTH_SHORT).show();
                 manFragment = createConsumerFragment(Consumer.MAN);
+
                 return manFragment;
             case 1:
-                Toast.makeText((MainActivity)listner, "woman", Toast.LENGTH_SHORT).show();
                 womanFragment = createConsumerFragment(Consumer.WOMAN);
+
                 return womanFragment;
             case 2:
-                Toast.makeText((MainActivity)listner, "kid", Toast.LENGTH_SHORT).show();
                 kidFragment = createConsumerFragment(Consumer.KID);
+
                 return kidFragment;
             default:
-                return null;
+                return manFragment;
         }
     }
     private ProductListFragment createConsumerFragment(Consumer consumer){
@@ -91,8 +65,8 @@ public class PagerAdapter extends FragmentPagerAdapter{
         }else{
             bundle.putSerializable("productsList",kidProductsList);
         }
-        ((ProductListFragment)fragment).setListener(listner);
         fragment.setArguments(bundle);
+        fragment.setListener(listener);
         return fragment;
     }
     public void dispatchCategoryToLists(Category category){
@@ -130,9 +104,9 @@ public class PagerAdapter extends FragmentPagerAdapter{
         }
     }
 
-    @Override
-    public void notifyDataSetChanged() {
 
+
+    public void updateFraments(){
         if(manFragment!=null)manFragment.updateProductList(manProductsList);
         if(womanFragment!=null)womanFragment.updateProductList(womanProductsList);
         if(kidFragment!=null)kidFragment.updateProductList(kidProductsList);
@@ -143,9 +117,10 @@ public class PagerAdapter extends FragmentPagerAdapter{
         return POSITION_NONE;
     }
 
-    public void filterListsResults(CharSequence sequence) {
-        if(manFragment!=null)manFragment.filterResults(sequence);
-        if(womanFragment!=null)womanFragment.filterResults(sequence);
-        if(kidFragment!=null)kidFragment.filterResults(sequence);
+    public void destroyFragments(){
+        manFragment=null;
+        womanFragment=null;
+        kidFragment=null;
     }
+
 }

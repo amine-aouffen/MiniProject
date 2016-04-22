@@ -39,7 +39,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         Toolbar detailToolbar = (Toolbar) findViewById(R.id.productDetailToolBar);
         setSupportActionBar(detailToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //Icon getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_favorite_black);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_store_white_24dp);
 
     }
     @Override
@@ -75,7 +75,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         productCara.setText("- 100% Couton\n" +
                 "- Fabriqué en Italy\n" +
                 "- Caractéristique ici\n" +
-                "- Dernière caractéristique\n");
+                "- Dernière caractéristique");
     }
 
     public void addProductToCart() {

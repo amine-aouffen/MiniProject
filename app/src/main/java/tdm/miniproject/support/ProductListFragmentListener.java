@@ -8,6 +8,6 @@ import tdm.miniproject.job.Product;
  * Created by Home on 29/03/2016.
  */
 public interface ProductListFragmentListener extends Serializable {
-    void showProductDetaills(Product product);
+    void showProductDetails(Product product);
     void addProductToCart(Product product);
 }

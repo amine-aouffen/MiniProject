@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -34,27 +35,42 @@ public class CategoryAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return 0;
     }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = inflateView(convertView);
+        View view = convertView;
+        if(view ==null||!view.getTag().toString().equals("NON_DROPDOWN")){
+            LayoutInflater inflater;
+            inflater = LayoutInflater.from(context);
+            view =inflater.inflate(R.layout.spinner_dropdown_bar, null);
+            view.setTag("NON_DROPDOWN");
+        }
         showCategoryAsItem(view,position);
+        return view;
+    }
+
+    @Override
+    public View getDropDownView(int position, View convertView, ViewGroup parent) {
+        View view = convertView;
+        if(view ==null||!view.getTag().toString().equals("DROPDOWN")){
+            LayoutInflater inflater;
+            inflater = LayoutInflater.from(context);
+            view = inflater.inflate(R.layout.item_categorie_list,null);
+            view.setTag("DROPDOWN");
+        }
+        Category category = categoriesList.get(position);
+        TextView categoryTextView=(TextView) view.findViewById(R.id.categoryBarText) ;
+        ImageView categoryIcon=(ImageView) view.findViewById(R.id.categoryBarIcon);
+        categoryTextView.setText(category.getName());
+        categoryIcon.setImageResource(categoriesList.get(position).getCategoryIcon());
         return view;
     }
 
     private void showCategoryAsItem( View view,int position) {
         Category category = categoriesList.get(position);
-        TextView categoryTextView=(TextView)view.findViewById(R.id.categoryListItem) ;
+        TextView categoryTextView=(TextView)view.findViewById(R.id.categoryListItemText) ;
+        ImageView categoryIcon=(ImageView) view.findViewById(R.id.categoryListItemIcon);
         categoryTextView.setText(category.getName());
+        categoryIcon.setImageResource(categoriesList.get(position).getCategoryIcon());
     }
 
-    private View inflateView(View convertView) {
-        View view = convertView;
-        if(view==null){
-            LayoutInflater inflater;
-            inflater = LayoutInflater.from(context);
-            view=inflater.inflate(R.layout.item_categorie_list,null);
-        }
-        return view;
-    }
 }

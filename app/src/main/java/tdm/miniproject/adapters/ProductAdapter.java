@@ -32,8 +32,6 @@ public class ProductAdapter extends BaseAdapter implements Filterable,Serializab
     private ArrayList<Product> productsList;
     private ItemFilter filter;
 
-
-
     public void setProductsList(ArrayList<Product> productsList) {
         this.productsListFiltred = productsList;
         this.productsList = productsList;
@@ -83,7 +81,7 @@ public class ProductAdapter extends BaseAdapter implements Filterable,Serializab
         productDescriptionTextView.setText(product.getDescription());
 
         TextView productPriceTextView=(TextView)view.findViewById(R.id.productItemPrice);
-        productPriceTextView.setText(product.getPrice()+" DA");
+        productPriceTextView.setText(product.getPrice() + " DA");
     }
 
     private void setAddCartBtnListener(View view, final Product product) {
@@ -137,10 +135,8 @@ public class ProductAdapter extends BaseAdapter implements Filterable,Serializab
             productsListFiltred=(ArrayList<Product>)results.values;
             notifyDataSetChanged();
         }
+
+
     }
 
-    public void filterResults(CharSequence sequence){
-       // Toast.makeText(context, "dd", Toast.LENGTH_SHORT).show();
-        filter.filter(sequence.toString());
-    }
 }

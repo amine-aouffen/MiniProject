@@ -6,15 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.zip.Inflater;
+
 
 import tdm.miniproject.R;
 import tdm.miniproject.job.Cart;
-import tdm.miniproject.job.Product;
+
 import tdm.miniproject.support.CartElement;
 
 /**

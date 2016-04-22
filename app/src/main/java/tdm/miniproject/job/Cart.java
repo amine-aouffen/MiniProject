@@ -21,7 +21,8 @@ public class Cart{
         CartElement cartElementTmp;
         while(!found && i>-1 ){
             cartElementTmp = elementsList.get(i);
-            if(cartElementTmp.getProduct().getName().equals(cartElement.getProduct().getName())){
+            if(cartElementTmp.getProduct().getName().equals(cartElement.getProduct().getName())
+                    &&cartElementTmp.getProduct().getConsumer().equals(cartElement.getProduct().getConsumer()) ){
                 found=true;
             }
             else{
@@ -57,7 +58,7 @@ public class Cart{
     public float getTotalCost(){
         float total=0;
         for(int i=0;i<elementsList.size();i++){
-            total+=elementsList.get(i).getProduct().getPrice();
+            total+=elementsList.get(i).getProduct().getPrice()*elementsList.get(i).getQuantity();
         }
         return total;
     }

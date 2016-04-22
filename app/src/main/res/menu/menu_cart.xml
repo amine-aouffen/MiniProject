@@ -5,11 +5,18 @@
     tools:context=".activities.CartActivity">
 
     <item
-        android:icon="@drawable/ic_add_shopping_cart_black_24dp"
+        android:icon="@drawable/ic_monetization_on_white_24dp"
         app:showAsAction="always"
-        android:title="addt to chart"
+        android:title="somme chariot"
+        android:onClick="showAddition"
+        />
+    <item
+        android:icon="@drawable/ic_remove_shopping_cart_white_24dp"
+        app:showAsAction="always"
+        android:title="Supprimer chariot"
+        android:onClick="cleanCart"
         />    <item
-        android:icon="@drawable/ic_shopping_cart_black_24dp"
+        android:icon="@drawable/ic_assignment_turned_in_white_24dp"
         app:showAsAction="always"
         android:title="valider commande"
         android:onClick="validateOrder"

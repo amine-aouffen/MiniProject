@@ -1,13 +1,53 @@
 <resources>
-
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textViewStyle">@style/TextAppearance</item>
     </style>
     <style name="AppCompatLogin" parent="Theme.AppCompat.Light.Dialog">
     </style>
+    <style name="TextAppearance" parent="@android:style/TextAppearance.Theme">
+        <item name="android:textColor">@color/textPrimary</item>
+        <item name="android:textColorPrimary">@color/textPrimary</item>
+        <item name="android:textColorSecondary">@color/textSecondary</item>
 
+    </style>
+    <style name="textItemTitle" parent="android:TextAppearance.Large">
+        <item name="android:textColor" >@color/textItemTitleColor</item>
+        <item name="android:textSize">20dp</item>
+    </style>
+
+    <style name="textItemDesc" parent="android:TextAppearance.Large">
+        <item name="android:textColor" >@color/textItemDescColor</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="textItemSpecial" parent="android:TextAppearance.Large">
+        <item name="android:textColor" >@color/textItemSpecial</item>
+        <item name="android:textSize">15dp</item>
+    </style>
+
+    <style name="textPreContentLabelText">
+        <item name="android:textColor" >@color/textPreContentLabel</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">20dp</item>
+    </style>
+    <style name="textContentText">
+        <item name="android:layout_marginLeft">20dp</item>
+    </style>
+    <style name="productDetailTitle">
+        <item name="android:textColor" >@color/textItemTitleColor</item>
+        <item name="android:textSize">30dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="SpinnerStyle" parent="Widget.AppCompat.Spinner.DropDown.ActionBar">
+        <item name="android:background">?android:selectableItemBackground</item>
+        <item name="android:dropDownSelector">?android:selectableItemBackground</item>
+        <item name="android:divider">@null</item>
+
+    </style>
 </resources>

@@ -13,9 +13,7 @@
         android:layout_height="wrap_content"
         android:text="Chemise Blanche"
         android:id="@+id/cartItemName"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:textColor="@color/colorPrimary"
+        style="@style/textItemTitle"
         android:layout_toRightOf="@id/cartItemImage"
         android:layout_alignParentTop="true"
         />
@@ -24,9 +22,7 @@
         android:layout_height="wrap_content"
         android:text="Chemise Blanche bli bla bla bla blom blim hala la fa ajaja"
         android:id="@+id/cartItemDescription"
-        android:textStyle="italic"
-        android:textSize="14sp"
-        android:textColor="@color/colorPrimaryDark"
+        style="@style/textItemDesc"
         android:layout_below="@+id/cartItemName"
         android:layout_toRightOf="@id/cartItemImage"
         android:layout_toLeftOf="@+id/cartItemDelete" />
@@ -35,9 +31,7 @@
         android:layout_height="wrap_content"
         android:text="1900 DA"
         android:id="@+id/cartItemPrice"
-        android:textStyle="normal"
-        android:textSize="16sp"
-        android:textColor="@color/colorAccent"
+        style="@style/textItemSpecial"
         android:layout_toRightOf="@id/cartItemImage"
         android:layout_below="@id/cartItemDescription"
         />

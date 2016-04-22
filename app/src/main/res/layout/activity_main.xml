@@ -9,23 +9,33 @@
         android:id="@+id/mainToolBar"
         layout="@layout/tool_bar"/>
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/productsBar"
-        android:layout_height="30dp"
+        android:id="@+id/categoryBar"
+        android:layout_below="@id/mainToolBar"
         android:layout_width="match_parent"
-        android:layout_below="@id/mainToolBar">
-        <EditText
-            android:id="@+id/filterBar"
-            android:layout_width="100dp"
-            android:layout_height="match_parent">
-        </EditText>
-        <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/spinner"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"></android.support.v7.widget.AppCompatSpinner>
+        android:layout_height="25dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choix de catégorie:  "/>
+            <android.support.v7.widget.AppCompatSpinner
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/categorySpinner"
+                android:title="Category Choice"
+                style="@style/SpinnerStyle"
+                />
+        </LinearLayout>
+
     </android.support.design.widget.AppBarLayout>
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/consumerTypeBar"
-        android:layout_below="@id/productsBar"
+        android:layout_below="@id/categoryBar"
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:background="@color/colorPrimaryDark">

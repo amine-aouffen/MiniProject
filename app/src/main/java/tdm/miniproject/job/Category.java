@@ -3,14 +3,23 @@ package tdm.miniproject.job;
 
 import java.util.ArrayList;
 
+import tdm.miniproject.R;
+
 public class Category extends ArrayList<Product> {
     private String code;
     private String name;
     private String description;
-    private String categoryIcon;
+    private int categoryIcon;
 
-    public Category(String name) {
+    public int getCategoryIcon() {
+        return categoryIcon;
+    }
+
+
+
+    public Category(String name,int categoryIcon) {
         this.name = name;
+        this.categoryIcon=categoryIcon;
     }
 
     public String getName() {

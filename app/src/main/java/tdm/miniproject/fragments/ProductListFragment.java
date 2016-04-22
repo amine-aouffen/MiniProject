@@ -9,15 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 
 import tdm.miniproject.R;
-import tdm.miniproject.activities.MainActivity;
 import tdm.miniproject.adapters.ProductAdapter;
-import tdm.miniproject.job.Consumer;
 import tdm.miniproject.job.Product;
 import tdm.miniproject.support.ProductListFragmentListener;
 
@@ -25,21 +21,24 @@ import tdm.miniproject.support.ProductListFragmentListener;
 public class ProductListFragment extends Fragment {
     private String title="tab";
     private ArrayList<Product> productsList;
-
-    public ProductAdapter getProductAdapter() {
-        return productAdapter;
-    }
-
     private ProductAdapter productAdapter;
     private ProductListFragmentListener listener;
     private ListView productListView;
+    private View fragView=null;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_product_list,container,false);
-        prepareFragment(view);
+        fragView = inflater.inflate(R.layout.fragment_product_list,container,false);
+        prepareFragment(fragView);
         setItemClickListener();
-        return view;
+        Toast.makeText(getContext(), "on create frag", Toast.LENGTH_SHORT).show();
+        return fragView;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (fragView!=null)prepareFragment(fragView);
     }
 
     private void prepareFragment(View view) {
@@ -47,7 +46,7 @@ public class ProductListFragment extends Fragment {
         Bundle bundle = getArguments();
         if(bundle!=null){
             productsList=(ArrayList<Product>)bundle.get("productsList");
-            productAdapter=new ProductAdapter(getActivity(),productsList);
+            if(productAdapter==null)productAdapter=new ProductAdapter(getActivity(),productsList);
             productListView.setAdapter(productAdapter);
         }
 
@@ -58,7 +57,7 @@ public class ProductListFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Product product = productsList.get(position);
-                showProductDetaills(product);
+                showProductDetails(product);
             }
         });
     }
@@ -76,14 +75,9 @@ public class ProductListFragment extends Fragment {
         this.listener=listener;
     }
 
-    public void showProductDetaills(Product product){
-        listener.showProductDetaills(product);
+    public void showProductDetails(Product product){
+        listener.showProductDetails(product);
     }
-
-    public void addProductToCart(Product product){
-        listener.addProductToCart(product);
-    }
-
 
 
     public void updateProductList(ArrayList<Product> products){
@@ -95,7 +89,19 @@ public class ProductListFragment extends Fragment {
 
     }
 
-    public void filterResults(CharSequence sequence) {
-        ((ProductAdapter)productListView.getAdapter()).filterResults(sequence);
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 }
