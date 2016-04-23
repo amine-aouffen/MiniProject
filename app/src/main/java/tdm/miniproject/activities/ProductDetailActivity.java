@@ -72,10 +72,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         productDesc.setText(product.getDescription());
         productPrice.setText(product.getPrice()+" DA");
         productPhoto.setImageResource(product.getProductPhoto());
-        productCara.setText("- 100% Couton\n" +
-                "- Fabriqué en Italy\n" +
-                "- Caractéristique ici\n" +
-                "- Dernière caractéristique");
+        productCara.setText(product.getCaracteristics());
     }
 
     public void addProductToCart() {

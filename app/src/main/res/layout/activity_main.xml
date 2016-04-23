@@ -13,23 +13,36 @@
         android:layout_below="@id/mainToolBar"
         android:layout_width="match_parent"
         android:layout_height="25dp">
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_gravity="center">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Choix de catégorie:  "/>
-            <android.support.v7.widget.AppCompatSpinner
-                android:layout_height="wrap_content"
+                android:text="Choix de catégorie:  "
+                android:id="@+id/categoryLab"/>
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:id="@+id/categorySpinner"
-                android:title="Category Choice"
-                style="@style/SpinnerStyle"
-                />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/categoryLab"
+                android:background="@drawable/spin_background">
+                    <android.support.v7.widget.AppCompatSpinner
+                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/categorySpinner"
+                    android:title="Category Choice"
+                    style="@style/SpinnerStyle"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/spinner_triangle"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignRight="@id/categorySpinner"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
 
     </android.support.design.widget.AppBarLayout>
 

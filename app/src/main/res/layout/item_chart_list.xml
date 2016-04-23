@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <ImageView
-        android:layout_height="100dp"
-        android:layout_width="60dp"
+        android:layout_height="@dimen/item_image_height"
+        android:layout_width="@dimen/item_image_width"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
         android:id="@+id/cartItemImage"/>
     <TextView
         android:layout_width="wrap_content"

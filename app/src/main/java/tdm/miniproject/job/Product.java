@@ -8,8 +8,17 @@ public class Product implements Serializable{
     private String description;
     private int productPhoto;
     private Consumer consumer;
+    private String caracteristics;
 
-    public Product( String name, float price, String description, int productPhoto, Consumer consumer) {
+    public Product( String name, float price, String description, int productPhoto, Consumer consumer,String caracteristics) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.productPhoto = productPhoto;
+        this.consumer = consumer;
+        this.caracteristics=caracteristics;
+
+    }    public Product( String name, float price, String description, int productPhoto, Consumer consumer) {
         this.name = name;
         this.price = price;
         this.description = description;
@@ -59,4 +68,7 @@ public class Product implements Serializable{
     }
 
 
+    public String getCaracteristics() {
+        return caracteristics;
+    }
 }

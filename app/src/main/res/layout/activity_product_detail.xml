@@ -23,8 +23,8 @@
                 android:textAlignment="center"
                 />
             <ImageView
-                android:layout_width="250dp"
-                android:layout_height="300dp"
+                android:layout_width="@dimen/detail_image_width"
+                android:layout_height="@dimen/detail_image_height"
                 android:id="@+id/productDetailImage"
                 android:layout_below="@id/productDetailName"
                 android:layout_centerHorizontal="true"/>

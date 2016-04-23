@@ -48,6 +48,7 @@
         <item name="android:background">?android:selectableItemBackground</item>
         <item name="android:dropDownSelector">?android:selectableItemBackground</item>
         <item name="android:divider">@null</item>
+        <item name="android:popupBackground">#0388f4</item>
 
     </style>
 </resources>
