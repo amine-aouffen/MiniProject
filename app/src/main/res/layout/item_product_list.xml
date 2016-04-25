@@ -4,17 +4,19 @@
     android:layout_height="wrap_content"
     >
         <ImageView
-        android:layout_height="@dimen/item_image_height"
-        android:layout_width="@dimen/item_image_width"
-        android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-        android:id="@+id/productItemImage"/>
+                android:layout_height="@dimen/list_item_image_height"
+                android:layout_width="@dimen/list_item_image_width"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/margin_product_list_extra_small"
+                android:id="@+id/productItemImage"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/productItemName"
             android:layout_toRightOf="@id/productItemImage"
             android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/margin_product_list_small"
             style="@style/textItemTitle"
             />
         <TextView
@@ -24,24 +26,27 @@
             android:layout_below="@+id/productItemName"
             android:layout_toRightOf="@id/productItemImage"
             android:layout_toLeftOf="@+id/productItemAddCart"
+            android:layout_marginLeft="@dimen/margin_product_list_small"
             style="@style/textItemDesc"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/productItemPrice"
-            android:layout_toRightOf="@id/productItemImage"
             android:layout_below="@id/productItemDescription"
+            android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
+            android:layout_marginRight="@dimen/margin_product_list"
             style="@style/textItemSpecial"
             />
         <Button
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:id="@+id/productItemAddCart"
-            android:background="@drawable/ic_add_shopping_cart_black_24dp"
+            android:background="@drawable/ic_action_add_to_cart"
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_margin ="@dimen/margin_product_list"
             />
 </RelativeLayout>

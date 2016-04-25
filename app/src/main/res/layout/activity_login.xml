@@ -3,43 +3,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="tdm.miniproject.activities.LoginActivity">
+    tools:context="tdm.miniproject.activities.LoginActivity"
+    android:background="@color/colorPrimary2"
+    >
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nom d'utilisateur"
-        android:id="@+id/loginUserTxtView"/>
+        android:id="@+id/loginUserTxtView"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/textColorPrimary2"
+        android:textSize="@dimen/general_text_size"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/loginUserEdit"
-        android:layout_below="@id/loginUserTxtView"/>
+        android:layout_below="@id/loginUserTxtView"
+        android:textColor="@color/textColorPrimary2"/>
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mot de passe"
         android:id="@+id/loginPassTxtView"
-        android:layout_below="@id/loginUserEdit"/>
+        android:layout_below="@id/loginUserEdit"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/textColorPrimary2"
+        android:textSize="@dimen/general_text_size"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/loginPassEdit"
         android:inputType="textPassword"
-        android:layout_below="@id/loginPassTxtView"/>
+        android:layout_below="@id/loginPassTxtView"
+        android:textColor="@color/textColorPrimary2"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loginPassEdit"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        >
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/loginOkBtn"
         android:text="Connexion"
-        android:layout_below="@id/loginPassEdit"
+        android:background="@color/textColorPrimary2"
+        android:layout_marginRight="@dimen/margin_connexion_button"
         />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/loginCancelBtn"
         android:text="Annuler"
-        android:layout_below="@id/loginPassEdit"
-        android:layout_toRightOf="@id/loginOkBtn"
+        android:background="@color/textColorPrimary2"
+
         />
+    </LinearLayout>
 
 </RelativeLayout>

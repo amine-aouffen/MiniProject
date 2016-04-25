@@ -3,11 +3,30 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="spinner_btn_margin">30dp</dimen>
-    <dimen name="item_image_height">100dp</dimen>
-    <dimen name="item_image_width">80dp</dimen>
+    <dimen name="cart_item_image_height">130dp</dimen>
+    <dimen name="cart_item_image_width">90dp</dimen>
+
+    <dimen name="list_item_image_height">100dp</dimen>
+    <dimen name="list_item_image_width">80dp</dimen>
 
     <dimen name="detail_image_height">300dp</dimen>
     <dimen name="detail_image_width">240dp</dimen>
 
-    <dimen name="fragmentsTitleDim">50dp</dimen>
+    <dimen name="margin_product_list">10dp</dimen>
+    <dimen name="margin_product_list_small">5dp</dimen>
+    <dimen name="margin_product_list_extra_small">1dp</dimen>
+
+    <dimen name="margin_connexion_button">30dp</dimen>
+
+    <dimen name="padding_add_to_cart_button_detail">10dp</dimen>
+
+    <dimen name="Delete_button_cart">60dp</dimen>
+    <dimen name="Minus_button_cart">30dp</dimen>
+    <dimen name="Plus_button_cart">30dp</dimen>
+
+    <dimen name="general_text_size">20sp</dimen>
+    <dimen name="big_text_size">30sp</dimen>
+    <dimen name="title_text_size">40sp</dimen>
+
+    <dimen name="fragmentsTitleDim">30dp</dimen>
 </resources>

@@ -1,7 +1,6 @@
 package tdm.miniproject.adapters;
 
 import android.content.Context;
-import android.graphics.drawable.Icon;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +15,9 @@ import android.widget.Toast;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import tdm.miniproject.R;
 import tdm.miniproject.activities.MainActivity;
-import tdm.miniproject.job.Consumer;
 import tdm.miniproject.job.Product;
 
 /**

@@ -39,7 +39,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         Toolbar detailToolbar = (Toolbar) findViewById(R.id.productDetailToolBar);
         setSupportActionBar(detailToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_store_white_24dp);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_home);
 
     }
     @Override

@@ -7,7 +7,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/MyCustomAppTheme">
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,20 +26,29 @@
         <activity
             android:name=".activities.ProductDetailActivity"
             android:label="Détaille du produit"
-            android:parentActivityName=".activities.MainActivity" />
+            android:parentActivityName=".activities.MainActivity" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".activities.MainActivity" />
+        </activity>
         <activity
             android:name=".activities.LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+            android:theme="@style/Theme.AppCompat.Light.Dialog" >
+        </activity>
         <activity
             android:name=".activities.OrdersActivity"
             android:label="Commandes"
-            android:parentActivityName=".activities.MainActivity" />
+            android:parentActivityName=".activities.MainActivity" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".activities.MainActivity" />
+        </activity>
         <activity android:name=".activities.OrderDetailsActivity"
             android:label="Détails de la commande"
-            android:parentActivityName=".activities.OrdersActivity">
+            android:parentActivityName=".activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.OrdersActivity" />
+                android:value=".activities.MainActivity" />
         </activity>
     </application>
 

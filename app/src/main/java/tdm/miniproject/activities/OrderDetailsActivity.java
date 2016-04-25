@@ -30,7 +30,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         Toolbar detailToolbar = (Toolbar) findViewById(R.id.orderDetailToolBar);
         setSupportActionBar(detailToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_store_white_24dp);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_home);
 
     }
 
@@ -51,11 +51,11 @@ public class OrderDetailsActivity extends AppCompatActivity {
         switch (order.getStatus()){
             case ON_DELEVERY:
                 statusTxtView.setText("En cours de livraison. ");
-                statusIcon.setImageResource(R.drawable.ic_add_shopping_cart_black_24dp);
+           //     statusIcon.setImageResource(R.drawable.ic_add_shopping_cart_black_24dp);
                 break;
             case ON_PREPARATION:
                 statusTxtView.setText("En cours de préparation. ");
-                statusIcon.setImageResource(R.drawable.ic_indeterminate_check_box_black_24dp);
+             //   statusIcon.setImageResource(R.drawable.ic_indeterminate_check_box_black_24dp);
                 break;
         }
 

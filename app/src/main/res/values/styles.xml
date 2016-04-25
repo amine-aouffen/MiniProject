@@ -6,14 +6,42 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textViewStyle">@style/TextAppearance</item>
     </style>
-    <style name="AppCompatLogin" parent="Theme.AppCompat.Light.Dialog">
+
+    <style name="MyCustomAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
+        <item name="colorPrimary">@color/colorPrimary2</item>
+        <item name="colorAccent">@color/colorPrimary2</item>
+        <item name="android:textColorPrimary">@color/textPrimary</item>
+        <item name="android:textViewStyle">@style/TextAppearance</item>
     </style>
+
+    <style name="MyCustomAppTheme2" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
+        <item name="colorPrimary">@color/colorPrimary2</item>
+        <item name="colorAccent">@color/colorPrimary2</item>
+        <item name="android:textColorPrimary">@color/textSecondary</item>
+        <item name="android:textColor">@color/textSecondary</item>
+        <item name="android:textColorSecondary">@color/textSecondary</item>
+    </style>
+
     <style name="TextAppearance" parent="@android:style/TextAppearance.Theme">
-        <item name="android:textColor">@color/textPrimary</item>
+        <item name="android:textColor">@color/textItemDescColor</item>
         <item name="android:textColorPrimary">@color/textPrimary</item>
         <item name="android:textColorSecondary">@color/textSecondary</item>
-
     </style>
+
+    <style name="TextAppearance2" parent="@android:style/TextAppearance.Theme">
+        <item name="android:textColor">@color/textSecondary</item>
+        <item name="android:textColorPrimary">@color/textSecondary</item>
+        <item name="android:textColorSecondary">@color/textItemDescColor</item>
+    </style>
+
+    <style name="AppCompatLogin" parent="Theme.AppCompat.Light.Dialog">
+    </style>
+
+
     <style name="textItemTitle" parent="android:TextAppearance.Large">
         <item name="android:textColor" >@color/textItemTitleColor</item>
         <item name="android:textSize">20dp</item>
@@ -26,7 +54,7 @@
     </style>
 
     <style name="textItemSpecial" parent="android:TextAppearance.Large">
-        <item name="android:textColor" >@color/textItemSpecial</item>
+        <item name="android:textColor" >@color/textItemPriceColor</item>
         <item name="android:textSize">15dp</item>
     </style>
 
@@ -38,6 +66,7 @@
     </style>
     <style name="textContentText">
         <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:textColor" >@color/textSecondary</item>
     </style>
     <style name="productDetailTitle">
         <item name="android:textColor" >@color/textItemTitleColor</item>
@@ -48,7 +77,8 @@
         <item name="android:background">?android:selectableItemBackground</item>
         <item name="android:dropDownSelector">?android:selectableItemBackground</item>
         <item name="android:divider">@null</item>
-        <item name="android:popupBackground">#0388f4</item>
+        <!--<item name="android:popupBackground">#0388f4</item>-->
+        <item name="android:popupBackground">@color/colorPrimary2</item>
 
     </style>
 
@@ -58,6 +88,6 @@
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_gravity">center_horizontal</item>
-        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:background">@color/colorPrimary2</item>
     </style>
 </resources>

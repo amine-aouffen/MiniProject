@@ -11,12 +11,12 @@
         android:onClick="showAddition"
         />
     <item
-        android:icon="@drawable/ic_remove_shopping_cart_white_24dp"
+        android:icon="@drawable/ic_action_vider_chariot"
         app:showAsAction="always"
         android:title="Supprimer chariot"
         android:onClick="cleanCart"
         />    <item
-        android:icon="@drawable/ic_assignment_turned_in_white_24dp"
+        android:icon="@drawable/ic_action_valider_commande"
         app:showAsAction="always"
         android:title="valider commande"
         android:onClick="validateOrder"

@@ -3,11 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <ImageView
-        android:layout_height="@dimen/item_image_height"
-        android:layout_width="@dimen/item_image_width"
+        android:layout_height="@dimen/cart_item_image_height"
+        android:layout_width="@dimen/cart_item_image_width"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:id="@+id/cartItemImage"/>
+        android:id="@+id/cartItemImage"
+        android:layout_margin="@dimen/margin_product_list_extra_small"
+       />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,6 +18,8 @@
         style="@style/textItemTitle"
         android:layout_toRightOf="@id/cartItemImage"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/margin_product_list_small"
+        android:layout_marginTop="@dimen/margin_product_list_extra_small"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -25,52 +29,67 @@
         style="@style/textItemDesc"
         android:layout_below="@+id/cartItemName"
         android:layout_toRightOf="@id/cartItemImage"
-        android:layout_toLeftOf="@+id/cartItemDelete" />
+        android:layout_toLeftOf="@+id/cartItemDelete"
+        android:layout_marginLeft="@dimen/margin_product_list_small"
+        android:layout_marginTop="@dimen/margin_product_list_extra_small"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="1900 DA"
         android:id="@+id/cartItemPrice"
         style="@style/textItemSpecial"
-        android:layout_toRightOf="@id/cartItemImage"
-        android:layout_below="@id/cartItemDescription"
+
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="@dimen/margin_product_list"
         />
     <Button
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="@dimen/Minus_button_cart"
+        android:layout_height="@dimen/Plus_button_cart"
         android:id="@+id/cartItemDecQuantity"
         android:background="@drawable/ic_remove_circle_black_24dp"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:layout_toRightOf="@id/cartItemImage"
-        android:layout_below="@id/cartItemPrice"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/margin_product_list_small"
         />
     <TextView
-        android:layout_width="30dp"
+        android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:textAlignment="center"
         android:id="@+id/cartItemQuantity"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/cartItemDescription"
         android:layout_toRightOf="@id/cartItemDecQuantity"
-        android:layout_below="@id/cartItemPrice"/>
+        android:layout_marginBottom="@dimen/margin_product_list_small"
+        android:layout_marginLeft="@dimen/margin_product_list_small"
+        android:layout_marginRight="@dimen/margin_product_list_small"
+        style="@style/textItemTitle"/>
+
     <Button
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/Delete_button_cart"
+        android:layout_height="@dimen/Delete_button_cart"
         android:id="@+id/cartItemDelete"
-        android:background="@drawable/ic_remove_circle_black_24dp"
+        android:background="@drawable/ic_action_remove_from_cart"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignBaseline="@id/cartItemDescription"
+        android:layout_marginRight="@dimen/margin_product_list"
         />
     <Button
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="@dimen/Plus_button_cart"
+        android:layout_height="@dimen/Minus_button_cart"
         android:id="@+id/cartItemIncQuantity"
         android:background="@drawable/ic_add_circle_black_24dp"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:layout_toRightOf="@id/cartItemQuantity"
-        android:layout_below="@id/cartItemPrice"
+        android:layout_alignBaseline="@id/cartItemDecQuantity"
+        android:layout_alignParentBottom="true"
+
         />
 
 

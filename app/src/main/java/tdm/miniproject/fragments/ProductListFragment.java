@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import tdm.miniproject.R;
 import tdm.miniproject.adapters.ProductAdapter;
@@ -25,6 +26,10 @@ public class ProductListFragment extends Fragment {
     private ProductListFragmentListener listener;
     private ListView productListView;
     private View fragView=null;
+
+    public ProductListFragment() {
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -75,7 +80,11 @@ public class ProductListFragment extends Fragment {
     }
 
     public void showProductDetails(Product product){
-        listener.showProductDetails(product);
+       try{
+           listener.showProductDetails(product);
+       }catch (Exception e){
+
+       }
     }
 
 

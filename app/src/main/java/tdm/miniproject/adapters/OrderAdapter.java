@@ -59,11 +59,11 @@ public class OrderAdapter extends BaseAdapter{
         switch (i){
             case 0:
                 statusTxtView.setText("En cours de livraison. ");
-                statusIcon.setImageResource(R.drawable.ic_add_shopping_cart_black_24dp);
+               // statusIcon.setImageResource(R.drawable.ic_add_shopping_cart_black_24dp);
                 break;
             case 1:
                 statusTxtView.setText("En cours de préparation. ");
-                statusIcon.setImageResource(R.drawable.ic_indeterminate_check_box_black_24dp);
+             //   statusIcon.setImageResource(R.drawable.ic_indeterminate_check_box_black_24dp);
                 break;
             default:
                 break;

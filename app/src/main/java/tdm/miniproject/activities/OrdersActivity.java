@@ -43,7 +43,7 @@ public class OrdersActivity extends AppCompatActivity {
         Toolbar cartToolbar = (Toolbar) findViewById(R.id.ordersToolBar);
         setSupportActionBar(cartToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_store_white_24dp);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_home);
     }
 
     @Override

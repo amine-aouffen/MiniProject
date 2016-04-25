@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activites.MainActivity"
+    tools:context=".activities.MainActivity"
     android:id="@+id/z">
     <include
         android:id="@+id/mainToolBar"
@@ -21,7 +21,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Choix de catégorie:  "
-                android:id="@+id/categoryLab"/>
+                android:id="@+id/categoryLab"
+                android:textColor="@color/textPrimary"/>
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -51,7 +52,7 @@
         android:layout_below="@id/categoryBar"
         android:layout_width="match_parent"
         android:layout_height="25dp"
-        android:background="@color/colorPrimaryDark">
+        android:background="@color/colorPrimary2">
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
             android:layout_height="wrap_content"

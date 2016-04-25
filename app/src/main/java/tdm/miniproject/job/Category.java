@@ -3,8 +3,6 @@ package tdm.miniproject.job;
 
 import java.util.ArrayList;
 
-import tdm.miniproject.R;
-
 public class Category extends ArrayList<Product> {
     private String code;
     private String name;

@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:id="@+id/scroll"
+        android:layout_above="@+id/productDetailAddCart">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/productDetailName"
                 android:layout_alignParentTop="true"
                 style="@style/productDetailTitle"
-                android:textAlignment="center"
+                android:layout_centerHorizontal="true"
                 />
             <ImageView
                 android:layout_width="@dimen/detail_image_width"
@@ -62,14 +64,19 @@
                 android:id="@+id/productDetailPrice"
                 android:layout_below="@id/productDetailPriceLbl"
                 style="@style/textContentText"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ajouter au chariot"
-                android:id="@+id/productDetailAddCart"
-                android:layout_below="@id/productDetailPrice"
-                android:layout_centerHorizontal="true"
-                />
+
         </RelativeLayout>
     </ScrollView>
-</LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ajouter au chariot"
+        android:id="@+id/productDetailAddCart"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+
+        android:background="@color/colorPrimary2"
+        android:padding="@dimen/margin_product_list_small"
+        android:layout_margin="@dimen/margin_product_list_small"
+        />
+</RelativeLayout>

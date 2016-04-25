@@ -53,16 +53,16 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void sendAuthentificationInfos(){
-        if(userEditText.getText().length()==0||passEditText.getText().length()==0){
-            Toast.makeText(LoginActivity.this, "Veuillez saisir Nom utilisateur/Mot de passe", Toast.LENGTH_SHORT).show();
-        }
-        else{
+//        if(userEditText.getText().length()==0||passEditText.getText().length()==0){
+//            Toast.makeText(LoginActivity.this, "Veuillez saisir Nom utilisateur/Mot de passe", Toast.LENGTH_SHORT).show();
+//        }
+//        else{
             Intent intent = new Intent();
             intent.putExtra("user",userEditText.getText().toString());
             intent.putExtra("pass",passEditText.getText().toString());
             setResult(Activity.RESULT_OK, intent);
             finish();
-        }
+//        }
     }
     public void cancelAuthentification(){
         Intent intent = new Intent();

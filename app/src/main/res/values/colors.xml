@@ -4,11 +4,18 @@
     <color name="colorPrimaryDark">#03A9F4</color>
     <color name="colorAccent">#B3E5FC</color>
 
-    <color name="textPrimary">#303030</color>
+    <color name="colorPrimaryDark2">#ca0101</color>
+    <!--0B657F -->
+
+    <color name="colorPrimary2">#E82E2E</color>
+    <color name="colorAccent2">#E82E2E</color>
+    <color name="textColorPrimary2">#FFF</color>
+
+    <color name="textPrimary">#FFF</color>
     <color name="textSecondary">#303030</color>
 
-    <color name="textItemTitleColor">@color/colorPrimary</color>
+    <color name="textItemTitleColor">#D40028</color>
     <color name="textItemDescColor">#5e5e5e</color>
-    <color name="textItemSpecial">#2a2263</color>
-    <color name="textPreContentLabel">@color/colorPrimary</color>
+    <color name="textItemPriceColor">#E15D0B</color>
+    <color name="textPreContentLabel">@color/textItemPriceColor</color>
 </resources>

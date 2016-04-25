@@ -12,7 +12,7 @@
         android:onClick="showChartActivity"/>
     <item
         android:id="@+id/showOrders"
-        android:icon="@drawable/ic_favorite_white_24dp"
+        android:icon="@drawable/ic_action_etat_commande"
         app:showAsAction="always"
         android:title="addt to chart"
         android:onClick="showOrdersActivity"/>

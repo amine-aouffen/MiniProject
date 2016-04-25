@@ -19,6 +19,9 @@ import tdm.miniproject.job.Order;
  * Created by amine on 25/04/2016.
  */
 public class OrderDetailsFragment extends Fragment{
+    public OrderDetailsFragment() {
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,11 +48,11 @@ public class OrderDetailsFragment extends Fragment{
             switch (order.getStatus()){
                 case ON_DELEVERY:
                     statusTxtView.setText("En cours de livraison. ");
-                    statusIcon.setImageResource(R.drawable.ic_add_shopping_cart_black_24dp);
+             //       statusIcon.setImageResource(R.drawable.ic_add_shopping_cart_black_24dp);
                     break;
                 case ON_PREPARATION:
                     statusTxtView.setText("En cours de préparation. ");
-                    statusIcon.setImageResource(R.drawable.ic_indeterminate_check_box_black_24dp);
+             //       statusIcon.setImageResource(R.drawable.ic_indeterminate_check_box_black_24dp);
                     break;
             }
         }
