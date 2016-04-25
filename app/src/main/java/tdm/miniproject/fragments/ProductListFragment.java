@@ -31,7 +31,6 @@ public class ProductListFragment extends Fragment {
         fragView = inflater.inflate(R.layout.fragment_product_list,container,false);
         prepareFragment(fragView);
         setItemClickListener();
-        Toast.makeText(getContext(), "on create frag", Toast.LENGTH_SHORT).show();
         return fragView;
     }
 

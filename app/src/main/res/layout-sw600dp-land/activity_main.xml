@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/mainToolBar"
+        layout="@layout/tool_bar"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/mainToolBar"
+        android:weightSum="2">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/mainActivityLayout">
+
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/categoryBar"
+                android:layout_alignParentTop="true"
+                android:layout_width="match_parent"
+                android:layout_height="25dp">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Choix de catégorie:  "
+                        android:id="@+id/categoryLab"/>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/categoryLab"
+                        android:background="@drawable/spin_background">
+                        <android.support.v7.widget.AppCompatSpinner
+                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:id="@+id/categorySpinner"
+                            android:title="Category Choice"
+                            style="@style/SpinnerStyle"
+                            />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/spinner_triangle"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignRight="@id/categorySpinner"/>
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </android.support.design.widget.AppBarLayout>
+
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/consumerTypeBar"
+                android:layout_below="@id/categoryBar"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:background="@color/colorPrimaryDark">
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tabs"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent" />
+            </android.support.design.widget.AppBarLayout>
+            <android.support.v4.view.ViewPager
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_below="@id/consumerTypeBar"
+                android:id="@+id/mainViewPager"/>
+        </RelativeLayout>
+        <FrameLayout
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"/>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/twoPanesFragment"
+            android:layout_below="@id/mainToolBar"
+            android:layout_toRightOf="@id/mainActivityLayout"
+            android:layout_alignParentRight="true">
+        </FrameLayout>
+    </LinearLayout>
+</RelativeLayout>

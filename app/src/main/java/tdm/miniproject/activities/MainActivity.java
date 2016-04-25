@@ -3,6 +3,7 @@ package tdm.miniproject.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,8 @@ import java.util.ArrayList;
 import tdm.miniproject.R;
 import tdm.miniproject.adapters.CategoryAdapter;
 import tdm.miniproject.adapters.PagerAdapter;
+import tdm.miniproject.fragments.ChartFragment;
+import tdm.miniproject.fragments.ProductDetailFragment;
 import tdm.miniproject.job.Cart;
 import tdm.miniproject.job.Category;
 import tdm.miniproject.job.Consumer;
@@ -83,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
         CategoryAdapter categoryAdapter = new CategoryAdapter(this,categoriesList);
         categorySpinner.setAdapter(categoryAdapter);
         if(spinnerIndex!=-1) categorySpinner.setSelection(spinnerIndex);
+        if(spinnerIndex==-1&&isTwoPanes()) showProductDetailsInFrag(categoriesList.get(0).get(0));
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -543,16 +547,30 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
     }
 
     public void showChartActivity(MenuItem item) {
-        Intent intent = new Intent(this,CartActivity.class);
-        startActivity(intent);
+            Intent intent = new Intent(this,CartActivity.class);
+            startActivity(intent);
     }
 
 
     @Override
     public void showProductDetails(Product product) {
-        Intent intent = new Intent(this,ProductDetailActivity.class);
-        intent.putExtra("product",product);
-        startActivity(intent);
+        if(!isTwoPanes()) {
+            Intent intent = new Intent(this, ProductDetailActivity.class);
+            intent.putExtra("product", product);
+            startActivity(intent);
+        }else{
+            showProductDetailsInFrag(product);
+        }
+    }
+
+    private void showProductDetailsInFrag(Product product) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("product", product);
+        ProductDetailFragment fragment = new ProductDetailFragment();
+        fragment.setArguments(bundle);
+        FragmentTransaction fragTransaction = getSupportFragmentManager().beginTransaction();
+        fragTransaction.replace(R.id.twoPanesFragment,fragment);
+        fragTransaction.commit();
     }
 
     @Override
@@ -605,11 +623,7 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
     }
 
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        //super.onConfigurationChanged(newConfig);
-        Toast.makeText(MainActivity.this, "yaw rahi tgalbat rougi", Toast.LENGTH_SHORT).show();
-    }
+
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -631,8 +645,42 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
         if(j!=-1){
             tabIndex=j;
         }
+        if (isTwoPanes()){
+            int l = spinnerIndex;
+            switch (tabIndex){
+                case 0:
+
+                    for(int k = 0;k<=categoriesList.get(l).size();k++){
+                        if (categoriesList.get(l).get(k).getConsumer()==Consumer.MAN){
+                            showProductDetailsInFrag(categoriesList.get(l).get(k));
+                            break;
+                        }
+                    }
+                    break;
+                case 1:
+                    for(int k = 0;k<=categoriesList.get(l).size();k++){
+                        if (categoriesList.get(l).get(k).getConsumer()==Consumer.WOMAN){
+                            showProductDetailsInFrag(categoriesList.get(l).get(k));
+                            break;
+                        }
+                    }
+                    break;
+                case 2:
+                    for(int k = 0;k<=categoriesList.get(l).size();k++){
+                        if (categoriesList.get(l).get(k).getConsumer()==Consumer.KID){
+                            showProductDetailsInFrag(categoriesList.get(l).get(k));
+                            break;
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
 
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -653,5 +701,12 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    boolean isTwoPanes(){
+        if(findViewById(R.id.twoPanesFragment)==null){
+            return false;
+        }
+        return true;
     }
 }

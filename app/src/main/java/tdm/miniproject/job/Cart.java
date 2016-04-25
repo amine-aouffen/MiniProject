@@ -1,12 +1,13 @@
 package tdm.miniproject.job;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
 import tdm.miniproject.support.CartElement;
 
-public class Cart{
+public class Cart implements Serializable{
     private ArrayList<CartElement> elementsList;
 
     public Cart() {

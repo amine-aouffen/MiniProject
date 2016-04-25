@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/orderDetailsContent">
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/orderDetailsLayout"
+        android:layout_alignParentTop="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/orderItemTitle"
+            style="@style/textItemTitle"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="03/01/2016"
+            android:id="@+id/orderItemDate"
+            android:layout_below="@id/orderItemTitle"
+            style="@style/textItemDesc"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/orderItemTotalLbl"
+            android:text="Prix totale: "
+            android:layout_below="@id/orderItemDate"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/orderItemTotal"
+            android:layout_below="@id/orderItemDate"
+            android:layout_toRightOf="@id/orderItemTotalLbl"
+            style="@style/textItemSpecial"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/orderItemStatusLbl"
+            android:text="Etat: "
+            android:layout_below="@id/orderItemTotal"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/orderItemStatus"
+            android:layout_below="@id/orderItemTotal"
+            android:layout_toRightOf="@id/orderItemStatusLbl"
+            style="@style/textItemSpecial"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/orderItemStatusIcon"
+            android:layout_below="@id/orderItemTotal"
+            android:layout_toRightOf="@id/orderItemStatus"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimary"
+            android:layout_below="@id/orderItemStatusLbl"/>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/productListLbl"
+        android:layout_below="@id/orderDetailsLayout"
+        android:text="Liste des produits de la commande: "
+        style="@style/textItemDesc"/>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/orderDetailsList"
+        android:layout_below="@id/productListLbl">
+    </ListView>
+
+</RelativeLayout>

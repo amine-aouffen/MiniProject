@@ -95,7 +95,7 @@ public class CartActivity extends AppCompatActivity {
 
     private void validateOrder() {
         Toast.makeText(CartActivity.this, "la commande à été validé", Toast.LENGTH_SHORT).show();
-        MainActivity.getOrders().add(new Order(MainActivity.getCart()));
+        MainActivity.getOrders().add(new Order(MainActivity.getCart(),MainActivity.getOrders().size()+1));
         cleanCart();
     }
 

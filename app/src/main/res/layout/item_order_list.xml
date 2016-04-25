@@ -6,35 +6,30 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Commande 1"
         android:textAlignment="center"
-        android:textSize="50sp"
-        android:id="@+id/orderItemTitle"/>
+        android:id="@+id/orderItemTitle"
+        style="@style/textItemTitle"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="03/01/2016"
         android:id="@+id/orderItemDate"
-        android:layout_below="@id/orderItemTitle"/>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/orderItemProductsList"
-        android:layout_below="@id/orderItemDate">
-    </LinearLayout>
+        android:layout_below="@id/orderItemTitle"
+        style="@style/textItemDesc"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/orderItemTotalLbl"
         android:text="Prix totale: "
-        android:layout_below="@id/orderItemProductsList"/>
+        android:layout_below="@id/orderItemDate"
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/orderItemTotal"
-        android:layout_below="@id/orderItemProductsList"
-        android:layout_toRightOf="@id/orderItemTotalLbl"/>
+        android:layout_below="@id/orderItemDate"
+        android:layout_toRightOf="@id/orderItemTotalLbl"
+        style="@style/textItemSpecial"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,7 +41,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/orderItemStatus"
         android:layout_below="@id/orderItemTotal"
-        android:layout_toRightOf="@id/orderItemStatusLbl"/>
+        android:layout_toRightOf="@id/orderItemStatusLbl"
+        style="@style/textItemSpecial"/>
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

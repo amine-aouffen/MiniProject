@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/productDetailName"
+                android:layout_alignParentTop="true"
+                style="@style/productDetailTitle"
+                android:textAlignment="center"
+                />
+            <ImageView
+                android:layout_width="@dimen/detail_image_width"
+                android:layout_height="@dimen/detail_image_height"
+                android:id="@+id/productDetailImage"
+                android:layout_below="@id/productDetailName"
+                android:layout_centerHorizontal="true"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Description:"
+                android:id="@+id/productDetailDescLbl"
+                android:layout_below="@id/productDetailImage"
+                style="@style/textPreContentLabelText"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/productDetailDesc"
+                android:layout_below="@id/productDetailDescLbl"
+                style="@style/textContentText"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Caractéristiques du produit:"
+                android:id="@+id/productDetailCaraLbl"
+                android:layout_below="@id/productDetailDesc"
+                style="@style/textPreContentLabelText"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/productDetailCara"
+                android:layout_below="@id/productDetailCaraLbl"
+                style="@style/textContentText"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Le prix:"
+                android:id="@+id/productDetailPriceLbl"
+                android:layout_below="@id/productDetailCara"
+                style="@style/textPreContentLabelText"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/productDetailPrice"
+                android:layout_below="@id/productDetailPriceLbl"
+                style="@style/textContentText"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ajouter au chariot"
+                android:id="@+id/productDetailAddCart"
+                android:layout_below="@id/productDetailPrice"
+                android:layout_centerHorizontal="true"
+                />
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>

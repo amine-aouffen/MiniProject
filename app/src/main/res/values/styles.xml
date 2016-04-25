@@ -51,4 +51,13 @@
         <item name="android:popupBackground">#0388f4</item>
 
     </style>
+
+    <style name="FragmentTitle">
+        <item name="android:textColor" >#FFFFFF</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
 </resources>
