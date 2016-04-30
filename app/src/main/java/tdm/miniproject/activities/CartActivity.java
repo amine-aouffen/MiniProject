@@ -60,8 +60,8 @@ public class CartActivity extends AppCompatActivity {
     }
 
     public void showLoginActivity() {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivityForResult(intent, LOGIN_REQUEST);
+        Intent intent = new Intent(this, SignInActivity.class);
+        startActivity(intent);
     }
 
     public void cleanCart() {
@@ -73,6 +73,7 @@ public class CartActivity extends AppCompatActivity {
         cleanCart();
         Toast.makeText(CartActivity.this, "Chariot a été supprimé avec succés", Toast.LENGTH_SHORT).show();
     }
+/*
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -92,6 +93,7 @@ public class CartActivity extends AppCompatActivity {
             }
         }
     }
+*/
 
     private void validateOrder() {
         Toast.makeText(CartActivity.this, "la commande à été validé", Toast.LENGTH_SHORT).show();
@@ -105,5 +107,10 @@ public class CartActivity extends AppCompatActivity {
         }else{
             Toast.makeText(CartActivity.this, "La somme est arrêtée à:"+MainActivity.getCart().getTotalCost() + " DA", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void showOrdersActivity(MenuItem item) {
+        Intent intent = new Intent(this,OrdersActivity.class);
+        startActivity(intent);
     }
 }

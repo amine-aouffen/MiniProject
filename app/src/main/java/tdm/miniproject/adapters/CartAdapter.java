@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 
@@ -90,6 +91,7 @@ public class CartAdapter extends BaseAdapter {
         cartItemDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                v.startAnimation(new AlphaAnimation(1F,0.5F));
                 cart.removeCartElement(position);
                 notifyDataSetChanged();
             }
@@ -99,6 +101,7 @@ public class CartAdapter extends BaseAdapter {
         cartItemIncQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                v.startAnimation(new AlphaAnimation(1F,0.5F));
                 cartElement.incQunatity();
                 cartItemQuantity.setText(cartElement.getQuantity() + "");
             }
@@ -108,6 +111,7 @@ public class CartAdapter extends BaseAdapter {
         cartItemDecQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                v.startAnimation(new AlphaAnimation(1F,0.5F));
                 cartElement.decQuantity();
                 cartItemQuantity.setText(cartElement.getQuantity() + "");
             }

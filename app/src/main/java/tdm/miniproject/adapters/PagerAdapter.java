@@ -106,21 +106,10 @@ public class PagerAdapter extends FragmentStatePagerAdapter{
 
 
 
-    public void updateFraments(){
-        if(manFragment!=null)manFragment.updateProductList(manProductsList);
-        if(womanFragment!=null)womanFragment.updateProductList(womanProductsList);
-        if(kidFragment!=null)kidFragment.updateProductList(kidProductsList);
-    }
-
     @Override
     public int getItemPosition(Object object) {
         return POSITION_NONE;
     }
 
-    public void destroyFragments(){
-        manFragment=null;
-        womanFragment=null;
-        kidFragment=null;
-    }
 
 }

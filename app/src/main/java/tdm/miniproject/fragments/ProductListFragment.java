@@ -88,14 +88,6 @@ public class ProductListFragment extends Fragment {
     }
 
 
-    public void updateProductList(ArrayList<Product> products){
-        if(productAdapter!=null) {
-            this.productsList = products;
-            productAdapter.setProductsList(products);
-            productAdapter.notifyDataSetChanged();
-        }
-
-    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {

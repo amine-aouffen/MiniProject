@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import tdm.miniproject.R;
 import tdm.miniproject.activities.MainActivity;
+import tdm.miniproject.controlers.CartControler;
 import tdm.miniproject.job.Product;
 
 
@@ -68,7 +69,7 @@ public class ProductDetailFragment extends Fragment{
 
     }
     public void addProductToCart() {
-        MainActivity.addProductToSCart(getContext(), product);
+        CartControler.addProductToSCart(getContext(), product);
     }
 
 }

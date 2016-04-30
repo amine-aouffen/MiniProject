@@ -21,4 +21,10 @@
         android:title="valider commande"
         android:onClick="validateOrder"
         />
+    <item
+        android:icon="@drawable/ic_action_etat_commande"
+        app:showAsAction="always"
+        android:title="Afficher les commandes"
+        android:onClick="showOrdersActivity"
+        />
 </menu>

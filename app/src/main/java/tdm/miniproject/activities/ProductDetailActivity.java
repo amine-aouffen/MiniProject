@@ -1,6 +1,7 @@
 package tdm.miniproject.activities;
 
 import tdm.miniproject.R;
+import tdm.miniproject.controlers.CartControler;
 import tdm.miniproject.job.Product;
 
 
@@ -76,7 +77,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     }
 
     public void addProductToCart() {
-        MainActivity.addProductToSCart(ProductDetailActivity.this, product);
+        CartControler.addProductToSCart(ProductDetailActivity.this, product);
     }
 
     public void showChartActivity(MenuItem item) {

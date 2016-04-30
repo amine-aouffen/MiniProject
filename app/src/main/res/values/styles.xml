@@ -26,6 +26,16 @@
         <item name="android:textColorSecondary">@color/textSecondary</item>
     </style>
 
+    <style name="MyCustomAppThemeDialog" parent="Theme.AppCompat.Light.Dialog">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
+        <item name="colorPrimary">@color/colorPrimary2</item>
+        <item name="colorAccent">@color/colorPrimary2</item>
+        <item name="android:textColorPrimary">@color/textSecondary</item>
+        <item name="android:textColor">@color/textSecondary</item>
+        <item name="android:textColorSecondary">@color/textSecondary</item>
+    </style>
+
     <style name="TextAppearance" parent="@android:style/TextAppearance.Theme">
         <item name="android:textColor">@color/textItemDescColor</item>
         <item name="android:textColorPrimary">@color/textPrimary</item>

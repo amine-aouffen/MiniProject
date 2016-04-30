@@ -1,5 +1,6 @@
 package tdm.miniproject.activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import tdm.miniproject.R;
 import tdm.miniproject.adapters.CategoryAdapter;
 import tdm.miniproject.adapters.PagerAdapter;
+import tdm.miniproject.controlers.CartControler;
 import tdm.miniproject.data.ProductData;
 import tdm.miniproject.fragments.ProductDetailFragment;
 import tdm.miniproject.job.Cart;
@@ -34,7 +36,6 @@ import tdm.miniproject.support.ProductListFragmentListener;
 public class MainActivity extends AppCompatActivity implements ProductListFragmentListener{
     private ArrayList<Category> categoriesList;
     private static Cart cart = new Cart();
-    ;
     private static boolean notification=true;
     private static boolean connected;
     private static ArrayList<Order> orders = new ArrayList<Order>();
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
     private Spinner categorySpinner;
     private static  int spinnerIndex=-1;
     private static int tabIndex=-1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 pagerAdapter.dispatchCategoryToLists(categoriesList.get(position));
-                //pagerAdapter.updateFraments();
                 pagerAdapter.notifyDataSetChanged();
             }
 
@@ -138,17 +139,9 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
 
     @Override
     public void addProductToCart(Product product) {
-       addProductToSCart(MainActivity.this, product);
+       CartControler.addProductToSCart(MainActivity.this, product);
     }
-    public static void addProductToSCart(Context context,Product product) {
-        CartElement cartElement = new CartElement(product);
-        int q = cart.add(cartElement);
-        if (q==1){
-            Toast.makeText(context, "Produit ajouté au chariot", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(context, "Produit existant, quantité incrémentée "+q, Toast.LENGTH_SHORT).show();
-        }
-    }
+
 
     public static Cart getCart() {
         return cart;
