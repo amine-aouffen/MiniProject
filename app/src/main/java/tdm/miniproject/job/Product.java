@@ -6,7 +6,7 @@ import java.util.TreeSet;
 
 public class Product implements Serializable{
     private String name;
-    private float price;
+    private double price;
     private String description;
     private int productPhoto;
     private Consumer consumer;
@@ -15,7 +15,12 @@ public class Product implements Serializable{
     private Set<String> preferences;
 
 
-    public Product( String name, float price, String description, int productPhoto, Consumer consumer,String caracteristics) {
+
+    public Product() {
+
+    }
+
+    public Product(String name, float price, String description, int productPhoto, Consumer consumer, String caracteristics) {
         this.name = name;
         this.price = price;
         this.description = description;
@@ -48,11 +53,11 @@ public class Product implements Serializable{
         this.name = name;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -82,6 +87,10 @@ public class Product implements Serializable{
 
     public String getCaracteristics() {
         return caracteristics;
+    }
+
+    public void setCaracteristics(String caracteristics) {
+        this.caracteristics = caracteristics;
     }
 
     public String getPreferenceName() {

@@ -8,7 +8,7 @@ import java.util.Date;
 public class Order implements Serializable{
     private int number;
     private Cart cart;
-    private float totalCost;
+    private double totalCost;
     private OrderStatus status;
     private String date;
 
@@ -37,7 +37,7 @@ public class Order implements Serializable{
         this.cart = cart;
     }
 
-    public float getTotalCost() {
+    public double getTotalCost() {
         return totalCost;
     }
 

@@ -56,8 +56,8 @@ public class Cart implements Serializable{
         this.elementsList = elementsList;
     }
 
-    public float getTotalCost(){
-        float total=0;
+    public double getTotalCost(){
+        double total=0;
         for(int i=0;i<elementsList.size();i++){
             total+=elementsList.get(i).getProduct().getPrice()*elementsList.get(i).getQuantity();
         }

@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -69,11 +70,6 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
         tabLayout.setupWithViewPager(viewPager);
         if(tabIndex!=-1) viewPager.setCurrentItem(tabIndex);
 
-//        // Iterate over all tabs and set the custom view
-//        for (int i = 0; i < tabLayout.getTabCount(); i++) {
-//            TabLayout.Tab tab = tabLayout.getTabAt(i);
-//            tab.setCustomView(pagerAdapter.getTabView(i));
-//        }
     }
 
 
@@ -103,7 +99,6 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
             }
         });
     }
-
 
     public void generateExamples(){
         ProductData productData = new ProductData();
@@ -142,7 +137,6 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
        CartControler.addProductToSCart(MainActivity.this, product);
     }
 
-
     public static Cart getCart() {
         return cart;
     }
@@ -177,9 +171,6 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
         Intent intent = new Intent(this,OrdersActivity.class);
         startActivity(intent);
     }
-
-
-
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -238,7 +229,6 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
 
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
@@ -265,5 +255,33 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
             return false;
         }
         return true;
+    }
+
+    public String getScreenDensity() {
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        String density ="";
+        switch(metrics.densityDpi){
+            case DisplayMetrics.DENSITY_LOW:
+                density="ldpi";
+                break;
+            case DisplayMetrics.DENSITY_MEDIUM:
+                density= "mdpi";
+                break;
+            case DisplayMetrics.DENSITY_HIGH:
+                density="hdpi";
+                break;
+            case DisplayMetrics.DENSITY_XHIGH:
+                density= "xhdpi";
+                break;
+            case DisplayMetrics.DENSITY_XXHIGH:
+                density= "xxhdpi";
+            case DisplayMetrics.DENSITY_XXXHIGH:
+                density= "xxxhdpi";
+                break;
+        }
+
+        return density;
+
     }
 }
