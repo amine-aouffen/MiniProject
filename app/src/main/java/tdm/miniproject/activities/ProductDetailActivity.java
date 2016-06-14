@@ -77,7 +77,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     }
 
     public void addProductToCart() {
-        CartControler.addProductToSCart(ProductDetailActivity.this, product);
+        CartControler.addProductToCart(ProductDetailActivity.this, product);
     }
 
     public void showChartActivity(MenuItem item) {

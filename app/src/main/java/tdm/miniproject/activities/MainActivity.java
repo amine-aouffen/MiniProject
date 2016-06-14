@@ -1,7 +1,5 @@
 package tdm.miniproject.activities;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -31,7 +29,6 @@ import tdm.miniproject.job.Category;
 import tdm.miniproject.job.Consumer;
 import tdm.miniproject.job.Order;
 import tdm.miniproject.job.Product;
-import tdm.miniproject.support.CartElement;
 import tdm.miniproject.support.ProductListFragmentListener;
 
 public class MainActivity extends AppCompatActivity implements ProductListFragmentListener{
@@ -134,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
 
     @Override
     public void addProductToCart(Product product) {
-       CartControler.addProductToSCart(MainActivity.this, product);
+       CartControler.addProductToCart(MainActivity.this, product);
     }
 
     public static Cart getCart() {

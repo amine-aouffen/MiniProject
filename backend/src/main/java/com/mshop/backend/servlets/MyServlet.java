@@ -4,7 +4,7 @@
    https://github.com/GoogleCloudPlatform/gradle-appengine-templates/tree/master/HelloWorld
 */
 
-package com.mshop.backend;
+package com.mshop.backend.servlets;
 
 import java.io.IOException;
 import javax.servlet.http.*;

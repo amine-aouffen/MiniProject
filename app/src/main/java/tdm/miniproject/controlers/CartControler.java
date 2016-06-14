@@ -15,10 +15,11 @@ import tdm.miniproject.support.CartElement;
  */
 public class CartControler {
     private static final int PREFERENCE_CHOOSE_REQUEST=1;
-    public static void addProductToSCart(Context context, Product product) {
-        Intent intent = new Intent(context,PreferenceChooser.class);
-        intent.putExtra("product",product);
-        ((AppCompatActivity)context).startActivityForResult(intent,PREFERENCE_CHOOSE_REQUEST);
+    public static void addProductToCart(Context context, Product product) {
+        //TODO uncomment these 3 lines to show size choice window
+//        Intent intent = new Intent(context,PreferenceChooser.class);
+//        intent.putExtra("product",product);
+//        ((AppCompatActivity)context).startActivityForResult(intent,PREFERENCE_CHOOSE_REQUEST);
         CartElement cartElement = new CartElement(product);
         int q = MainActivity.getCart().add(cartElement);
         if (q==1){

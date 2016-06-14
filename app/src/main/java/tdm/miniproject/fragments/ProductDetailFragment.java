@@ -1,6 +1,5 @@
 package tdm.miniproject.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import tdm.miniproject.R;
-import tdm.miniproject.activities.MainActivity;
 import tdm.miniproject.controlers.CartControler;
 import tdm.miniproject.job.Product;
 
@@ -69,7 +67,7 @@ public class ProductDetailFragment extends Fragment{
 
     }
     public void addProductToCart() {
-        CartControler.addProductToSCart(getContext(), product);
+        CartControler.addProductToCart(getContext(), product);
     }
 
 }

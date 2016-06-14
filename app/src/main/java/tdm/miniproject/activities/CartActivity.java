@@ -51,6 +51,8 @@ public class CartActivity extends AppCompatActivity {
 
 
     public void validateOrder(MenuItem item) {
+        //TODO remove the line below after debug to request user auth
+        MainActivity.setConnected(true);
         if (MainActivity.isConnected()) {
             validateOrder();
         } else {
