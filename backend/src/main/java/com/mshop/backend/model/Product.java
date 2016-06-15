@@ -1,8 +1,5 @@
 package com.mshop.backend.model;
 
-/**
- * Created by Dell on 14/06/2016.
- */
 public class Product {
 
     private String name;
@@ -11,8 +8,24 @@ public class Product {
     private int productPhoto;
     private Consumer consumer;
     private String caracteristics;
+    private Category category;
+    private String photo;
 
+    public String getPhoto() {
+        return photo;
+    }
 
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     public String getName() {
         return name;
