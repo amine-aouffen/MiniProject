@@ -20,8 +20,9 @@ public class ProductsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String density = req.getParameter("density");
         String category = req.getParameter("category");
+        String consumer = req.getParameter("consumer");
 
-        List<Product> productList = DataBaseService.getProducts(density, category);
+        List<Product> productList = DataBaseService.getProducts(category, consumer, density);
         resp.getWriter().write(new Gson().toJson(productList));
     }
 
