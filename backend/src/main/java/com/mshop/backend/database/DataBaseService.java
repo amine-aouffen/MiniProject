@@ -167,10 +167,15 @@ public class DataBaseService {
             pst.setInt(1, orderId);
 
             ResultSet rs = pst.executeQuery();
-            rs.next();
-            String state = rs.getString(1);
-
-            return state;
+            rs.last();
+            if (rs.getRow() == 0) {
+                System.out.println("no order with the specified id : " + orderId);
+                return null;
+            }else{
+                rs.first();
+                String state = rs.getString(1);
+                return state;
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
