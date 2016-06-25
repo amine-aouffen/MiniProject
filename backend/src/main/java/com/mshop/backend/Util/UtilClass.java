@@ -50,18 +50,23 @@ public class UtilClass {
 
     public static void printResponse(HttpServletResponse resp, int code, String message) throws IOException {
         PrintWriter writer = resp.getWriter();
-        JsonResponse response = new JsonResponse(code, message);
+        GeneralResponse response = new GeneralResponse(code, message);
         writer.print(new Gson().toJson(response));
     }
 
     public static void printOrderResponse(HttpServletResponse resp, int code, String message, int orderId) throws IOException {
         PrintWriter writer = resp.getWriter();
-        OrderJsonResponse response = new OrderJsonResponse(code, message, orderId);
+        OrderResponse response = new OrderResponse(code, message, orderId);
         writer.print(new Gson().toJson(response));
     }
     public static void printOrderResponse(HttpServletResponse resp, int code, String message, int orderId, String state) throws IOException {
         PrintWriter writer = resp.getWriter();
-        OrderJsonResponse response = new OrderJsonResponse(code, message, orderId, state);
+        OrderResponse response = new OrderResponse(code, message, orderId, state);
         writer.print(new Gson().toJson(response));
+    }
+
+    public static void printCartOperationResponse(HttpServletResponse resp, CartOperationResponse cartOperationResponse) throws IOException {
+        PrintWriter writer = resp.getWriter();
+        writer.print(new Gson().toJson(cartOperationResponse));
     }
 }

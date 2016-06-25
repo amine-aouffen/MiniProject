@@ -3,7 +3,7 @@ package com.mshop.backend.Util;
 /**
  * Created by Dell on 23/06/2016.
  */
-public class CartOperation {
+public class CartOperationRequest {
 
     private String type;
     private String productName;
