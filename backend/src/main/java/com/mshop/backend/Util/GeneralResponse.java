@@ -3,16 +3,16 @@ package com.mshop.backend.Util;
 /**
  * Created by Dell on 23/06/2016.
  */
-public class JsonResponse {
+public class GeneralResponse {
 
     private int code;
     private String description;
 
 
-    public JsonResponse() {
+    public GeneralResponse() {
     }
 
-    public JsonResponse(int code, String description) {
+    public GeneralResponse(int code, String description) {
         this.code = code;
         this.description = description;
     }

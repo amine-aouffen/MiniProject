@@ -1,10 +1,9 @@
 package com.mshop.backend.servlets;
 
 import com.google.gson.Gson;
-import com.mshop.backend.Util.OrderJsonRequest;
+import com.mshop.backend.Util.OrderRequest;
 import com.mshop.backend.Util.UtilClass;
 import com.mshop.backend.database.DataBaseService;
-import com.mshop.backend.model.Order;
 
 import java.io.IOException;
 
@@ -29,12 +28,12 @@ public class OrderSynchServlet extends HttpServlet {
         if (username != null && password != null) {
             StringBuilder sb = UtilClass.readJsonFomBody(req);
             Gson gson = new Gson();
-            OrderJsonRequest orderJsonRequest = gson.fromJson(sb.toString(), OrderJsonRequest.class);
-            String state = DataBaseService.getOrderState(orderJsonRequest.getOrderId());
+            OrderRequest orderRequest = gson.fromJson(sb.toString(), OrderRequest.class);
+            String state = DataBaseService.getOrderState(orderRequest.getOrderId());
             if(state != null){
-                UtilClass.printOrderResponse(resp, 1, "order state retrieved sucessfully", orderJsonRequest.getOrderId(), state);
+                UtilClass.printOrderResponse(resp, 1, "order state retrieved sucessfully", orderRequest.getOrderId(), state);
             }else{
-                UtilClass.printOrderResponse(resp, -1, "order state retrieval failed", orderJsonRequest.getOrderId());
+                UtilClass.printOrderResponse(resp, -1, "order state retrieval failed", orderRequest.getOrderId());
             }
         } else {
             UtilClass.printOrderResponse(resp, -1, "Order state retrieval failed : user not authenticated", -1);

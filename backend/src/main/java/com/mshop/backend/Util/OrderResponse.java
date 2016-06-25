@@ -1,21 +1,19 @@
 package com.mshop.backend.Util;
 
-import com.mshop.backend.Util.JsonResponse;
-
 /**
  * Created by Dell on 23/06/2016.
  */
-public class OrderJsonResponse extends JsonResponse {
+public class OrderResponse extends GeneralResponse {
 
     private int orderId;
     private String state;
 
-    public OrderJsonResponse(int code, String description, int orderId) {
+    public OrderResponse(int code, String description, int orderId) {
         super(code, description);
         this.orderId = orderId;
     }
 
-    public OrderJsonResponse(int code, String description, int orderId, String state) {
+    public OrderResponse(int code, String description, int orderId, String state) {
         super(code, description);
         this.orderId = orderId;
         this.state = state;
