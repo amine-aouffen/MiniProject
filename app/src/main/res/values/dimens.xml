@@ -13,16 +13,16 @@
     <dimen name="detail_image_width">240dp</dimen>
 
     <dimen name="margin_product_list">10dp</dimen>
-    <dimen name="margin_product_list_small">5dp</dimen>
+    <dimen name="margin_product_list_small">10dp</dimen>
     <dimen name="margin_product_list_extra_small">1dp</dimen>
 
     <dimen name="margin_connexion_button">30dp</dimen>
 
     <dimen name="padding_add_to_cart_button_detail">10dp</dimen>
 
-    <dimen name="Delete_button_cart">60dp</dimen>
-    <dimen name="Minus_button_cart">30dp</dimen>
-    <dimen name="Plus_button_cart">30dp</dimen>
+    <dimen name="Delete_button_cart">80dp</dimen>
+    <dimen name="Minus_button_cart">40dp</dimen>
+    <dimen name="Plus_button_cart">40dp</dimen>
 
     <dimen name="general_text_size">20sp</dimen>
     <dimen name="big_text_size">30sp</dimen>

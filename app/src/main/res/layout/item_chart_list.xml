@@ -45,9 +45,9 @@
         />
     <Button
         android:layout_width="@dimen/Minus_button_cart"
-        android:layout_height="@dimen/Plus_button_cart"
+        android:layout_height="@dimen/Minus_button_cart"
         android:id="@+id/cartItemDecQuantity"
-        android:background="@drawable/ic_remove_circle_black_24dp"
+        android:background="@drawable/ic_down_arrow"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:layout_toRightOf="@id/cartItemImage"
@@ -68,6 +68,7 @@
         style="@style/textItemTitle"/>
 
     <Button
+
         android:layout_width="@dimen/Delete_button_cart"
         android:layout_height="@dimen/Delete_button_cart"
         android:id="@+id/cartItemDelete"
@@ -81,9 +82,9 @@
         />
     <Button
         android:layout_width="@dimen/Plus_button_cart"
-        android:layout_height="@dimen/Minus_button_cart"
+        android:layout_height="@dimen/Plus_button_cart"
         android:id="@+id/cartItemIncQuantity"
-        android:background="@drawable/ic_add_circle_black_24dp"
+        android:background="@drawable/ic_up_arrow"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:layout_toRightOf="@id/cartItemQuantity"

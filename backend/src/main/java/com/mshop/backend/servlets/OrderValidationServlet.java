@@ -7,6 +7,7 @@ import com.mshop.backend.model.Order;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -31,6 +32,9 @@ public class OrderValidationServlet extends HttpServlet {
 //            System.out.println(sb.toString());
             Gson gson = new Gson();
             Order order = gson.fromJson(sb.toString(), Order.class);
+            order.setOrderDate(new Date());
+            order.setIdClient(username);
+            order.setState("validee");
 //            System.out.println("order id :" + order.getId());
 //            System.out.println("order price :" + order.getPrice());
 //            System.out.println("order state :" + order.getState());

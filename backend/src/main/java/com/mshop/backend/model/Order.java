@@ -9,7 +9,7 @@ import java.util.List;
 public class Order {
 
     private int id;
-    private String orderDate;
+    private Date orderDate;
     private double price;
     private String state;
     private String idClient;
@@ -31,11 +31,11 @@ public class Order {
         this.id = id;
     }
 
-    public String getOrderDate() {
+    public Date getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(String orderDate) {
+    public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
     }
 
