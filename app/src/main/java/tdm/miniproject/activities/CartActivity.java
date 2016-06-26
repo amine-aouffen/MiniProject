@@ -15,6 +15,7 @@ import tdm.miniproject.R;
 import tdm.miniproject.adapters.CartAdapter;
 import tdm.miniproject.job.Cart;
 import tdm.miniproject.job.Order;
+import tdm.miniproject.managers.CartManager;
 
 public class CartActivity extends AppCompatActivity {
     final private int LOGIN_REQUEST = 1;
@@ -30,7 +31,12 @@ public class CartActivity extends AppCompatActivity {
 
     private void prepareListView() {
         listView = (ListView) findViewById(R.id.cartList);
-        //listView.setAdapter(new CartAdapter(this, MainActivity.getCart()));
+        Cart cart=  CartManager.getCart(this);
+        if(cart!=null){
+            CartAdapter cartAdapter = new CartAdapter(this,cart);
+            listView.setAdapter(cartAdapter);
+        }
+
     }
 
     public void initialiseToolBar() {

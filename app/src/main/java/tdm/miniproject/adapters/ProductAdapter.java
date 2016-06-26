@@ -21,6 +21,7 @@ import java.util.Iterator;
 import tdm.miniproject.R;
 import tdm.miniproject.Utils.ServiceUtil;
 import tdm.miniproject.activities.MainActivity;
+import tdm.miniproject.handlers.CartHandler;
 import tdm.miniproject.job.Product;
 
 /**
@@ -84,13 +85,13 @@ public class ProductAdapter extends BaseAdapter implements Filterable,Serializab
         productPriceTextView.setText(product.getPrice() + " DA");
     }
 
-    private void setAddCartBtnListener(View view, final Product product) {
+    private void setAddCartBtnListener(final View view, final Product product) {
         Button addCartButton = (Button) view.findViewById(R.id.productItemAddCart);
         addCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 v.startAnimation(new AlphaAnimation(1F,0.5F));
-                //TODO add product to local cart
+                new CartHandler(view.getContext()).addProductToCart(product,"20");
             }
         });
     }

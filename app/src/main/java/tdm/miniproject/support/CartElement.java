@@ -9,11 +9,13 @@ import tdm.miniproject.job.Product;
  */
 public class CartElement implements Serializable{
     private Product product;
+    String size;
     private int quantity;
 
-    public CartElement(Product product) {
+    public CartElement(Product product,String size) {
         this.product = product;
         this.quantity = 1;
+        this.size=size;
     }
 
     public Product getProduct() {
@@ -40,5 +42,13 @@ public class CartElement implements Serializable{
         if (quantity>1){
             quantity--;
         }
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getSize() {
+        return size;
     }
 }

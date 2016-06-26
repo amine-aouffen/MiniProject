@@ -14,8 +14,10 @@ import android.widget.TextView;
 
 
 import tdm.miniproject.R;
+import tdm.miniproject.Utils.ServiceUtil;
 import tdm.miniproject.job.Cart;
 
+import tdm.miniproject.managers.CartManager;
 import tdm.miniproject.support.CartElement;
 
 /**
@@ -82,10 +84,10 @@ public class CartAdapter extends BaseAdapter {
         cartItemQuantity.setText(cartElement.getQuantity()+"");
 
         ImageView cartItemPhoto =(ImageView) view.findViewById(R.id.cartItemImage);
-        //cartItemPhoto.setImageResource(cartElement.getProduct().getProductPhoto());
+        cartItemPhoto.setImageBitmap(ServiceUtil.getBitmapFromString(cartElement.getProduct().getPhoto()));
     }
 
-    private void setButtonsListeners(final int position, View view, final CartElement cartElement, final TextView cartItemQuantity) {
+    private void setButtonsListeners(final int position, final View view, final CartElement cartElement, final TextView cartItemQuantity) {
         //Delete button
         Button cartItemDelete= (Button)view.findViewById(R.id.cartItemDelete);
         cartItemDelete.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +95,7 @@ public class CartAdapter extends BaseAdapter {
             public void onClick(View v) {
                 v.startAnimation(new AlphaAnimation(1F,0.5F));
                 cart.removeCartElement(position);
+                CartManager.deleteProductFromCart(view.getContext(),position);
                 notifyDataSetChanged();
             }
         });
@@ -104,6 +107,7 @@ public class CartAdapter extends BaseAdapter {
                 v.startAnimation(new AlphaAnimation(1F,0.5F));
                 cartElement.incQunatity();
                 cartItemQuantity.setText(cartElement.getQuantity() + "");
+                CartManager.incProductQuantity(view.getContext(),position);
             }
         });
         //Decrement quantity
@@ -114,6 +118,8 @@ public class CartAdapter extends BaseAdapter {
                 v.startAnimation(new AlphaAnimation(1F,0.5F));
                 cartElement.decQuantity();
                 cartItemQuantity.setText(cartElement.getQuantity() + "");
+                CartManager.decProductQuantity(view.getContext(),position);
+
             }
         });
     }

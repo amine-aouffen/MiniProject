@@ -3,6 +3,7 @@ package tdm.miniproject.activities;
 import tdm.miniproject.R;
 
 import tdm.miniproject.Utils.ServiceUtil;
+import tdm.miniproject.handlers.CartHandler;
 import tdm.miniproject.job.Product;
 
 
@@ -17,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ProductDetailActivity extends AppCompatActivity {
     private TextView productName;
@@ -78,7 +80,8 @@ public class ProductDetailActivity extends AppCompatActivity {
     }
 
     public void addProductToCart() {
-        //TODO instantiate the handler to add product to cart
+        new CartHandler(this).addProductToCart(product,"20");
+        Toast.makeText(ProductDetailActivity.this, "Product Added to Cart", Toast.LENGTH_SHORT).show();
     }
 
     public void showChartActivity(MenuItem item) {

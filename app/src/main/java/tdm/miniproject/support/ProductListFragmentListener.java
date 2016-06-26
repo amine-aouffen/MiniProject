@@ -9,5 +9,4 @@ import tdm.miniproject.job.Product;
  */
 public interface ProductListFragmentListener extends Serializable {
     void showProductDetails(Product product);
-    void addProductToCart(Product product);
 }

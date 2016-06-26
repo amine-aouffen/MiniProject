@@ -6,7 +6,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,8 +19,7 @@ import tdm.miniproject.adapters.CategoryAdapter;
 import tdm.miniproject.adapters.PagerAdapter;
 
 
-import tdm.miniproject.handlers.ProductFragmentHandler;
-import tdm.miniproject.managers.HttpManager;
+import tdm.miniproject.handlers.ProductDetailsHandler;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void initialiseTabNavigation(){
 
-        pagerAdapter = new PagerAdapter(getSupportFragmentManager(),new ProductFragmentHandler(this,R.id.twoPanesFragment));
+        pagerAdapter = new PagerAdapter(getSupportFragmentManager(),new ProductDetailsHandler(this,R.id.twoPanesFragment));
         viewPager = (ViewPager) findViewById(R.id.mainViewPager);
         viewPager.setAdapter(pagerAdapter);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);

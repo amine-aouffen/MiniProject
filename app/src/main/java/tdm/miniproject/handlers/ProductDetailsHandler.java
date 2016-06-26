@@ -17,12 +17,12 @@ import tdm.miniproject.support.ProductListFragmentListener;
 /**
  * Created by amine on 25/06/2016.
  */
-public class ProductFragmentHandler implements ProductListFragmentListener{
+public class ProductDetailsHandler implements ProductListFragmentListener{
     Context context;
     AppCompatActivity activity;
     int idResFragmentForReplace;
 
-    public ProductFragmentHandler(Context context,int idResFragmentForReplace) {
+    public ProductDetailsHandler(Context context, int idResFragmentForReplace) {
         this.context = context;
         activity = (AppCompatActivity)context;
         this.idResFragmentForReplace=idResFragmentForReplace;
@@ -39,14 +39,6 @@ public class ProductFragmentHandler implements ProductListFragmentListener{
         }
     }
 
-    public void addProductToCart(Product product) {
-        //TODO uncomment these 3 lines to show size choice window
-//        Intent intent = new Intent(context,PreferenceChooser.class);
-//        intent.putExtra("product",product);
-//        activity.startActivityForResult(intent,PREFERENCE_CHOOSE_REQUEST);
-        CartElement cartElement = new CartElement(product);
-        //TODO add the product to local cart and execute the alarm (4hours)
-    }
 
     boolean isTwoPanes(){
         if((activity.findViewById(idResFragmentForReplace)==null)){
