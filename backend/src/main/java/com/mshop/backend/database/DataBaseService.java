@@ -54,7 +54,7 @@ public class DataBaseService {
                     product.setPrice(rs.getDouble("price"));
                     product.setConsumer(Consumer.valueOf(rs.getString("consumer").toUpperCase()));
                     product.setCategory(Category.valueOf(rs.getString("category").toUpperCase()));
-                    //product.setPhoto(Base64.encodeBase64String(rs.getBytes("bitmap_image")));
+                    product.setPhoto(Base64.encodeBase64String(rs.getBytes("bitmap_image")));
 
                     products.add(product);
                 }
