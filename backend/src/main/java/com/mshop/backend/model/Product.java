@@ -5,7 +5,6 @@ public class Product {
     private String name;
     private double price;
     private String description;
-    private int productPhoto;
     private Consumer consumer;
     private String caracteristics;
     private Category category;
@@ -49,14 +48,6 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public int getProductPhoto() {
-        return productPhoto;
-    }
-
-    public void setProductPhoto(int productPhoto) {
-        this.productPhoto = productPhoto;
     }
 
     public Consumer getConsumer() {

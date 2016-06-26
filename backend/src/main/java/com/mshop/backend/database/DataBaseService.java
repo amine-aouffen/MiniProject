@@ -54,7 +54,7 @@ public class DataBaseService {
                     product.setPrice(rs.getDouble("price"));
                     product.setConsumer(Consumer.valueOf(rs.getString("consumer").toUpperCase()));
                     product.setCategory(Category.valueOf(rs.getString("category").toUpperCase()));
-                    product.setPhoto(Base64.encodeBase64String(rs.getBytes("bitmap_image")));
+                    //product.setPhoto(Base64.encodeBase64String(rs.getBytes("bitmap_image")));
 
                     products.add(product);
                 }
@@ -73,6 +73,43 @@ public class DataBaseService {
         }
 
         return products;
+    }
+
+
+    public static Product getProductPhoto(String density, String product_name) {
+
+        conn = ConnectionManager.getInstance().getConnection();
+        Product product = new Product();
+        PreparedStatement pst = null;
+
+        String query = "SELECT bitmap_image FROM images where density = ? and product_name = ?;";
+
+        try {
+            pst = conn.prepareStatement(query);
+            pst.setString(1, density);
+            pst.setString(2, product_name);
+
+            ResultSet rs = pst.executeQuery();
+            rs.last();
+            if (rs.getRow() == 0) {
+                return product;
+            } else {
+                rs.first();
+                product.setPhoto(Base64.encodeBase64String(rs.getBytes("bitmap_image")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                ConnectionManager.getInstance().close();
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return product;
     }
 
     public static boolean isUserValid(String username, String password) {

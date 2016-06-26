@@ -11,6 +11,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>ProductPhotoServlet</servlet-name>
+        <servlet-class>com.mshop.backend.servlets.ProductPhotoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductPhotoServlet</servlet-name>
+        <url-pattern>/getProductPhoto</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>OrderServlet</servlet-name>
         <servlet-class>com.mshop.backend.servlets.OrderValidationServlet</servlet-class>
     </servlet>
