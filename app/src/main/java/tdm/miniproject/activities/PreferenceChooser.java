@@ -27,9 +27,7 @@ public class PreferenceChooser extends AppCompatActivity {
         if(intent!=null){
             product = (Product) intent.getSerializableExtra("product");
             //TODO change the name of the activity to preference name
-            spinner = (Spinner) findViewById(R.id.preferencesSpinner);
-            ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_text_item,product.getPreferences().toArray()) ;
-            spinner.setAdapter(adapter);
+
         }
 
     }

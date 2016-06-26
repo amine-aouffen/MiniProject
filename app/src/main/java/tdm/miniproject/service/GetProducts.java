@@ -16,12 +16,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import tdm.miniproject.job.Category;
 import tdm.miniproject.job.Product;
 
 /**
  * Created by Dell on 16/05/2016.
  */
-public class GetProducts extends AsyncTask<String, Void, String> {
+public class GetProducts extends AsyncTask<Category, Void, String> {
     ProgressDialog pd;
     private Context context;
 
@@ -39,11 +40,11 @@ public class GetProducts extends AsyncTask<String, Void, String> {
     }
 
     @Override
-    protected String doInBackground(String... params) {
+    protected String doInBackground(Category... params) {
         StringBuilder result = new StringBuilder();
         String data;
         try {
-            URL url = new URL("http://192.168.43.93:8080/getproducts?density="+params[0]);
+            URL url = new URL("http://192.168.43.93:8080/getproducts?category="+params[0].toString());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             // Attendre 5 secondes max pour établir la connexion
             conn.setConnectTimeout(5000);

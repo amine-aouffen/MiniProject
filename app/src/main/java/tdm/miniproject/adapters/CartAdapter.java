@@ -82,7 +82,7 @@ public class CartAdapter extends BaseAdapter {
         cartItemQuantity.setText(cartElement.getQuantity()+"");
 
         ImageView cartItemPhoto =(ImageView) view.findViewById(R.id.cartItemImage);
-        cartItemPhoto.setImageResource(cartElement.getProduct().getProductPhoto());
+        //cartItemPhoto.setImageResource(cartElement.getProduct().getProductPhoto());
     }
 
     private void setButtonsListeners(final int position, View view, final CartElement cartElement, final TextView cartItemQuantity) {

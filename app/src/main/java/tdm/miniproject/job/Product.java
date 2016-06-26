@@ -8,41 +8,11 @@ public class Product implements Serializable{
     private String name;
     private double price;
     private String description;
-    private int productPhoto;
+    private String photo;
     private Consumer consumer;
     private String caracteristics;
-    private String preferenceName;
-    private Set<String> preferences;
-
-
 
     public Product() {
-
-    }
-
-    public Product(String name, float price, String description, int productPhoto, Consumer consumer, String caracteristics) {
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.productPhoto = productPhoto;
-        this.consumer = consumer;
-        this.caracteristics=caracteristics;
-        this.preferenceName = "Taille";
-        this.preferences= new TreeSet<>();
-        preferences.add("Small");
-        preferences.add("Medium");
-        preferences.add("Large");
-        preferences.add("X-Large");
-        preferences.add("XX-Large");
-
-
-    }    public Product( String name, float price, String description, int productPhoto, Consumer consumer) {
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.productPhoto = productPhoto;
-        this.consumer = consumer;
-
     }
 
     public String getName() {
@@ -69,12 +39,12 @@ public class Product implements Serializable{
         this.description = description;
     }
 
-    public int getProductPhoto() {
-        return productPhoto;
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setProductPhoto(int productPhoto) {
-        this.productPhoto = productPhoto;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public Consumer getConsumer() {
@@ -92,22 +62,4 @@ public class Product implements Serializable{
     public void setCaracteristics(String caracteristics) {
         this.caracteristics = caracteristics;
     }
-
-    public String getPreferenceName() {
-        return preferenceName;
-    }
-
-    public void setPreferenceName(String preferenceName) {
-        this.preferenceName = preferenceName;
-    }
-
-    public Set<String> getPreferences() {
-        return preferences;
-    }
-
-    public void setPreferences(Set<String> preferences) {
-        this.preferences = preferences;
-    }
-
-
 }

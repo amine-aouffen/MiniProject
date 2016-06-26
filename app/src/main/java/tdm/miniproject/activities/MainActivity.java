@@ -3,11 +3,10 @@ package tdm.miniproject.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,38 +15,26 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 import tdm.miniproject.R;
 import tdm.miniproject.adapters.CategoryAdapter;
 import tdm.miniproject.adapters.PagerAdapter;
-import tdm.miniproject.controlers.CartControler;
-import tdm.miniproject.data.ProductData;
-import tdm.miniproject.fragments.ProductDetailFragment;
-import tdm.miniproject.job.Cart;
-import tdm.miniproject.job.Category;
-import tdm.miniproject.job.Consumer;
-import tdm.miniproject.job.Order;
-import tdm.miniproject.job.Product;
-import tdm.miniproject.support.ProductListFragmentListener;
 
-public class MainActivity extends AppCompatActivity implements ProductListFragmentListener{
-    private ArrayList<Category> categoriesList;
-    private static Cart cart = new Cart();
-    private static boolean notification=true;
-    private static boolean connected;
-    private static ArrayList<Order> orders = new ArrayList<Order>();
+
+import tdm.miniproject.handlers.ProductFragmentHandler;
+import tdm.miniproject.managers.HttpManager;
+
+public class MainActivity extends AppCompatActivity {
+
     private PagerAdapter pagerAdapter;
     private ViewPager viewPager;
     private Spinner categorySpinner;
-    private static  int spinnerIndex=-1;
-    private static int tabIndex=-1;
+    private  static int spinnerIndex=-1;
+    private  static int tabIndex=-1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        generateExamples();
         initialiseToolBar();
         initialiseSpinner();
         initialiseTabNavigation();
@@ -59,8 +46,8 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
     }
 
     public void initialiseTabNavigation(){
-        if(spinnerIndex!=-1)  pagerAdapter = new PagerAdapter(getSupportFragmentManager(),categoriesList.get(spinnerIndex),this);
-        else pagerAdapter = new PagerAdapter(getSupportFragmentManager(),categoriesList.get(categorySpinner.getSelectedItemPosition()),this);
+
+        pagerAdapter = new PagerAdapter(getSupportFragmentManager(),new ProductFragmentHandler(this,R.id.twoPanesFragment));
         viewPager = (ViewPager) findViewById(R.id.mainViewPager);
         viewPager.setAdapter(pagerAdapter);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -79,14 +66,13 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
 
     private void initialiseSpinner() {
         categorySpinner = (Spinner) findViewById(R.id.categorySpinner);
-        CategoryAdapter categoryAdapter = new CategoryAdapter(this,categoriesList);
+        CategoryAdapter categoryAdapter = new CategoryAdapter(this);
         categorySpinner.setAdapter(categoryAdapter);
         if(spinnerIndex!=-1) categorySpinner.setSelection(spinnerIndex);
-        if(spinnerIndex==-1&&isTwoPanes()) showProductDetailsInFrag(categoriesList.get(0).get(0));
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                pagerAdapter.dispatchCategoryToLists(categoriesList.get(position));
+                pagerAdapter.setCategoryByPosition(position);
                 pagerAdapter.notifyDataSetChanged();
             }
 
@@ -97,71 +83,10 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
         });
     }
 
-    public void generateExamples(){
-        ProductData productData = new ProductData();
-        categoriesList = productData.getCategoriesList();
-    }
 
     public void showChartActivity(MenuItem item) {
             Intent intent = new Intent(this,CartActivity.class);
             startActivity(intent);
-    }
-
-
-    @Override
-    public void showProductDetails(Product product) {
-        if(!isTwoPanes()) {
-            Intent intent = new Intent(this, ProductDetailActivity.class);
-            intent.putExtra("product", product);
-            startActivity(intent);
-        }else{
-            showProductDetailsInFrag(product);
-        }
-    }
-
-    private void showProductDetailsInFrag(Product product) {
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("product", product);
-        ProductDetailFragment fragment = new ProductDetailFragment();
-        fragment.setArguments(bundle);
-        FragmentTransaction fragTransaction = getSupportFragmentManager().beginTransaction();
-        fragTransaction.replace(R.id.twoPanesFragment,fragment);
-        fragTransaction.commit();
-    }
-
-    @Override
-    public void addProductToCart(Product product) {
-       CartControler.addProductToCart(MainActivity.this, product);
-    }
-
-    public static Cart getCart() {
-        return cart;
-    }
-
-    public static void setCart(Cart cart) {
-        MainActivity.cart = cart;
-    }
-
-    public static boolean connect(String user,String password){
-        if(user.equals("admin")&&password.equals("admin")){
-            setConnected(true);
-        }
-        else{
-            setConnected(false);
-        }
-        return connected;
-    }
-
-    public static boolean isConnected() {
-        return connected;
-    }
-
-    public static void setConnected(boolean connected) {
-        MainActivity.connected = connected;
-    }
-
-    public static ArrayList<Order> getOrders() {
-        return orders;
     }
 
     public void showOrdersActivity(MenuItem item) {
@@ -169,14 +94,14 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
         startActivity(intent);
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
+
+   /* protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt("spinnerIndex", categorySpinner.getSelectedItemPosition());
         outState.putInt("tabIndex", viewPager.getCurrentItem());
 
-    }
-
+    }*/
+/*
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
@@ -189,31 +114,32 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
         if(j!=-1){
             tabIndex=j;
         }
-        if (isTwoPanes()){
+        //TODO uncomment for showing first product after flip
+       if (isTwoPanes()){
             int l = spinnerIndex;
             if(l!=-1)
             switch (tabIndex){
                 case 0:
 
-                    for(int k = 0;k<=categoriesList.get(l).size();k++){
-                        if (categoriesList.get(l).get(k).getConsumer()==Consumer.MAN){
-                            showProductDetailsInFrag(categoriesList.get(l).get(k));
+                    for(int k = 0; k<= productByCatLists.get(l).size(); k++){
+                        if (productByCatLists.get(l).get(k).getConsumer()==Consumer.MAN){
+                            showProductDetailsInFrag(productByCatLists.get(l).get(k));
                             break;
                         }
                     }
                     break;
                 case 1:
-                    for(int k = 0;k<=categoriesList.get(l).size();k++){
-                        if (categoriesList.get(l).get(k).getConsumer()==Consumer.WOMAN){
-                            showProductDetailsInFrag(categoriesList.get(l).get(k));
+                    for(int k = 0; k<= productByCatLists.get(l).size(); k++){
+                        if (productByCatLists.get(l).get(k).getConsumer()==Consumer.WOMAN){
+                            showProductDetailsInFrag(productByCatLists.get(l).get(k));
                             break;
                         }
                     }
                     break;
                 case 2:
-                    for(int k = 0;k<=categoriesList.get(l).size();k++){
-                        if (categoriesList.get(l).get(k).getConsumer()==Consumer.KID){
-                            showProductDetailsInFrag(categoriesList.get(l).get(k));
+                    for(int k = 0; k<= productByCatLists.get(l).size(); k++){
+                        if (productByCatLists.get(l).get(k).getConsumer()==Consumer.KID){
+                            showProductDetailsInFrag(productByCatLists.get(l).get(k));
                             break;
                         }
                     }
@@ -225,9 +151,11 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
 
 
     }
-
+*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        //TODO get the notification  status from local source
+        boolean notification=false;
         switch (item.getItemId()){
             case R.id.notificationToggle:
                 if(notification==true){
@@ -254,31 +182,5 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
         return true;
     }
 
-    public String getScreenDensity() {
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        String density ="";
-        switch(metrics.densityDpi){
-            case DisplayMetrics.DENSITY_LOW:
-                density="ldpi";
-                break;
-            case DisplayMetrics.DENSITY_MEDIUM:
-                density= "mdpi";
-                break;
-            case DisplayMetrics.DENSITY_HIGH:
-                density="hdpi";
-                break;
-            case DisplayMetrics.DENSITY_XHIGH:
-                density= "xhdpi";
-                break;
-            case DisplayMetrics.DENSITY_XXHIGH:
-                density= "xxhdpi";
-            case DisplayMetrics.DENSITY_XXXHIGH:
-                density= "xxxhdpi";
-                break;
-        }
 
-        return density;
-
-    }
 }

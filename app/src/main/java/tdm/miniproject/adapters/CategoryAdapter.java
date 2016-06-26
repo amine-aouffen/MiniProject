@@ -8,27 +8,23 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.List;
 
 import tdm.miniproject.R;
-import tdm.miniproject.job.Category;
 
 public class CategoryAdapter extends BaseAdapter {
-    private List<Category> categoriesList;
     private Context context;
-    public CategoryAdapter(Context context,List<Category> categoriesList) {
-        this.categoriesList=categoriesList;
+    public CategoryAdapter(Context context) {
         this.context=context;
     }
 
     @Override
     public int getCount() {
-        return categoriesList.size();
+        return 5;
     }
 
     @Override
     public Object getItem(int position) {
-        return categoriesList.get(position);
+        return null ;
     }
 
     @Override
@@ -44,21 +40,38 @@ public class CategoryAdapter extends BaseAdapter {
             view =inflater.inflate(R.layout.item_categorie_list, null);
             view.setTag("NON_DROPDOWN");
         }
-        Category category = categoriesList.get(position);
+
         TextView categoryTextView=(TextView) view.findViewById(R.id.categoryListItemText) ;
         ImageView categoryIcon=(ImageView) view.findViewById(R.id.categoryListItemIcon);
-        categoryTextView.setText(category.getName());
-        categoryIcon.setImageResource(categoriesList.get(position).getCategoryIcon());
+        switch (position){
+            case 0:
+                categoryTextView.setText("T-Shirts");
+                categoryIcon.setImageResource(R.drawable.ic_shirt_icon);
+                break;
+            case 1:
+                categoryTextView.setText("Chaussures");
+                categoryIcon.setImageResource(R.drawable.ic_shoes_icon);
+                break;
+            case 2:
+                categoryTextView.setText("Vestes");
+                categoryIcon.setImageResource(R.drawable.ic_coat_icon);
+                break;
+            case 3:
+                categoryTextView.setText("Jeans");
+                categoryIcon.setImageResource(R.drawable.ic_pants_icon);
+                break;
+            case 4:
+                categoryTextView.setText("Shirts");
+                categoryIcon.setImageResource(R.drawable.ic_hat_icon);
+                break;
+            default:
+                categoryTextView.setText("T-Shirts");
+                categoryIcon.setImageResource(R.drawable.ic_shirt_icon);
+                break;
+        }
         return view;
     }
 
 
-    private void showCategoryAsItem( View view,int position) {
-        Category category = categoriesList.get(position);
-        TextView categoryTextView=(TextView)view.findViewById(R.id.categoryListItemText) ;
-        ImageView categoryIcon=(ImageView) view.findViewById(R.id.categoryListItemIcon);
-        categoryTextView.setText(category.getName());
-        categoryIcon.setImageResource(categoriesList.get(position).getCategoryIcon());
-    }
 
 }

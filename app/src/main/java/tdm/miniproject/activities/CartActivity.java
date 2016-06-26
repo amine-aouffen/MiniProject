@@ -26,13 +26,11 @@ public class CartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chart);
         initialiseToolBar();
         prepareListView();
-
-
     }
 
     private void prepareListView() {
         listView = (ListView) findViewById(R.id.cartList);
-        listView.setAdapter(new CartAdapter(this, MainActivity.getCart()));
+        //listView.setAdapter(new CartAdapter(this, MainActivity.getCart()));
     }
 
     public void initialiseToolBar() {
@@ -52,8 +50,7 @@ public class CartActivity extends AppCompatActivity {
 
     public void validateOrder(MenuItem item) {
         //TODO remove the line below after debug to request user auth
-        MainActivity.setConnected(true);
-        if (MainActivity.isConnected()) {
+        if (true) {
             validateOrder();
         } else {
             showLoginActivity();
@@ -67,8 +64,6 @@ public class CartActivity extends AppCompatActivity {
     }
 
     public void cleanCart() {
-        MainActivity.setCart(new Cart());
-        listView.setAdapter(new CartAdapter(this, MainActivity.getCart()));
     }
 
     public void cleanCart(MenuItem item) {
@@ -99,16 +94,12 @@ public class CartActivity extends AppCompatActivity {
 
     private void validateOrder() {
         Toast.makeText(CartActivity.this, "la commande à été validé", Toast.LENGTH_SHORT).show();
-        MainActivity.getOrders().add(new Order(MainActivity.getCart(),MainActivity.getOrders().size()+1));
+        //MainActivity.getOrders().add(new Order(MainActivity.getCart(),MainActivity.getOrders().size()+1));
         cleanCart();
     }
 
     public void showAddition(MenuItem item) {
-        if (MainActivity.getCart().getElementsList().size()==0){
-            Toast.makeText(CartActivity.this,"Le chariot est vide !", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(CartActivity.this, "La somme est arrêtée à:"+MainActivity.getCart().getTotalCost() + " DA", Toast.LENGTH_SHORT).show();
-        }
+        //TODO calcule du montant total du chariot
     }
 
     public void showOrdersActivity(MenuItem item) {

@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import tdm.miniproject.R;
-import tdm.miniproject.controlers.CartControler;
+
 import tdm.miniproject.job.Product;
 
 
@@ -61,13 +61,13 @@ public class ProductDetailFragment extends Fragment{
             productName.setText(product.getName());
             productDesc.setText(product.getDescription());
             productPrice.setText(product.getPrice()+" DA");
-            productPhoto.setImageResource(product.getProductPhoto());
+            //productPhoto.setImageResource(product.getProductPhoto());
             productCara.setText(product.getCaracteristics());
         }
 
     }
     public void addProductToCart() {
-        CartControler.addProductToCart(getContext(), product);
+        //TODO add product to local cart
     }
 
 }

@@ -3,14 +3,11 @@ package tdm.miniproject.adapters;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 
-import tdm.miniproject.activities.MainActivity;
 import tdm.miniproject.fragments.ProductListFragment;
 import tdm.miniproject.job.Category;
 import tdm.miniproject.job.Consumer;
@@ -20,20 +17,18 @@ import tdm.miniproject.support.ProductListFragmentListener;
 
 public class PagerAdapter extends FragmentStatePagerAdapter{
     private FragmentManager fragmentManager;
-    private ArrayList<Product> manProductsList;
-    private ArrayList<Product> womanProductsList;
-    private ArrayList<Product> kidProductsList;
     private ProductListFragmentListener listener;
     private ProductListFragment manFragment;
     private ProductListFragment womanFragment;
     private ProductListFragment kidFragment;
+    private Category category = Category.JEANS;
 
 
-    public PagerAdapter(FragmentManager fragmentManager,Category category,ProductListFragmentListener listener) {
+
+    public PagerAdapter(FragmentManager fragmentManager, ProductListFragmentListener listener) {
         super(fragmentManager);
         this.fragmentManager=fragmentManager;
         this.listener = listener;
-        dispatchCategoryToLists(category);
     }
 
     @Override
@@ -48,7 +43,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter{
 
                 return womanFragment;
             case 2:
-                kidFragment = createConsumerFragment(Consumer.KID);
+                kidFragment = createConsumerFragment(Consumer.CHILD);
 
                 return kidFragment;
             default:
@@ -58,33 +53,13 @@ public class PagerAdapter extends FragmentStatePagerAdapter{
     private ProductListFragment createConsumerFragment(Consumer consumer){
         ProductListFragment fragment = new ProductListFragment();
         Bundle bundle = new Bundle();
-        if(consumer==Consumer.MAN){
-            bundle.putSerializable("productsList",manProductsList);
-        }else if(consumer==Consumer.WOMAN){
-            bundle.putSerializable("productsList",womanProductsList);
-        }else{
-            bundle.putSerializable("productsList",kidProductsList);
-        }
+        bundle.putSerializable("category",category);
+        bundle.putSerializable("consumer",consumer);
         fragment.setArguments(bundle);
         fragment.setListener(listener);
         return fragment;
     }
-    public void dispatchCategoryToLists(Category category){
-        manProductsList=new ArrayList<>();
-        womanProductsList=new ArrayList<>();
-        kidProductsList=new ArrayList<>();
-        Product product;
-        for(int i=0;i<category.size();i++){
-            product=category.get(i);
-            if(product.getConsumer()==Consumer.MAN){
-                manProductsList.add(product);
-            }else if(product.getConsumer()==Consumer.WOMAN){
-                womanProductsList.add(product);
-            }else{
-                kidProductsList.add(product);
-            }
-        }
-    }
+
     @Override
     public int getCount() {
         return 3;
@@ -111,5 +86,26 @@ public class PagerAdapter extends FragmentStatePagerAdapter{
         return POSITION_NONE;
     }
 
+    public void setCategoryByPosition(int position){
+        switch (position){
+            case 0:
+                category = Category.TSHIRT;
+                break;
+            case 1:
+                category = Category.SHOES;
+                break;
+            case 2:
+                category = Category.VESTS;
+                break;
+            case 3:
+                category = Category.JEANS;
+                break;
+            case 4:
+                category = Category.SHIRT;
+                break;
+        }
+
+        //TODO récupérer les produits par catégories et se notifier
+    }
 
 }

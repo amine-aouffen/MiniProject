@@ -30,7 +30,7 @@ public class OrdersActivity extends AppCompatActivity {
 
     private void prepareListView() {
         listView =(ListView) findViewById(R.id.ordersList);
-        listView.setAdapter(new OrderAdapter(this, MainActivity.getOrders()));
+        //listView.setAdapter(new OrderAdapter(this, MainActivity.getOrders()));
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

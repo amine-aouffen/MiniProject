@@ -1,7 +1,8 @@
 package tdm.miniproject.activities;
 
 import tdm.miniproject.R;
-import tdm.miniproject.controlers.CartControler;
+
+import tdm.miniproject.Utils.ServiceUtil;
 import tdm.miniproject.job.Product;
 
 
@@ -72,12 +73,12 @@ public class ProductDetailActivity extends AppCompatActivity {
         productName.setText(product.getName());
         productDesc.setText(product.getDescription());
         productPrice.setText(product.getPrice()+" DA");
-        productPhoto.setImageResource(product.getProductPhoto());
+        productPhoto.setImageBitmap(ServiceUtil.getBitmapFromString(product.getPhoto()));
         productCara.setText(product.getCaracteristics());
     }
 
     public void addProductToCart() {
-        CartControler.addProductToCart(ProductDetailActivity.this, product);
+        //TODO instantiate the handler to add product to cart
     }
 
     public void showChartActivity(MenuItem item) {

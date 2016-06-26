@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import tdm.miniproject.R;
+import tdm.miniproject.Utils.ServiceUtil;
 import tdm.miniproject.activities.MainActivity;
 import tdm.miniproject.job.Product;
 
@@ -71,7 +72,7 @@ public class ProductAdapter extends BaseAdapter implements Filterable,Serializab
 
     private void showProductAsItem(View view, Product product) {
         ImageView productPhotoImageView = (ImageView) view.findViewById(R.id.productItemImage);
-        productPhotoImageView.setImageResource(product.getProductPhoto());
+        productPhotoImageView.setImageBitmap(ServiceUtil.getBitmapFromString(product.getPhoto()));
 
         TextView productNameTextView=(TextView)view.findViewById(R.id.productItemName);
         productNameTextView.setText(product.getName());
@@ -89,7 +90,7 @@ public class ProductAdapter extends BaseAdapter implements Filterable,Serializab
             @Override
             public void onClick(View v) {
                 v.startAnimation(new AlphaAnimation(1F,0.5F));
-                ((MainActivity)context).addProductToCart(product);
+                //TODO add product to local cart
             }
         });
     }

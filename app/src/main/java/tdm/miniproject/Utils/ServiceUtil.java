@@ -5,7 +5,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
+import android.util.DisplayMetrics;
 
 /**
  * Created by Dell on 16/05/2016.
@@ -33,5 +35,38 @@ public class ServiceUtil {
        /if networkInfo.getType()==ConnectivityManager.TYPE_MOBILE
        */
         return ( networkInfo!=null&&networkInfo.isConnected() );
+    }
+
+    public static String getScreenDensity(AppCompatActivity activity) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        String density ="";
+        switch(metrics.densityDpi){
+            case DisplayMetrics.DENSITY_LOW:
+                density="ldpi";
+                break;
+            case DisplayMetrics.DENSITY_MEDIUM:
+                density= "mdpi";
+                break;
+            case DisplayMetrics.DENSITY_HIGH:
+                density="hdpi";
+                break;
+            case DisplayMetrics.DENSITY_XHIGH:
+                density= "xhdpi";
+                break;
+            case DisplayMetrics.DENSITY_XXHIGH:
+                density= "xxhdpi";
+            case DisplayMetrics.DENSITY_XXXHIGH:
+                density= "xxxhdpi";
+                break;
+        }
+
+        return density;
+
+    }
+
+    public static Bitmap getBitmapFromString(String s){
+        byte[]  bytes = Base64.decode(s,Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(bytes,0,bytes.length);
     }
 }
