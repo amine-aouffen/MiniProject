@@ -71,7 +71,7 @@
         android:layout_width="@dimen/Delete_button_cart"
         android:layout_height="@dimen/Delete_button_cart"
         android:id="@+id/cartItemDelete"
-        android:background="@drawable/ic_action_remove_from_cart"
+        android:background="@drawable/ic_shopping_cart_minus"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:layout_centerVertical="true"
