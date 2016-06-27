@@ -12,4 +12,7 @@
     <string name="error_incorrect_password">Mot de passe incorrect</string>
     <string name="error_field_required">Champ est obligatoire</string>
     <string name="permission_rationale"></string>
+
+    <string name="reg_success">GCM Successfully registered. You may now start sending messages from GCM.</string>
+    <string name="reg_error">There seems to have been an error registering with GCM. :-(</string>
 </resources>

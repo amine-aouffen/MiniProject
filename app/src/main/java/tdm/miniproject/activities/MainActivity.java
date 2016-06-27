@@ -6,7 +6,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,10 +17,7 @@ import android.widget.Toast;
 import tdm.miniproject.R;
 import tdm.miniproject.adapters.CategoryAdapter;
 import tdm.miniproject.adapters.PagerAdapter;
-
-
 import tdm.miniproject.handlers.ProductFragmentHandler;
-import tdm.miniproject.managers.HttpManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private  static int spinnerIndex=-1;
     private  static int tabIndex=-1;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +35,9 @@ public class MainActivity extends AppCompatActivity {
         initialiseToolBar();
         initialiseSpinner();
         initialiseTabNavigation();
+
     }
+
 
     public void initialiseToolBar(){
         Toolbar mainToolbar = (Toolbar) findViewById(R.id.mainToolBar);

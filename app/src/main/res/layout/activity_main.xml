@@ -63,4 +63,6 @@
         android:layout_width="match_parent"
         android:layout_below="@id/consumerTypeBar"
         android:id="@+id/mainViewPager"/>
+
+
 </RelativeLayout>

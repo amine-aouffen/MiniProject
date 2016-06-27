@@ -1,5 +1,6 @@
 package com.mshop.backend.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class Order {
     private double price;
     private String state;
     private String idClient;
-    private List<OrderLine> orderLines;
+    private List<OrderLine> orderLines = new ArrayList<>();
 
     public List<OrderLine> getOrderLines() {
         return orderLines;
