@@ -10,10 +10,10 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <permission
-        android:name="com.example.gcm.permission.C2D_MESSAGE"
+        android:name="tdm.miniproject.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.example.gcm.permission.C2D_MESSAGE" />
+    <uses-permission android:name="tdm.miniproject.permission.C2D_MESSAGE" />
 
     <application
         android:allowBackup="true"
@@ -76,6 +76,7 @@
             android:name=".activities.PreferenceChooser"
             android:label="Preferences"
             android:theme="@style/MyCustomAppThemeDialog" />
+
     </application>
 
 </manifest>

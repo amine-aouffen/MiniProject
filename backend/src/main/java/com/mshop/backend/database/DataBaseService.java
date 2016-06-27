@@ -333,4 +333,77 @@ public class DataBaseService {
         return response;
     }
 
+    public static List<Order> getOrders(String idClient) {
+        conn = ConnectionManager.getInstance().getConnection();
+        List<Order> orders = new ArrayList<>();
+        PreparedStatement pst = null;
+        PreparedStatement pstLines = null;
+        String query = "SELECT * FROM orders where id_client = ?";
+
+
+        try {
+            pst = conn.prepareStatement(query);
+            pst.setString(1, idClient);
+
+            ResultSet rs = pst.executeQuery();
+            rs.last();
+            if (rs.getRow() == 0) {
+                System.out.println(" no orders found");
+                return orders;
+            } else {
+                rs.beforeFirst();
+                String queryLines = "SELECT ligne_number, product_name, quantity, unit_price FROM orderlines where id_order = ?;";
+                while (rs.next()) {
+
+                    Order order = new Order();
+                    order.setIdClient(rs.getString("id_client"));
+                    order.setId(rs.getInt("id"));
+                    order.setState(rs.getString("state"));
+                    order.setOrderDate(new java.util.Date(rs.getDate("date").getTime()));
+                    order.setPrice(rs.getDouble("price"));
+
+                    pstLines = conn.prepareStatement(queryLines);
+                    pstLines.setInt(1, order.getId());
+
+                    ResultSet rsLines = pstLines.executeQuery();
+                    rsLines.last();
+
+                    if (rsLines.getRow() == 0) {
+                        System.out.println(" no order lines found");
+                        return orders;
+                    } else {
+                        rsLines.beforeFirst();
+                        while (rsLines.next()) {
+                            OrderLine orderLine = new OrderLine();
+                            orderLine.setLigneNumber(rsLines.getInt("ligne_number"));
+                            orderLine.setProductName(rsLines.getString("product_name"));
+                            orderLine.setQuantity(rsLines.getInt("quantity"));
+                            orderLine.setUnitPrice(rsLines.getDouble("unit_price"));
+                            orderLine.setOrderID(order.getId());
+
+                            order.getOrderLines().add(orderLine);
+                        }
+
+                    }
+
+                    orders.add(order);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                ConnectionManager.getInstance().close();
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        return orders;
+    }
+
 }

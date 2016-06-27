@@ -1,6 +1,7 @@
 package com.mshop.backend.Util;
 
 import com.google.gson.Gson;
+import com.mshop.backend.model.Order;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,6 +10,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,6 +53,12 @@ public class UtilClass {
     public static void printResponse(HttpServletResponse resp, int code, String message) throws IOException {
         PrintWriter writer = resp.getWriter();
         GeneralResponse response = new GeneralResponse(code, message);
+        writer.print(new Gson().toJson(response));
+    }
+
+    public static void printgetOrdersResponse(HttpServletResponse resp, int code, String message, List<Order> orders) throws IOException {
+        PrintWriter writer = resp.getWriter();
+        getOrdersResponse response = new getOrdersResponse(code, message, orders);
         writer.print(new Gson().toJson(response));
     }
 

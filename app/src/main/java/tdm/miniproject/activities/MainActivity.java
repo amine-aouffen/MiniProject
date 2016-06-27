@@ -17,9 +17,7 @@ import android.widget.Toast;
 import tdm.miniproject.R;
 import tdm.miniproject.adapters.CategoryAdapter;
 import tdm.miniproject.adapters.PagerAdapter;
-
-
-import tdm.miniproject.handlers.ProductDetailsHandler;
+import tdm.miniproject.handlers.ProductFragmentHandler;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private  static int spinnerIndex=-1;
     private  static int tabIndex=-1;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +35,9 @@ public class MainActivity extends AppCompatActivity {
         initialiseToolBar();
         initialiseSpinner();
         initialiseTabNavigation();
+
     }
+
 
     public void initialiseToolBar(){
         Toolbar mainToolbar = (Toolbar) findViewById(R.id.mainToolBar);
