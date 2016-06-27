@@ -30,4 +30,6 @@ public class RequestManager {
     public static String getRequestCartCheck(){
         return localUrl+"cartOperation";
     }
+
+    public static String getRequestAuthen(){return localUrl+"authenticateUser";}
 }

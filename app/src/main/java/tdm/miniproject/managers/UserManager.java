@@ -11,12 +11,14 @@ import com.google.gson.Gson;
 public class UserManager {
     public static final String userSharedPrefName="userFile";
     public static final String isConnectedName="isConnected";
+    public static final String userIdName="userId";
 
-    public static void setConnected(Context context){
+    public static void setConnected(Context context,String userId){
         SharedPreferences sp=context.getSharedPreferences(userSharedPrefName, Context.MODE_PRIVATE);
         if(sp!=null){
             SharedPreferences.Editor editor = sp.edit();
             editor.putBoolean(isConnectedName,true);
+            editor.putString(userIdName,userId);
             editor.commit();
         }
 
@@ -35,5 +37,11 @@ public class UserManager {
         SharedPreferences sp=context.getSharedPreferences(userSharedPrefName, Context.MODE_PRIVATE);
         if(sp!=null)return  sp.getBoolean(isConnectedName,false);
         else return false;
+    }
+
+    public static String getUserId(Context context){
+        SharedPreferences sp=context.getSharedPreferences(userSharedPrefName, Context.MODE_PRIVATE);
+        if(sp!=null) return sp.getString(userIdName,"");
+        else return"";
     }
 }

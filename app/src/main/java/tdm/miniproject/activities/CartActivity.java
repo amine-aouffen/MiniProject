@@ -17,6 +17,7 @@ import tdm.miniproject.adapters.CartAdapter.QuantityHandler;
 import tdm.miniproject.job.Cart;
 import tdm.miniproject.job.Order;
 import tdm.miniproject.managers.CartManager;
+import tdm.miniproject.managers.UserManager;
 import tdm.miniproject.support.CartElement;
 import tdm.miniproject.support.CartOperationRequest;
 import tdm.miniproject.taches.AddToCartTask;
@@ -59,13 +60,7 @@ public class CartActivity extends AppCompatActivity {
 
 
     public void validateOrder(MenuItem item) {
-        //TODO remove the line below after debug to request user auth
-        if (true) {
-            validateOrder();
-        } else {
-            showLoginActivity();
-        }
-
+        validateOrderRequest();
     }
 
     public void showLoginActivity() {
@@ -114,9 +109,18 @@ public class CartActivity extends AppCompatActivity {
     }
 */
 
+    private void validateOrderRequest() {
+        if(UserManager.isConnected(this)){
+            validateOrder();
+        }else{
+            Intent intent = new Intent(this,LoginActivity.class);
+            startActivity(intent);
+        }
+
+
+    }
+
     private void validateOrder() {
-        Toast.makeText(CartActivity.this, "la commande à été validé", Toast.LENGTH_SHORT).show();
-        //MainActivity.getOrders().add(new Order(MainActivity.getCart(),MainActivity.getOrders().size()+1));
 
     }
 

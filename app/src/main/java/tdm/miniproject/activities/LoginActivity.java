@@ -2,6 +2,7 @@ package tdm.miniproject.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +10,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import tdm.miniproject.R;
+import tdm.miniproject.job.User;
+import tdm.miniproject.managers.HttpManager;
+import tdm.miniproject.managers.RequestManager;
+import tdm.miniproject.managers.UserManager;
+import tdm.miniproject.support.GeneralResponse;
+
 public class LoginActivity extends AppCompatActivity {
     private EditText userEditText;
     private EditText passEditText;
@@ -53,20 +62,53 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void sendAuthentificationInfos(){
-//        if(userEditText.getText().length()==0||passEditText.getText().length()==0){
-//            Toast.makeText(LoginActivity.this, "Veuillez saisir Nom utilisateur/Mot de passe", Toast.LENGTH_SHORT).show();
-//        }
-//        else{
-            Intent intent = new Intent();
-            intent.putExtra("user",userEditText.getText().toString());
-            intent.putExtra("pass",passEditText.getText().toString());
-            setResult(Activity.RESULT_OK, intent);
-            finish();
-//        }
+        User user = new User();
+        user.setUsername(userEditText.getText().toString());
+        user.setPassword(userEditText.getText().toString());
+        new AuthenTask(user).execute(user);
+
     }
     public void cancelAuthentification(){
-        Intent intent = new Intent();
-        setResult(Activity.RESULT_CANCELED,intent);
         finish();
+
+    }
+
+    public void endActivity(){
+        finish();
+    }
+
+    public class AuthenTask extends AsyncTask <User,Void,String>{
+        private User user;
+
+        public AuthenTask(User user) {
+            this.user = user;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(User... params) {
+            String result = new HttpManager()
+                    .postDataToServiceURI(RequestManager.getRequestAuthen(),new Gson().toJson(params[0],User.class));
+
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            GeneralResponse response = new Gson().fromJson(s,GeneralResponse.class);
+            if(response.getCode()==1){
+                //Authen successfull
+                UserManager.setConnected(getApplicationContext(),user.getUsername());
+                Toast.makeText(getApplicationContext(), "Vous êtes connectés.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Vous pouvez valider votre commande.", Toast.LENGTH_SHORT).show();
+                endActivity();
+            }else{
+                Toast.makeText(getApplicationContext(),"Coordonées fournies sont incorrect !", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
