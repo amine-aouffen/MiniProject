@@ -13,9 +13,13 @@ import android.widget.Toast;
 
 import tdm.miniproject.R;
 import tdm.miniproject.adapters.CartAdapter;
+import tdm.miniproject.adapters.CartAdapter.QuantityHandler;
 import tdm.miniproject.job.Cart;
 import tdm.miniproject.job.Order;
 import tdm.miniproject.managers.CartManager;
+import tdm.miniproject.support.CartElement;
+import tdm.miniproject.support.CartOperationRequest;
+import tdm.miniproject.taches.AddToCartTask;
 
 public class CartActivity extends AppCompatActivity {
     final private int LOGIN_REQUEST = 1;
@@ -69,12 +73,24 @@ public class CartActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void cleanCart() {
-    }
 
     public void cleanCart(MenuItem item) {
-        cleanCart();
-        Toast.makeText(CartActivity.this, "Chariot a été supprimé avec succés", Toast.LENGTH_SHORT).show();
+        Cart cart = CartManager.getCart(this);
+        if(cart!=null){
+            for(int i=0;i<cart.getElementsList().size();i++){
+                CartElement cartElement = cart.getCartElement(i);
+                CartOperationRequest cartOperationRequest = new CartOperationRequest();
+                cartOperationRequest.setProductName(cartElement.getProduct().getName());
+                cartOperationRequest.setQuantity(cartElement.getQuantity());
+                cartOperationRequest.setSize(cartElement.getSize());
+                cartOperationRequest.setType("MATH_OPERATION");
+                new AddToCartTask(this,cartElement.getProduct(),cartElement.getSize(),cartElement.getQuantity(),null).execute(cartOperationRequest);
+            }
+        }
+    }
+
+    public void updateListAfterDeleteCart(){
+        listView.setAdapter(new CartAdapter(this,new Cart()));
     }
 /*
 
@@ -101,7 +117,7 @@ public class CartActivity extends AppCompatActivity {
     private void validateOrder() {
         Toast.makeText(CartActivity.this, "la commande à été validé", Toast.LENGTH_SHORT).show();
         //MainActivity.getOrders().add(new Order(MainActivity.getCart(),MainActivity.getOrders().size()+1));
-        cleanCart();
+
     }
 
     public void showAddition(MenuItem item) {

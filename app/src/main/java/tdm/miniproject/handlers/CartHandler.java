@@ -17,8 +17,8 @@ public class CartHandler implements CartOperationsListener{
         this.context = context;
     }
 
-    public void addProductToCart(Product product, String size) {
-        CartManager.addProductToCart(context,product,size);
+    public void addProductToCart(Product product, String size,int quantity) {
+        CartManager.addProductToCart(context,product,size,quantity);
         //TODO execute the alarm (4hours)
     }
 

@@ -265,7 +265,6 @@ public class DataBaseService {
                 while (rs.next()) {
                     response.getSizes().add(i, rs.getString("value"));
                     response.getQuantities().add(i, rs.getInt("quantity"));
-
                     i++;
                 }
             }
@@ -288,7 +287,7 @@ public class DataBaseService {
         PreparedStatement pst = null;
 
         String queryAdd = "UPDATE sizes SET quantity = quantity + ? \n" +
-                "\twhere value = ? and product_name = ?;";
+                "\twhere value = ? and  product_name = ? and quantity + ?>=0;";
 
 
         try {
@@ -297,6 +296,7 @@ public class DataBaseService {
             pst.setInt(1, cartOperationRequest.getQuantity());
             pst.setString(2, cartOperationRequest.getSize());
             pst.setString(3, cartOperationRequest.getProductName());
+            pst.setInt(4, cartOperationRequest.getQuantity());
 
             int affected = pst.executeUpdate();
             if (affected == 1) {
@@ -304,10 +304,10 @@ public class DataBaseService {
                 response.setProductName(cartOperationRequest.getProductName());
                 response.setCode(1);
                 if(cartOperationRequest.getQuantity() > 0) {
-                    response.setDescription("Product quantity addition successful");
+                    response.setDescription("addition");
                 }
                 else{
-                    response.setDescription("Product quantity substraction successful");
+                    response.setDescription("substraction");
                 }
 
             } else {

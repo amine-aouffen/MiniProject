@@ -80,12 +80,17 @@ public class ProductDetailActivity extends AppCompatActivity {
     }
 
     public void addProductToCart() {
-        new CartHandler(this).addProductToCart(product,"20");
-        Toast.makeText(ProductDetailActivity.this, "Product Added to Cart", Toast.LENGTH_SHORT).show();
+        showSizeQuantityChooser();
     }
 
     public void showChartActivity(MenuItem item) {
         Intent intent = new Intent(this,CartActivity.class);
+        startActivity(intent);
+    }
+
+    public void showSizeQuantityChooser() {
+        Intent intent = new Intent(this,SizeQuantityChooser.class);
+        intent.putExtra("product",product);
         startActivity(intent);
     }
 }

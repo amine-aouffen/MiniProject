@@ -23,7 +23,8 @@ public class Cart implements Serializable{
         while(!found && i>-1 ){
             cartElementTmp = elementsList.get(i);
             if(cartElementTmp.getProduct().getName().equals(cartElement.getProduct().getName())
-                    &&cartElementTmp.getProduct().getConsumer().equals(cartElement.getProduct().getConsumer()) ){
+                    &&cartElementTmp.getProduct().getConsumer().equals(cartElement.getProduct().getConsumer())
+                    &&cartElementTmp.getSize().equals(cartElement.getSize())){
                 found=true;
             }
             else{
@@ -31,17 +32,29 @@ public class Cart implements Serializable{
             }
         }
         if(found){
-            elementsList.get(i).incQunatity();
             return elementsList.get(i).getQuantity();
         }
         else{
             elementsList.add(cartElement);
-            return 1;
+            return cartElement.getQuantity();
         }
     }
 
     public void removeCartElement(int position){
         elementsList.remove(position);
+    }
+
+    public void removeCartElement(String productName,String size){
+        boolean found = false;
+        int i = elementsList.size();
+        while(i>0 && !found){
+            i--;
+            if (elementsList.get(i).getProduct().getName().equals(productName)
+                    &&elementsList.get(i).getSize().equals(size)){
+                found=true;
+                elementsList.remove(i);
+            }
+        }
     }
 
     public CartElement getCartElement(int position){

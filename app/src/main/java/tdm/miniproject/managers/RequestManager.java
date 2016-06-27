@@ -11,6 +11,7 @@ import tdm.miniproject.job.Consumer;
 public class RequestManager {
     public static final String localUrl= "http://192.168.56.1:8080/";
 
+
     public static String getRequestProductListWP(String density, Category category, Consumer consumer){
         try{
             String request = localUrl+
@@ -24,5 +25,9 @@ public class RequestManager {
             return null;
         }
 
+    }
+
+    public static String getRequestCartCheck(){
+        return localUrl+"cartOperation";
     }
 }

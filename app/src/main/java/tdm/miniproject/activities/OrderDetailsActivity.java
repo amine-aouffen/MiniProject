@@ -13,7 +13,7 @@ import android.widget.TextView;
 import tdm.miniproject.R;
 import tdm.miniproject.adapters.OrderDetailsAdapter;
 import tdm.miniproject.job.Order;
-import tdm.miniproject.job.OrderStatus;
+
 
 public class OrderDetailsActivity extends AppCompatActivity {
     private ListView listView;
@@ -41,19 +41,19 @@ public class OrderDetailsActivity extends AppCompatActivity {
         OrderDetailsAdapter adapter = new OrderDetailsAdapter(this,order);
         listView.setAdapter(adapter);
         TextView titleTxtView=(TextView)findViewById(R.id.orderItemTitle);
-        titleTxtView.setText("Commande n°"+order.getNumber());
+        titleTxtView.setText("Commande n°"+order.getId());
         TextView dateTxtView=(TextView)findViewById(R.id.orderItemDate);
-        dateTxtView.setText(order.getDate());
+        dateTxtView.setText(order.getOrderDate().toString());
         TextView totalTxtView=(TextView)findViewById(R.id.orderItemTotal);
-        totalTxtView.setText(order.getTotalCost()+" DA");
+        totalTxtView.setText(order.getPrice()+" DA");
         TextView statusTxtView=(TextView)findViewById(R.id.orderItemStatus);
         ImageView statusIcon = (ImageView)findViewById(R.id.orderItemStatusIcon);
-        switch (order.getStatus()){
-            case ON_DELEVERY:
+        switch (order.getState()){
+            case "sdkf":
                 statusTxtView.setText("En cours de livraison. ");
            //     statusIcon.setImageResource(R.drawable.ic_add_shopping_cart_black_24dp);
                 break;
-            case ON_PREPARATION:
+            case "sdf":
                 statusTxtView.setText("En cours de préparation. ");
              //   statusIcon.setImageResource(R.drawable.ic_indeterminate_check_box_black_24dp);
                 break;

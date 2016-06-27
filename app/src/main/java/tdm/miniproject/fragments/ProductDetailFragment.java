@@ -1,8 +1,10 @@
 package tdm.miniproject.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +14,9 @@ import android.widget.TextView;
 
 import tdm.miniproject.R;
 
+import tdm.miniproject.activities.SizeQuantityChooser;
 import tdm.miniproject.job.Product;
+import tdm.miniproject.support.CartOperationRequest;
 
 
 /**
@@ -49,10 +53,12 @@ public class ProductDetailFragment extends Fragment{
         addToCartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addProductToCart();
+                showSizeQuantityChooser();
             }
         });
     }
+
+
 
     public void showProductDetails(){
         Bundle bundle = getArguments();
@@ -66,8 +72,10 @@ public class ProductDetailFragment extends Fragment{
         }
 
     }
-    public void addProductToCart() {
-        //TODO add product to local cart
-    }
 
+    private void showSizeQuantityChooser() {
+        Intent intent = new Intent(getContext(), SizeQuantityChooser.class);
+        intent.putExtra("product",product);
+        startActivity(intent);
+    }
 }

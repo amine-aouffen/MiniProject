@@ -1,6 +1,8 @@
 package tdm.miniproject.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,6 +23,7 @@ import java.util.Iterator;
 import tdm.miniproject.R;
 import tdm.miniproject.Utils.ServiceUtil;
 import tdm.miniproject.activities.MainActivity;
+import tdm.miniproject.activities.SizeQuantityChooser;
 import tdm.miniproject.handlers.CartHandler;
 import tdm.miniproject.job.Product;
 
@@ -91,7 +94,7 @@ public class ProductAdapter extends BaseAdapter implements Filterable,Serializab
             @Override
             public void onClick(View v) {
                 v.startAnimation(new AlphaAnimation(1F,0.5F));
-                new CartHandler(view.getContext()).addProductToCart(product,"20");
+                showSizeQuantityChooser(product);
             }
         });
     }
@@ -111,7 +114,11 @@ public class ProductAdapter extends BaseAdapter implements Filterable,Serializab
         return filter;
     }
 
-
+    private void showSizeQuantityChooser(Product product) {
+        Intent intent = new Intent(context, SizeQuantityChooser.class);
+        intent.putExtra("product",product);
+        ((AppCompatActivity)context).startActivity(intent);
+    }
     private class ItemFilter extends  Filter{
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {

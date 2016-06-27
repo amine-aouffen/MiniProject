@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Dell on 22/06/2016.
- */
 public class Order {
 
     private int id;

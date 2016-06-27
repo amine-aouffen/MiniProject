@@ -20,7 +20,6 @@ public class OrderSynchServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         HttpSession session = req.getSession();
         String username = (String) session.getAttribute("username");
         String password = (String) session.getAttribute("password");

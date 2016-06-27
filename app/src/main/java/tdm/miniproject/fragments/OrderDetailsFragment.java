@@ -38,23 +38,23 @@ public class OrderDetailsFragment extends Fragment{
             OrderDetailsAdapter adapter = new OrderDetailsAdapter(getContext(),order);
             listView.setAdapter(adapter);
             TextView titleTxtView=(TextView)view.findViewById(R.id.orderItemTitle);
-            titleTxtView.setText("Commande n°"+order.getNumber());
+            //titleTxtView.setText("Commande n°"+order.getNumber());
             TextView dateTxtView=(TextView)view.findViewById(R.id.orderItemDate);
-            dateTxtView.setText(order.getDate());
+            //dateTxtView.setText(order.getDate());
             TextView totalTxtView=(TextView)view.findViewById(R.id.orderItemTotal);
-            totalTxtView.setText(order.getTotalCost()+" DA");
+            //totalTxtView.setText(order.getTotalCost()+" DA");
             TextView statusTxtView=(TextView)view.findViewById(R.id.orderItemStatus);
             ImageView statusIcon = (ImageView)view.findViewById(R.id.orderItemStatusIcon);
-            switch (order.getStatus()){
+          /**  switch (order.getStatus()){
                 case ON_DELEVERY:
                     statusTxtView.setText("En cours de livraison. ");
-             //       statusIcon.setImageResource(R.drawable.ic_add_shopping_cart_black_24dp);
+
                     break;
                 case ON_PREPARATION:
                     statusTxtView.setText("En cours de préparation. ");
-             //       statusIcon.setImageResource(R.drawable.ic_indeterminate_check_box_black_24dp);
+
                     break;
-            }
+            }**/
         }
     }
 }

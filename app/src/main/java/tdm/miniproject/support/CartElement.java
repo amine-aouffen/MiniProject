@@ -12,9 +12,9 @@ public class CartElement implements Serializable{
     String size;
     private int quantity;
 
-    public CartElement(Product product,String size) {
+    public CartElement(Product product,String size,int quantity) {
         this.product = product;
-        this.quantity = 1;
+        this.quantity =quantity;
         this.size=size;
     }
 

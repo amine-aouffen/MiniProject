@@ -17,7 +17,10 @@ import android.widget.Toast;
 import tdm.miniproject.R;
 import tdm.miniproject.adapters.CategoryAdapter;
 import tdm.miniproject.adapters.PagerAdapter;
-import tdm.miniproject.handlers.ProductFragmentHandler;
+import tdm.miniproject.handlers.ProductDetailsHandler;
+
+import tdm.miniproject.job.Notification;
+import tdm.miniproject.managers.NotificationManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -153,17 +156,16 @@ public class MainActivity extends AppCompatActivity {
 */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //TODO get the notification  status from local source
-        boolean notification=false;
         switch (item.getItemId()){
+
             case R.id.notificationToggle:
-                if(notification==true){
-                    notification=false;
+                if(NotificationManager.getNotificationsStatus(this)==true){
+                    NotificationManager.setNotificationsOff(this);
                     Toast.makeText(MainActivity.this, "Les notifications sont désactivées. ", Toast.LENGTH_SHORT).show();
                     item.setIcon(R.drawable.ic_notifications_off_white_24dp);
                 }
                 else{
-                    notification=true;
+                    NotificationManager.setNotificationsOn(this);
                     Toast.makeText(MainActivity.this, "Les notifications sont activées. ", Toast.LENGTH_SHORT).show();
                     item.setIcon(R.drawable.ic_notifications_white_24dp);
                 }

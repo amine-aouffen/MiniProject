@@ -56,11 +56,11 @@ public class OrdersActivity extends AppCompatActivity {
     public void showOrder(int position){
         if(!isTwoPanes()){
             Intent intent = new Intent(this,OrderDetailsActivity.class);
-            intent.putExtra("order",(Order)listView.getAdapter().getItem(position));
+           // intent.putExtra("order",(Order)listView.getAdapter().getItem(position));
             startActivity(intent);
         }else {
             Bundle bundle = new Bundle();
-            bundle.putSerializable("order",(Order)listView.getAdapter().getItem(position));
+           // bundle.putSerializable("order",(Order)listView.getAdapter().getItem(position));
             OrderDetailsFragment fragment = new OrderDetailsFragment();
             fragment.setArguments(bundle);
             FragmentTransaction fragTransaction = getSupportFragmentManager().beginTransaction();

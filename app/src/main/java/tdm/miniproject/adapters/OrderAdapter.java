@@ -47,11 +47,11 @@ public class OrderAdapter extends BaseAdapter{
 
     private void showOrderAsItem(View view, int position) {
         TextView titleTxtView=(TextView)view.findViewById(R.id.orderItemTitle);
-        titleTxtView.setText("Commande n°" + ordersList.get(position).getNumber());
+        //titleTxtView.setText("Commande n°" + ordersList.get(position).getNumber());
         TextView dateTxtView=(TextView)view.findViewById(R.id.orderItemDate);
-        dateTxtView.setText(ordersList.get(position).getDate());
+        //dateTxtView.setText(ordersList.get(position).getDate());
         TextView totalTxtView=(TextView)view.findViewById(R.id.orderItemTotal);
-        totalTxtView.setText(ordersList.get(position).getTotalCost()+" DA");
+        //totalTxtView.setText(ordersList.get(position).getTotalCost()+" DA");
         TextView statusTxtView=(TextView)view.findViewById(R.id.orderItemStatus);
         ImageView statusIcon = (ImageView)view.findViewById(R.id.orderItemStatusIcon);
         double a =Math.random()*1000*Math.random()  ;
