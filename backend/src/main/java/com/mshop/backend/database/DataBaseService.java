@@ -74,7 +74,6 @@ public class DataBaseService {
         return products;
     }
 
-
     public static Product getProductPhoto(String density, String product_name) {
 
         conn = ConnectionManager.getInstance().getConnection();
@@ -154,8 +153,8 @@ public class DataBaseService {
             PreparedStatement stmt = conn.prepareStatement(queryOrder, Statement.RETURN_GENERATED_KEYS);
             conn.setAutoCommit(false);
 
-            java.util.Date date = UtilClass.parseDateString(order.getOrderDate());
-            stmt.setDate(1, UtilClass.convertToSqlDate(date));
+
+            stmt.setDate(1, UtilClass.convertToSqlDate(order.getOrderDate()));
             stmt.setDouble(2, order.getPrice());
             stmt.setString(3, order.getState());
             stmt.setString(4, order.getIdClient());

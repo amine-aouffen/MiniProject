@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "299070590960",
+    "project_id": "miniproject-334e5"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:299070590960:android:bca0bc10b328f630",
+        "android_client_info": {
+          "package_name": "tdm.miniproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqPl-2ryviCIM_hfjL17ECKO8rcEImK1k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
