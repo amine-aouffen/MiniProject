@@ -146,7 +146,7 @@ public class DataBaseService {
     public static boolean insertOrder(Order order) throws SQLException {
         conn = ConnectionManager.getInstance().getConnection();
         String queryOrder = "INSERT into orders (date, price, state, id_client) VALUES (?, ?, ?, ?)";
-        String queryLineOrder = "INSERT into orderlines (ligne_number, product_name, quantity, unit_price, id_order) VALUES (?, ?, ?, ?, ?)";
+        String queryLineOrder = "INSERT into orderlines (ligne_number, product_name, quantity, unit_price, id_order, size) VALUES (?, ?, ?, ?, ?, ?)";
         ResultSet keys = null;
 
         try {
@@ -175,6 +175,7 @@ public class DataBaseService {
                     stmt.setInt(3, orderLine.getQuantity());
                     stmt.setDouble(4, orderLine.getUnitPrice());
                     stmt.setInt(5, order.getId());
+                    stmt.setString(6, orderLine.getSize());
 
                     int orderLineAffected = stmt.executeUpdate();
                     if (orderLineAffected == 1) {
@@ -352,7 +353,7 @@ public class DataBaseService {
                 return orders;
             } else {
                 rs.beforeFirst();
-                String queryLines = "SELECT ligne_number, product_name, quantity, unit_price FROM orderlines where id_order = ?;";
+                String queryLines = "SELECT ligne_number, product_name, size, quantity, unit_price FROM orderlines where id_order = ?;";
                 while (rs.next()) {
 
                     Order order = new Order();
@@ -377,6 +378,7 @@ public class DataBaseService {
                             OrderLine orderLine = new OrderLine();
                             orderLine.setLigneNumber(rsLines.getInt("ligne_number"));
                             orderLine.setProductName(rsLines.getString("product_name"));
+                            orderLine.setSize(rsLines.getString("size"));
                             orderLine.setQuantity(rsLines.getInt("quantity"));
                             orderLine.setUnitPrice(rsLines.getDouble("unit_price"));
                             orderLine.setOrderID(order.getId());

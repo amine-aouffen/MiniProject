@@ -8,49 +8,78 @@
 
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Choisir vos préférences"
         android:id="@+id/title"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:id="@+id/sizeTextView"
+        android:text="Taille"
+        android:textSize="@dimen/sizeActivityNormalText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/sizeActivitySmallMargin" />
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/sqChooser"
-        android:layout_below="@id/title"
-        android:layout_marginTop="100dp" />
+        android:layout_below="@id/sizeTextView"
+        android:layout_marginTop="@dimen/sizeActivityNormalMargin" />
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:indeterminate="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/quantityTextView"
+        android:text="Quantité"
+        android:layout_below="@+id/sqChooser"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/sizeActivityNormalText"
+        android:layout_marginTop="@dimen/sizeActivitySmallMargin" />
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/numberPicker"
-        android:layout_below="@id/sqChooser"
-        android:orientation="vertical" />
+        android:layout_below="@id/quantityTextView"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/sizeActivitySmallMargin" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Valider"
         android:id="@+id/validateBtn"
-        android:layout_below="@+id/numberPicker"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+
+        android:background="@color/colorPrimary2"
+        android:textColor="@color/textColorPrimary2"
+        android:layout_marginRight="@dimen/sizeActivitySmallMargin" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Annuler"
         android:id="@+id/cancelBtn"
-        android:layout_toRightOf="@id/validateBtn"
-        android:layout_below="@id/numberPicker"/>
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
-        android:layout_below="@id/sqChooser"
-        android:layout_toRightOf="@id/numberPicker"
-        android:indeterminate="true" />
+        android:background="@color/colorPrimary2"
+        android:textColor="@color/textColorPrimary2" />
+
+
 </RelativeLayout>
