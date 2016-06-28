@@ -47,23 +47,23 @@ public class OrderAdapter extends BaseAdapter{
 
     private void showOrderAsItem(View view, int position) {
         TextView titleTxtView=(TextView)view.findViewById(R.id.orderItemTitle);
-        //titleTxtView.setText("Commande n°" + ordersList.get(position).getNumber());
+        titleTxtView.setText("Commande n°" + ordersList.get(position).getId());
         TextView dateTxtView=(TextView)view.findViewById(R.id.orderItemDate);
-        //dateTxtView.setText(ordersList.get(position).getDate());
+        dateTxtView.setText(ordersList.get(position).getOrderDate().toString());
         TextView totalTxtView=(TextView)view.findViewById(R.id.orderItemTotal);
-        //totalTxtView.setText(ordersList.get(position).getTotalCost()+" DA");
+        totalTxtView.setText(ordersList.get(position).getPrice()+" DA");
         TextView statusTxtView=(TextView)view.findViewById(R.id.orderItemStatus);
+        statusTxtView.setText(ordersList.get(position).getState());
         ImageView statusIcon = (ImageView)view.findViewById(R.id.orderItemStatusIcon);
+
         double a =Math.random()*1000*Math.random()  ;
         int i=((int)a)%2;
         switch (i){
             case 0:
-                statusTxtView.setText("En cours de livraison. ");
-               // statusIcon.setImageResource(R.drawable.ic_add_shopping_cart_black_24dp);
+                statusIcon.setImageResource(R.drawable.ic_add_shopping_cart_black_24dp);
                 break;
             case 1:
-                statusTxtView.setText("En cours de préparation. ");
-             //   statusIcon.setImageResource(R.drawable.ic_indeterminate_check_box_black_24dp);
+                statusIcon.setImageResource(R.drawable.ic_indeterminate_check_box_black_24dp);
                 break;
             default:
                 break;

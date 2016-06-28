@@ -1,8 +1,10 @@
-package com.mshop.backend.Util;
+package tdm.miniproject.support;
 
-import com.mshop.backend.model.Order;
+
 
 import java.util.List;
+
+import tdm.miniproject.job.Order;
 
 /**
  * Created by Salah on 27/06/2016.

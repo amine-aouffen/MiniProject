@@ -32,4 +32,8 @@ public class RequestManager {
     }
 
     public static String getRequestAuthen(){return localUrl+"authenticateUser";}
+
+    public static String getRequestGetOrders(){return localUrl+"getOrders";}
+
+    public static String getRequestValidateOrders(){return localUrl+"validateOrder";}
 }

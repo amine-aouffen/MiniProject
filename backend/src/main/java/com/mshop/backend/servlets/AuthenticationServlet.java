@@ -30,7 +30,6 @@ public class AuthenticationServlet extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("username", user.getUsername());
             session.setAttribute("password", user.getPassword());
-
             UtilClass.printResponse(resp, 1, "authentication successful");
         }else{
             UtilClass.printResponse(resp, -1, "authentication failed : user credentials are invalid");

@@ -31,7 +31,7 @@ public class OrderManager {
             orderLine.setQuantity(cartElement.getQuantity());
             orderLine.setLigneNumber(i);
             orderLine.setUnitPrice(cartElement.getProduct().getPrice());
-            //orderLine.setOrderID();
+
             orderLines.add(orderLine);
         }
         order.setOrderLines(orderLines);

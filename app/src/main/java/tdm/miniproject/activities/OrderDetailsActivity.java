@@ -48,17 +48,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
         totalTxtView.setText(order.getPrice()+" DA");
         TextView statusTxtView=(TextView)findViewById(R.id.orderItemStatus);
         ImageView statusIcon = (ImageView)findViewById(R.id.orderItemStatusIcon);
-        switch (order.getState()){
-            case "sdkf":
-                statusTxtView.setText("En cours de livraison. ");
-           //     statusIcon.setImageResource(R.drawable.ic_add_shopping_cart_black_24dp);
-                break;
-            case "sdf":
-                statusTxtView.setText("En cours de préparation. ");
-             //   statusIcon.setImageResource(R.drawable.ic_indeterminate_check_box_black_24dp);
-                break;
-        }
-
+        statusTxtView.setText("En cours de livraison. ");
+        //statusIcon.setImageResource(R.drawable.ic_add_shopping_cart_black_24dp);
     }
 
     public void prepareOrderInfo(Order order){

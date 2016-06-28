@@ -58,7 +58,7 @@ public class UtilClass {
 
     public static void printgetOrdersResponse(HttpServletResponse resp, int code, String message, List<Order> orders) throws IOException {
         PrintWriter writer = resp.getWriter();
-        getOrdersResponse response = new getOrdersResponse(code, message, orders);
+        GetOrdersResponse response = new GetOrdersResponse(code, message, orders);
         writer.print(new Gson().toJson(response));
     }
 

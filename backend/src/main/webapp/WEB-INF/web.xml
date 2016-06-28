@@ -35,11 +35,11 @@
         <url-pattern>/validateOrder</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>getOrdersServlet</servlet-name>
-        <servlet-class>com.mshop.backend.servlets.getOrdersServlet</servlet-class>
+        <servlet-name>GetOrdersServlet</servlet-name>
+        <servlet-class>com.mshop.backend.servlets.GetOrdersServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>getOrdersServlet</servlet-name>
+        <servlet-name>GetOrdersServlet</servlet-name>
         <url-pattern>/getOrders</url-pattern>
     </servlet-mapping>
 

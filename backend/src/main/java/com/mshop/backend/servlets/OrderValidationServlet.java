@@ -27,7 +27,7 @@ public class OrderValidationServlet extends HttpServlet {
         String username = (String) session.getAttribute("username");
         String password = (String) session.getAttribute("password");
 
-        if(username != null && password != null) {
+       // if(username != null && password != null) {
             StringBuilder sb = UtilClass.readJsonFomBody(req);
 //            System.out.println(sb.toString());
             Gson gson = new Gson();
@@ -51,9 +51,9 @@ public class OrderValidationServlet extends HttpServlet {
                 e.printStackTrace();
             }
             UtilClass.printOrderResponse(resp, 1, "Order insertion successful", order.getId());
-        }else{
+       // }else{
             UtilClass.printOrderResponse(resp, -1, "Order insertion failed : user not authenticated", -1);
-        }
+      //  }
 
     }
 }

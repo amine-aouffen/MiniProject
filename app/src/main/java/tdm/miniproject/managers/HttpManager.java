@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -69,5 +70,30 @@ public class HttpManager {
                 e.printStackTrace();
             }
             return result;
+    }
+
+    public String postJsonToServiceURI(String uri,String json){
+        String result="" ;
+        try {
+            URL url = new URL(uri);
+            HttpURLConnection  conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            conn.setRequestMethod("POST");
+            OutputStreamWriter outputStream = new OutputStreamWriter(conn.getOutputStream());
+            // Ecrire les données de la requete
+            outputStream.write(json);
+            if (conn.getResponseCode() == 200) {
+                // Lire la réponse
+                InputStream is = conn.getInputStream();
+                BufferedReader reader =
+                        new BufferedReader
+                                (new InputStreamReader(is, "UTF-8"));
+                result = reader.readLine();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

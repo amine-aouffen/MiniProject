@@ -12,6 +12,7 @@ import java.util.zip.Inflater;
 
 import tdm.miniproject.R;
 import tdm.miniproject.job.Order;
+import tdm.miniproject.job.OrderLine;
 import tdm.miniproject.job.Product;
 import tdm.miniproject.support.CartElement;
 
@@ -45,26 +46,27 @@ public class OrderDetailsAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = inflateView(convertView);
-        //showProductAsItem(view,order.getCart().getCartElement(position));
+        showProductAsItem(view,order.getOrderLines().get(position));
         return view;
     }
 
 
-    private void showProductAsItem(View view, CartElement cartElement) {
+    private void showProductAsItem(View view, OrderLine orderLine) {
         ImageView productPhotoImageView = (ImageView) view.findViewById(R.id.orderDetailsItemImage);
-        //productPhotoImageView.setImageResource(cartElement.getProduct().getProductPhoto());
+        //TODO récupérer la photo
+        //productPhotoImageView.setImageResource(orderLine.getProduct().getProductPhoto());
 
         TextView productNameTextView=(TextView)view.findViewById(R.id.orderDetailsItemName);
-        productNameTextView.setText(cartElement.getProduct().getName());
+        productNameTextView.setText(orderLine.getProductName());
 
         TextView productDescriptionTextView=(TextView)view.findViewById(R.id.orderDetailsItemDescription);
-        productDescriptionTextView.setText(cartElement.getProduct().getDescription());
+        productDescriptionTextView.setText(orderLine.getLigneNumber());
 
         TextView productPriceTextView=(TextView)view.findViewById(R.id.orderDetailsItemPrice);
-        productPriceTextView.setText(cartElement.getProduct().getPrice() + "DA x"+cartElement.getQuantity()+"="+cartElement.getProduct().getPrice()*cartElement.getQuantity()+" DA");
+        productPriceTextView.setText(orderLine.getUnitPrice() + "DA x"+orderLine.getQuantity()+"="+orderLine.getUnitPrice()*orderLine.getQuantity()+" DA");
 
         TextView productQuantityTextView = (TextView) view.findViewById(R.id.orderDetailsItemQuantity);
-        productQuantityTextView.setText("X"+cartElement.getQuantity());
+        productQuantityTextView.setText("X"+orderLine.getQuantity());
     }
 
     private View inflateView(View convertView) {
