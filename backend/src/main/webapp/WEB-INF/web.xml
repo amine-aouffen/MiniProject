@@ -53,6 +53,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>InvalidateSessionServlet</servlet-name>
+        <servlet-class>com.mshop.backend.servlets.InvalidateSessionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InvalidateSessionServlet</servlet-name>
+        <url-pattern>/invalidateSession</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>OrderSynchServlet</servlet-name>
         <servlet-class>com.mshop.backend.servlets.OrderSynchServlet</servlet-class>
     </servlet>

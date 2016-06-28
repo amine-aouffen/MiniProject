@@ -7,9 +7,18 @@ public class OrderLine {
 
     private int ligneNumber;
     private String productName;
+    private String size;
     private int quantity;
     private double unitPrice;
     private int orderID;
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
 
     public int getLigneNumber() {
         return ligneNumber;

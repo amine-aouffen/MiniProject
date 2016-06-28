@@ -1,6 +1,5 @@
 package com.mshop.backend.servlets;
 
-import com.google.gson.Gson;
 import com.mshop.backend.Util.UtilClass;
 import com.mshop.backend.database.DataBaseService;
 import com.mshop.backend.model.Order;
@@ -27,13 +26,11 @@ public class getOrdersServlet extends HttpServlet {
         String password = (String) session.getAttribute("password");
 
         if (username != null && password != null) {
-            StringBuilder sb = UtilClass.readJsonFomBody(req);
-            Gson gson = new Gson();
 
             List<Order> orders = DataBaseService.getOrders(username);
             UtilClass.printgetOrdersResponse(resp, 1, "orders retrieved sucessfully", orders);
         } else {
-            UtilClass.printOrderResponse(resp, -1, "orders retriev failed : user not authenticated", -1);
+            UtilClass.printgetOrdersResponse(resp, -1, "orders retriev failed : user not authenticated", null);
         }
     }
 }
