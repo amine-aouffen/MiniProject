@@ -1,12 +1,26 @@
 package tdm.miniproject.job;
 
-public class OrderLine {
+import java.io.Serializable;
+
+/**
+ * Created by Dell on 22/06/2016.
+ */
+public class OrderLine implements Serializable {
 
     private int ligneNumber;
     private String productName;
+    private String size;
     private int quantity;
     private double unitPrice;
     private int orderID;
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
 
     public int getLigneNumber() {
         return ligneNumber;

@@ -1,5 +1,6 @@
 package tdm.miniproject.managers;
 
+import android.content.Context;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -8,6 +9,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.net.CookieHandler;
+import java.net.CookieManager;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -95,5 +98,12 @@ public class HttpManager {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public static void initialiseCookies(Context context){
+        if(UserManager.isConnected(context)==false) {
+            CookieManager cookieManager = new CookieManager();
+            CookieHandler.setDefault(cookieManager);
+        }
     }
 }

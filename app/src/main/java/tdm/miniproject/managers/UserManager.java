@@ -21,7 +21,6 @@ public class UserManager {
             editor.putString(userIdName,userId);
             editor.commit();
         }
-
     }
 
     public static void setDisconnected(Context context){
@@ -31,6 +30,8 @@ public class UserManager {
             editor.putBoolean(isConnectedName,false);
             editor.commit();
         }
+        new HttpManager().initialiseCookies(context);
+
     }
 
     public static boolean isConnected(Context context){

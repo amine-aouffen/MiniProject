@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Created by Salah on 27/06/2016.
  */
-public class getOrdersServlet extends HttpServlet {
+public class GetOrdersServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,7 +30,7 @@ public class getOrdersServlet extends HttpServlet {
             List<Order> orders = DataBaseService.getOrders(username);
             UtilClass.printgetOrdersResponse(resp, 1, "orders retrieved sucessfully", orders);
         } else {
-            UtilClass.printgetOrdersResponse(resp, -1, "orders retriev failed : user not authenticated", null);
+           UtilClass.printgetOrdersResponse(resp, -1, "orders retriev failed : user not authenticated", null);
         }
     }
 }

@@ -1,10 +1,12 @@
 package tdm.miniproject.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,8 +21,9 @@ import tdm.miniproject.adapters.CategoryAdapter;
 import tdm.miniproject.adapters.PagerAdapter;
 import tdm.miniproject.handlers.ProductDetailsHandler;
 
-import tdm.miniproject.job.Notification;
-import tdm.miniproject.managers.NotificationManager;
+import tdm.miniproject.managers.HttpManager;
+import tdm.miniproject.managers.NotifManager;
+import tdm.miniproject.managers.UserManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private Spinner categorySpinner;
     private  static int spinnerIndex=-1;
     private  static int tabIndex=-1;
+    private MenuItem mi;
 
 
     @Override
@@ -38,13 +42,15 @@ public class MainActivity extends AppCompatActivity {
         initialiseToolBar();
         initialiseSpinner();
         initialiseTabNavigation();
-
+        new HttpManager().initialiseCookies(this);
     }
 
 
     public void initialiseToolBar(){
         Toolbar mainToolbar = (Toolbar) findViewById(R.id.mainToolBar);
         setSupportActionBar(mainToolbar);
+
+
     }
 
     public void initialiseTabNavigation(){
@@ -63,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
+
         return true;
     }
 
@@ -159,21 +166,41 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
 
             case R.id.notificationToggle:
-                if(NotificationManager.getNotificationsStatus(this)==true){
-                    NotificationManager.setNotificationsOff(this);
+                if(NotifManager.getNotificationsStatus(this)==true){
+                    NotifManager.setNotificationsOff(this);
                     Toast.makeText(MainActivity.this, "Les notifications sont désactivées. ", Toast.LENGTH_SHORT).show();
                     item.setIcon(R.drawable.ic_notifications_off_white_24dp);
                 }
                 else{
-                    NotificationManager.setNotificationsOn(this);
+                    NotifManager.setNotificationsOn(this);
                     Toast.makeText(MainActivity.this, "Les notifications sont activées. ", Toast.LENGTH_SHORT).show();
                     item.setIcon(R.drawable.ic_notifications_white_24dp);
+                }
+                break;
+            case R.id.loginToggle:
+                if(UserManager.isConnected(this)==true){
+                    UserManager.setDisconnected(this);
+                    Toast.makeText(MainActivity.this, "Vous êtes déconnectés. ", Toast.LENGTH_SHORT).show();
+                    item.setIcon(R.drawable.ic_action_disconnect);
+                }
+                else{
+                    Intent intent = new Intent(this,LoginActivity.class);
+                    startActivityForResult(intent,120);
+                    mi=item;
                 }
                 break;
             default:
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode== Activity.RESULT_OK){
+            Toast.makeText(getApplicationContext(), "Vous êtes connectés.", Toast.LENGTH_SHORT).show();
+            mi.setIcon(R.drawable.ic_action_connect);
+        }
     }
 
     boolean isTwoPanes(){

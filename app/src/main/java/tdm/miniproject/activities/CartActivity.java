@@ -1,34 +1,35 @@
 package tdm.miniproject.activities;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.gcm.Task;
 import com.google.gson.Gson;
 
 import tdm.miniproject.R;
 import tdm.miniproject.adapters.CartAdapter;
-import tdm.miniproject.adapters.CartAdapter.QuantityHandler;
 import tdm.miniproject.job.Cart;
 import tdm.miniproject.job.Order;
 import tdm.miniproject.managers.CartManager;
 import tdm.miniproject.managers.HttpManager;
 import tdm.miniproject.managers.OrderManager;
 import tdm.miniproject.managers.RequestManager;
+import tdm.miniproject.managers.TasksManager;
 import tdm.miniproject.managers.UserManager;
 import tdm.miniproject.support.CartElement;
 import tdm.miniproject.support.CartOperationRequest;
 import tdm.miniproject.support.OrderResponse;
-import tdm.miniproject.taches.AddToCartTask;
+import tdm.miniproject.tasks.AddToCartTask;
 
 public class CartActivity extends AppCompatActivity {
     final private int LOGIN_REQUEST = 1;
@@ -119,12 +120,16 @@ public class CartActivity extends AppCompatActivity {
 */
 
     private void validateOrderRequest() {
-        if(UserManager.isConnected(this)){
-            validateOrder();
+        if(CartManager.getCart(this)!=null &&CartManager.getCart(this).getElementsList().size()>0 ){
+            if(UserManager.isConnected(this)){
+                validateOrder();
+            }else{
+                Toast.makeText(this, "Vous devez vous connecter d'abord !", Toast.LENGTH_SHORT).show();
+            }
         }else{
-            Intent intent = new Intent(this,LoginActivity.class);
-            startActivity(intent);
+            Toast.makeText(this, "Le chariot est vide !", Toast.LENGTH_SHORT).show();
         }
+
 
 
     }
@@ -135,15 +140,20 @@ public class CartActivity extends AppCompatActivity {
     }
 
     public void showAddition(MenuItem item) {
-        //TODO calcule du montant total du chariot
+
     }
 
     public void showOrdersActivity(MenuItem item) {
+        showOrdersActivity();
+    }
+
+    private void showOrdersActivity() {
         Intent intent = new Intent(this,OrdersActivity.class);
         startActivity(intent);
     }
 
     public class ValidateOrderTask extends AsyncTask<Order,Void,String>{
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -161,13 +171,16 @@ public class CartActivity extends AppCompatActivity {
             OrderResponse orderResponse = new Gson().fromJson(s,OrderResponse.class);
             if(orderResponse.getCode()==1){
                 //Commande validé avec succès
-                Toast.makeText(getParent(), "Commande n° "+orderResponse.getOrderId()+" validée avec succès", Toast.LENGTH_SHORT).show();
-                CartManager.deleteCart(getParent());
+                Toast.makeText(getApplicationContext(), "Commande n° "+orderResponse.getOrderId()+" validée avec succès", Toast.LENGTH_SHORT).show();
+                CartManager.deleteCart(getApplicationContext());
                 updateListAfterDeleteCart();
-                //TODO redirect to order activity
+                TasksManager.cancelClearCartAlarm(getApplicationContext());
+                showOrdersActivity();
             }else{
                 Toast.makeText(getApplicationContext(), "Commande non validé, réesayez plus tard!", Toast.LENGTH_SHORT).show();
             }
         }
     }
+
+
 }

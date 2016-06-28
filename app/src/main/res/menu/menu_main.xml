@@ -23,6 +23,12 @@
         app:showAsAction="always"
         android:title="toggle nitification"
         />
+    <item
+        android:id="@+id/loginToggle"
+        android:icon="@drawable/ic_action_connect"
+        app:showAsAction="always"
+        android:title="toggle nitification"
+        />
 
 
 

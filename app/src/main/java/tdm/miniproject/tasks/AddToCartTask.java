@@ -1,4 +1,4 @@
-package tdm.miniproject.taches;
+package tdm.miniproject.tasks;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -40,14 +40,12 @@ public class AddToCartTask extends AsyncTask<CartOperationRequest,Void,String> {
     @Override
     protected String doInBackground(CartOperationRequest... params) {
         String json = new Gson().toJson(params[0],CartOperationRequest.class);
-        Log.d("REEQ",json);
         String result = new HttpManager().postDataToServiceURI(RequestManager.getRequestCartCheck(),json);
         return result;
     }
 
     @Override
     protected void onPostExecute(String s) {
-        Log.d("Repoo",s);
         CartOperationResponse response = new Gson().fromJson(s,CartOperationResponse.class);
         if(response.getCode()==-1){
             Toast.makeText(context, "Quantité non disponible !", Toast.LENGTH_SHORT).show();

@@ -27,7 +27,7 @@ public class UtilClass {
         try {
             String line;
             while ((line = reader.readLine()) != null) {
-                sb.append(line).append('\n');
+                sb.append(line);
             }
         } finally {
             reader.close();
@@ -65,7 +65,7 @@ public class UtilClass {
     public static void printOrderResponse(HttpServletResponse resp, int code, String message, int orderId) throws IOException {
         PrintWriter writer = resp.getWriter();
         OrderResponse response = new OrderResponse(code, message, orderId);
-        writer.print(new Gson().toJson(response));
+        writer.print(new Gson().toJson(response,OrderResponse.class));
     }
     public static void printOrderResponse(HttpServletResponse resp, int code, String message, int orderId, String state) throws IOException {
         PrintWriter writer = resp.getWriter();

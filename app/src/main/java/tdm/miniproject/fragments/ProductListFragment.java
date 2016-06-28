@@ -1,5 +1,6 @@
 package tdm.miniproject.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -42,6 +44,7 @@ public class ProductListFragment extends Fragment {
     private ProductListFragmentListener listener;
     private ListView productListView;
     private View fragView=null;
+    private ProgressBar pb;
 
     public ProductListFragment() {
     }
@@ -50,7 +53,7 @@ public class ProductListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragView = inflater.inflate(R.layout.fragment_product_list,container,false);
-
+        pb = (ProgressBar) fragView.findViewById(R.id.progressBarProd);
         Bundle bundle = getArguments();
         if(bundle!=null){
             Consumer consumer = (Consumer) bundle.get("consumer") ;
@@ -71,6 +74,8 @@ public class ProductListFragment extends Fragment {
 
     private void prepareFragment(View view) {
         productListView = (ListView) view.findViewById(R.id.productList);
+
+
         if(productsList!=null){
             if(productAdapter==null)productAdapter=new ProductAdapter(getActivity(),(ArrayList)productsList);
             productListView.setAdapter(productAdapter);
@@ -143,7 +148,8 @@ public class ProductListFragment extends Fragment {
     public class GetProductsTask extends AsyncTask<String,Void,List<Product>>{
         @Override
         protected void onPreExecute() {
-            super.onPreExecute();
+            pb.setVisibility(View.VISIBLE);
+
         }
 
         @Override
@@ -157,6 +163,7 @@ public class ProductListFragment extends Fragment {
 
         @Override
         protected void onPostExecute(List<Product> productsList) {
+            pb.setVisibility(View.INVISIBLE);
             setProductsList(productsList);
             showProductList(fragView);
         }

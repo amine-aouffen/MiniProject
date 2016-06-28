@@ -16,6 +16,7 @@ import tdm.miniproject.R;
 import tdm.miniproject.job.User;
 import tdm.miniproject.managers.HttpManager;
 import tdm.miniproject.managers.RequestManager;
+import tdm.miniproject.managers.TasksManager;
 import tdm.miniproject.managers.UserManager;
 import tdm.miniproject.support.GeneralResponse;
 
@@ -73,6 +74,8 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+
+
     public void endActivity(){
         finish();
     }
@@ -103,11 +106,13 @@ public class LoginActivity extends AppCompatActivity {
             if(response.getCode()==1){
                 //Authen successfull
                 UserManager.setConnected(getApplicationContext(),user.getUsername());
-                Toast.makeText(getApplicationContext(), "Vous êtes connectés.", Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(), "Vous pouvez valider votre commande.", Toast.LENGTH_SHORT).show();
-                endActivity();
+                setResult(Activity.RESULT_OK,new Intent());
+                finish();
+                TasksManager.setOrdderStatusChangedAlarm(getApplicationContext(),10);
+
             }else{
-                Toast.makeText(getApplicationContext(),"Coordonées fournies sont incorrect !", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Coordonées fournies sont incorrectes !", Toast.LENGTH_SHORT).show();
+                setResult(RESULT_CANCELED,new Intent());
             }
         }
     }

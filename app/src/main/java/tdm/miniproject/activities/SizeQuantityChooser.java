@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.NumberPicker;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,21 +23,23 @@ import java.util.List;
 
 import tdm.miniproject.R;
 import tdm.miniproject.job.Product;
-import tdm.miniproject.managers.CartManager;
 import tdm.miniproject.managers.HttpManager;
 import tdm.miniproject.managers.RequestManager;
 import tdm.miniproject.support.CartOperationRequest;
 import tdm.miniproject.support.CartOperationResponse;
-import tdm.miniproject.taches.AddToCartTask;
+import tdm.miniproject.tasks.AddToCartTask;
 
 public class SizeQuantityChooser extends AppCompatActivity {
     private Spinner sizeChooser;
     private NumberPicker numberPicker;
+    private ProgressBar progress;
     private Button validateButton;
     private Button cancelButton;
     private Product product;
     private List<String> sizes;
     private List<Integer> quantities;
+    private TextView txtSize;
+    private TextView txtQuant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,15 +49,7 @@ public class SizeQuantityChooser extends AppCompatActivity {
     }
 
     public void prepareViews(){
-        Intent intent = getIntent();
-        if(intent!=null){
-            product = (Product) intent.getSerializableExtra("product");
-            CartOperationRequest cartOperationRequest = new CartOperationRequest();
-            cartOperationRequest.setProductName(product.getName());
-            cartOperationRequest.setType("CHECK");
-            Log.d("POSITIONHERE","Its done");
-            new CheckCartTask().execute(cartOperationRequest);
-        }
+        progress = (ProgressBar) findViewById(R.id.progressBar);
         sizeChooser = (Spinner) findViewById(R.id.sqChooser);
         numberPicker = (NumberPicker) findViewById(R.id.numberPicker);
         validateButton=(Button) findViewById(R.id.validateBtn);
@@ -65,6 +60,21 @@ public class SizeQuantityChooser extends AppCompatActivity {
                 finish();
             }
         });
+        txtQuant=(TextView) findViewById(R.id.quantityTextView);
+        txtSize=(TextView)findViewById(R.id.sizeTextView) ;
+        executeMethode();
+
+    }
+
+    private void executeMethode() {
+        Intent intent = getIntent();
+        if(intent!=null){
+            product = (Product) intent.getSerializableExtra("product");
+            CartOperationRequest cartOperationRequest = new CartOperationRequest();
+            cartOperationRequest.setProductName(product.getName());
+            cartOperationRequest.setType("CHECK");
+            new CheckCartTask().execute(cartOperationRequest);
+        }
     }
 
     public void setUpChooser() {
@@ -101,6 +111,21 @@ public class SizeQuantityChooser extends AppCompatActivity {
         });
     }
 
+    public void startProgress(){
+        numberPicker.setVisibility(View.INVISIBLE);
+        sizeChooser.setVisibility(View.INVISIBLE);
+        txtQuant.setVisibility(View.INVISIBLE);
+        txtSize.setVisibility(View.INVISIBLE);
+    }
+
+    public void stopProgress(){
+        numberPicker.setVisibility(View.VISIBLE);
+        sizeChooser.setVisibility(View.VISIBLE);
+        txtQuant.setVisibility(View.VISIBLE);
+        txtSize.setVisibility(View.VISIBLE);
+        progress.setVisibility(View.GONE);
+
+    }
 
     public class CheckCartTask extends AsyncTask<CartOperationRequest,Void,String> {
 
@@ -112,6 +137,7 @@ public class SizeQuantityChooser extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            startProgress();
         }
 
         @Override
@@ -135,6 +161,7 @@ public class SizeQuantityChooser extends AppCompatActivity {
                 quantities=response.getQuantities();
                 setUpChooser();
                 setUpValidateListener();
+                stopProgress();
             }
         }
     }

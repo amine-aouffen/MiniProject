@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import tdm.miniproject.R;
@@ -66,7 +68,7 @@ public class OrdersActivity extends AppCompatActivity {
     public void showOrder(int position){
         if(!isTwoPanes()){
             Intent intent = new Intent(this,OrderDetailsActivity.class);
-           // intent.putExtra("order",(Order)listView.getAdapter().getItem(position));
+            intent.putExtra("order",(Order)listView.getAdapter().getItem(position));
             startActivity(intent);
         }else {
             Bundle bundle = new Bundle();
@@ -110,9 +112,9 @@ public class OrdersActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             GetOrdersResponse getOrdersResponse = new Gson().fromJson(s,GetOrdersResponse.class);
             if(getOrdersResponse.getCode()==1){
-                listView.setAdapter(new OrderAdapter(getParent(),(ArrayList<Order>) getOrdersResponse.getOrders()));
+                listView.setAdapter(new OrderAdapter(getApplicationContext(),(ArrayList<Order>) getOrdersResponse.getOrders()));
             }else{
-                Toast.makeText(getApplicationContext(), "Vous devez être connecter !", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Vous devez être connectés !", Toast.LENGTH_SHORT).show();
                 UserManager.setDisconnected(getApplicationContext());
                 returnToMainActivity();
             }

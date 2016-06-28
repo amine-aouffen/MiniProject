@@ -17,11 +17,10 @@ import tdm.miniproject.R;
 import tdm.miniproject.Utils.ServiceUtil;
 import tdm.miniproject.job.Cart;
 
-import tdm.miniproject.job.Product;
 import tdm.miniproject.managers.CartManager;
 import tdm.miniproject.support.CartElement;
 import tdm.miniproject.support.CartOperationRequest;
-import tdm.miniproject.taches.AddToCartTask;
+import tdm.miniproject.tasks.AddToCartTask;
 
 /**
  * Created by Home on 27/03/2016.

@@ -43,10 +43,7 @@ public class CartManager {
         if(cart==null){
             cart = new Cart();
             //Lancement de l'alarm (durée de validation du chariot est 4 heures
-            AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-            Intent intent = new Intent(context,ClearCartReceiver.class);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context,0,intent,0);
-            alarmManager.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+240*1000,pendingIntent);
+            TasksManager.setClearCartAlarm(context,20);
         }
         cart.add(new CartElement(product,size,quantity));
         saveCart(context, cart);
