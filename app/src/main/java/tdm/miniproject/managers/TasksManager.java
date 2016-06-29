@@ -26,7 +26,7 @@ public class TasksManager {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context,ClearCartReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context,0,intent,0);
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+secondes*1000,pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+secondes*1000,pendingIntent);
         Toast.makeText(context, "Alarm set", Toast.LENGTH_SHORT).show();
     }
 
